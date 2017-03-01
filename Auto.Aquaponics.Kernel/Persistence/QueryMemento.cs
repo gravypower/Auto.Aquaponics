@@ -4,11 +4,11 @@
     {
         public void Save(Query.Query query)
         {
-            Save(query.SystemKey, query.GetType().FullName, query.Key, query);
+            Save(query.GetType().FullName, query.Key, query);
         }
 
-        public abstract void Save(string systemKey, string type, string key, Query.Query data);
+        public abstract void Save(string type, string key, Query.Query data);
 
-        public abstract T Load<T>(string systemKey, string fullName, string key);
+        public abstract T Load<T>(string fullName, string key);
     }
 }

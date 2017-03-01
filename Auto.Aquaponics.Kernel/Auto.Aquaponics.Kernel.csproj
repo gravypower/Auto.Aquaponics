@@ -52,6 +52,18 @@
     <Compile Include="Command\Command.cs" />
     <Compile Include="Command\ICommandHandler.cs" />
     <Compile Include="Extensions\Strings.cs" />
+    <Compile Include="GraphTheory\Algorithms\AlgorithmExtensions.cs" />
+    <Compile Include="GraphTheory\Algorithms\TopologicalSortAlgorithm.cs" />
+    <Compile Include="GraphTheory\Graphs\DirectedAcyclicGraph.cs" />
+    <Compile Include="GraphTheory\Graphs\Edge.cs" />
+    <Compile Include="GraphTheory\Graphs\Exceptions\InvalidEdgeException.cs" />
+    <Compile Include="GraphTheory\Graphs\Exceptions\NonAcyclicGraphException.cs" />
+    <Compile Include="GraphTheory\Graphs\Exceptions\NoVerticesException.cs" />
+    <Compile Include="GraphTheory\Graphs\Exceptions\VertexDoesNotExistException.cs" />
+    <Compile Include="GraphTheory\Graphs\Graph.cs" />
+    <Compile Include="GraphTheory\Graphs\GraphExtensions.cs" />
+    <Compile Include="GraphTheory\Graphs\IEdge.cs" />
+    <Compile Include="GraphTheory\Graphs\IGraph.cs" />
     <Compile Include="Persistence\Memento.cs" />
     <Compile Include="Persistence\QueryMemento.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -59,6 +71,7 @@
     <Compile Include="Query\IQueryHandler.cs" />
     <Compile Include="Query\Query.cs" />
     <Compile Include="Query\QueryResult.cs" />
+    <Compile Include="Scale.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

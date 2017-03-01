@@ -4,7 +4,6 @@
     {
         public virtual string QueryVerb { get; } = string.Empty;
         public abstract string Key { get; }
-        public abstract string SystemKey { get; }
 
         public override string ToString()
         {
