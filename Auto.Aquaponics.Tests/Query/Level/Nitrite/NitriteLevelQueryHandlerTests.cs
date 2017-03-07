@@ -1,14 +1,14 @@
-﻿using Auto.Aquaponics.Query.LevelAnalysis.Nitrate;
+﻿using Auto.Aquaponics.Query.LevelAnalysis.Nitrite;
 using NSubstitute;
 using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
 {
     public abstract class NitriteLevelQueryHandlerTests: LevelQueryHandlerTests<
-            NitrateLevelQueryHandler,
-            INitrateLevelQueryHandlerMagicStrings,
-            NitrateLevelAnalysis,
-            NitrateLevelAnalysisResult
+            NitriteLevelQueryHandler,
+            INitriteLevelQueryHandlerMagicStrings,
+            NitriteLevelAnalysis,
+            NitriteLevelAnalysisResult
         >
     {
 
@@ -20,7 +20,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
             Organism = Substitute.For<Organisms.Organism>(GetOrganismName());
             Organism.AddTolerances(GetTolerances());
 
-            Sut = new NitrateLevelQueryHandler(LevelQueryHandlerMagicStrings);
+            Sut = new NitriteLevelQueryHandler(LevelQueryHandlerMagicStrings);
         }
 
     }

@@ -6,10 +6,6 @@
         {
         }
 
-        public SalinityLevelAnalysis(Organisms.Organism organism) : base(organism)
-        {
-        }
-
         public SalinityLevelAnalysis(double value, Organisms.Organism organism) : base(value, organism)
         {
         }

@@ -1,7 +1,6 @@
-﻿using Auto.Aquaponics.Kernel;
+﻿using System.Collections.Generic;
+using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Query.LevelAnalysis.Nitrate;
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
@@ -19,41 +18,24 @@ namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
             return "Silver Perch";
         }
 
-        [TestCase(0)]
-        public void is_suitable(double level)
+        protected override IEnumerable<double> is_suitable_cases()
         {
-            var query = new NitrateLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.SutablalForOrganism.Should().BeTrue();
+            yield return 0;
         }
 
-        [TestCase(41)]
-        public void is_not_suitable(double level)
+        protected override IEnumerable<double> is_not_suitable_cases()
         {
-            var query = new NitrateLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.SutablalForOrganism.Should().BeFalse();
+            yield return 41;
         }
 
-
-        [TestCase(21)]
-        public void is_not_ideal(double level)
+        protected override IEnumerable<double> is_not_ideal_cases()
         {
-            var query = new NitrateLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.IdealForOrganism.Should().BeFalse();
+            yield return 21;
         }
 
-        [TestCase(0)]
-        public void is_ideal(double level)
+        protected override IEnumerable<double> is_ideal_cases()
         {
-            var query = new NitrateLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.IdealForOrganism.Should().BeTrue();
+            yield return 0;
         }
     }
 }

@@ -3,7 +3,6 @@
     public abstract class Query
     {
         public virtual string QueryVerb { get; } = string.Empty;
-        public abstract string Key { get; }
 
         public override string ToString()
         {

@@ -2,7 +2,7 @@
 
 namespace Auto.Aquaponics.Organisms
 {
-    public abstract class Organism
+    public class Organism
     {
         public string Name { get; }
 
@@ -13,7 +13,7 @@ namespace Auto.Aquaponics.Organisms
             Tolerances = new Dictionary<string, Tolerances>();
         }
 
-        protected Organism(string name):this()
+        public Organism(string name):this()
         {
             Name = name;
         }

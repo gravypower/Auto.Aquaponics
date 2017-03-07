@@ -4,7 +4,7 @@
     {
         public void Save(Query.Query query)
         {
-            Save(query.GetType().FullName, query.Key, query);
+            Save(query.GetType().FullName, "", query);
         }
 
         public abstract void Save(string type, string key, Query.Query data);

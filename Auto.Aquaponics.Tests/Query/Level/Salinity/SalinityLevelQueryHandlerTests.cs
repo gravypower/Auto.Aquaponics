@@ -1,4 +1,5 @@
-﻿using Auto.Aquaponics.Query.LevelAnalysis.Salinity;
+﻿using Auto.Aquaponics.Organisms;
+using Auto.Aquaponics.Query.LevelAnalysis.Salinity;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -13,11 +14,11 @@ namespace Auto.Aquaponics.Tests.Query.Level.Salinity
     {
 
         [SetUp]
-        protected void NitrateLevelQueryHandlerTestsSetUp()
+        protected void SalinityLevelQueryHandlerTestsSetUp()
         {
             LevelQueryHandlerMagicStrings.LevelKey.Returns("Salinity");
 
-            Organism = Substitute.For<Organisms.Organism>(GetOrganismName());
+            Organism = Substitute.For<Organism>(GetOrganismName());
             Organism.AddTolerances(GetTolerances());
 
             Sut = new SalinityLevelQueryHandler(LevelQueryHandlerMagicStrings);

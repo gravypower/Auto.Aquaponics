@@ -6,10 +6,6 @@
         {
         }
 
-        public NitrateLevelAnalysis(Organisms.Organism organism) : base(organism)
-        {
-        }
-
         public NitrateLevelAnalysis(double value, Organisms.Organism organism) : base(value, organism)
         {
         }

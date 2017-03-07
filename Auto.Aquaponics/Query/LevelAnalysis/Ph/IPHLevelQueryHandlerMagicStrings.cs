@@ -1,6 +1,6 @@
 ﻿namespace Auto.Aquaponics.Query.LevelAnalysis.Ph
 {
-    public interface IPhLevelQueryHandlerMagicStrings: ILevelQueryHandlerMagicStrings
+    public interface IPhLevelQueryHandlerMagicStrings : ILevelQueryHandlerMagicStrings
     {
         string LowPhArgumentOutOfRangeExceptionMessage { get; }
         string HightPhArgumentOutOfRangeExceptionMessage { get; }

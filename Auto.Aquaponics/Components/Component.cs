@@ -3,11 +3,11 @@ using Auto.Aquaponics.Organisms;
 
 namespace Auto.Aquaponics.Components
 {
-    public abstract class Component
+    public class Component
     {
         public IList<Organism> Organisms { get; }
 
-        protected Component()
+        public Component()
         {
             Organisms = new List<Organism>();
         }

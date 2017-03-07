@@ -6,10 +6,6 @@
         {
         }
 
-        public AmmoniaLevelAnalysis(Organisms.Organism organism) : base(organism)
-        {
-        }
-
         public AmmoniaLevelAnalysis(double value, Organisms.Organism organism) : base(value, organism)
         {
         }

@@ -1,17 +1,15 @@
-﻿using Auto.Aquaponics.Query.LevelAnalysis.Nitrate;
-
-namespace Auto.Aquaponics.Query.LevelAnalysis.Nitrite
+﻿namespace Auto.Aquaponics.Query.LevelAnalysis.Nitrite
 {
-    public class NitriteLevelQueryHandler : LevelQueryHandler<NitrateLevelAnalysis, NitrateLevelAnalysisResult>
+    public class NitriteLevelQueryHandler : LevelQueryHandler<NitriteLevelAnalysis, NitriteLevelAnalysisResult>
     {
-        private readonly INitrateLevelQueryHandlerMagicStrings _nitrateLevelQueryHandlerMagicStrings;
+        private readonly INitriteLevelQueryHandlerMagicStrings _nitrateLevelQueryHandlerMagicStrings;
 
-        public NitriteLevelQueryHandler(INitrateLevelQueryHandlerMagicStrings nitrateLevelQueryHandlerMagicStrings) : base(nitrateLevelQueryHandlerMagicStrings)
+        public NitriteLevelQueryHandler(INitriteLevelQueryHandlerMagicStrings nitriteLevelQueryHandlerMagicStrings) : base(nitriteLevelQueryHandlerMagicStrings)
         {
-            _nitrateLevelQueryHandlerMagicStrings = nitrateLevelQueryHandlerMagicStrings;
+            _nitrateLevelQueryHandlerMagicStrings = nitriteLevelQueryHandlerMagicStrings;
         }
 
-        protected override NitrateLevelAnalysisResult Analyse(NitrateLevelAnalysis query, NitrateLevelAnalysisResult analysisResult)
+        protected override NitriteLevelAnalysisResult Analyse(NitriteLevelAnalysis query, NitriteLevelAnalysisResult analysisResult)
         {
             return analysisResult;
         }

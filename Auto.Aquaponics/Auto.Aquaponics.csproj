@@ -49,6 +49,7 @@
     <Compile Include="Organisms\Organism.cs" />
     <Compile Include="Organisms\Tolerances.cs" />
     <Compile Include="Ph\IPhRange.cs" />
+    <Compile Include="Ph\PhRange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\LevelAnalysis\Ammonia\IAmmoniaLevelQueryHandlerMagicStrings.cs" />
     <Compile Include="Query\LevelAnalysis\Ammonia\AmmoniaLevelAnalysis.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Query\LevelAnalysis\LevelAnalysisResult.cs" />
     <Compile Include="Query\LevelAnalysis\LevelAnalysisQuery.cs" />
     <Compile Include="Query\LevelAnalysis\LevelQueryHandler.cs" />
+    <Compile Include="Query\LevelAnalysis\LevelQueryHandlerMagicStrings.cs" />
     <Compile Include="Query\LevelAnalysis\Nitrate\INitrateLevelQueryHandlerMagicStrings.cs" />
     <Compile Include="Query\LevelAnalysis\Nitrate\NitrateLevelAnalysis.cs" />
     <Compile Include="Query\LevelAnalysis\Nitrate\NitrateLevelAnalysisResult.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Query\LevelAnalysis\Ph\PhLevelAnalysis.cs" />
     <Compile Include="Query\LevelAnalysis\Ph\PhLevelAnalysisResult.cs" />
     <Compile Include="Query\LevelAnalysis\Ph\PhLevelQueryHandler.cs" />
+    <Compile Include="Query\LevelAnalysis\Ph\PhLevelQueryHandlerMagicStrings.cs" />
     <Compile Include="Query\LevelAnalysis\Salinity\SalinityLevelAnalysis.cs" />
     <Compile Include="Query\LevelAnalysis\Salinity\SalinityLevelAnalysisResult.cs" />
     <Compile Include="Query\LevelAnalysis\Salinity\SalinityLevelQueryHandler.cs" />

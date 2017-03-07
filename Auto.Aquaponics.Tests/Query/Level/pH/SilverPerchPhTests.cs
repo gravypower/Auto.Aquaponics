@@ -1,7 +1,6 @@
-﻿using Auto.Aquaponics.Kernel;
+﻿using System.Collections.Generic;
+using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Query.LevelAnalysis.Ph;
-using FluentAssertions;
 using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.pH
@@ -19,43 +18,27 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
             return new Tolerances(LevelQueryHandlerMagicStrings.LevelKey, Scale.Ph, 10, 6, 9, 6.5);
         }
 
-        [TestCase(0)]
-        public void is_not_suitable(double level)
+        protected override IEnumerable<double> is_suitable_cases()
         {
-            var query = new PhLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.SutablalForOrganism.Should().BeFalse();
+            yield return 6;
+            yield return 10;
+            yield return 9;
         }
 
-        [TestCase(6)]
-        [TestCase(10)]
-        [TestCase(9)]
-        public void is_suitable(double level)
+        protected override IEnumerable<double> is_not_suitable_cases()
         {
-            var query = new PhLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.SutablalForOrganism.Should().BeTrue();
+            yield return 0;
         }
 
-        [TestCase(6)]
-        public void is_not_ideal(double level)
+        protected override IEnumerable<double> is_not_ideal_cases()
         {
-            var query = new PhLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.IdealForOrganism.Should().BeFalse();
+            yield return 6;
         }
 
-        [TestCase(6.5)]
-        [TestCase(9)]
-        public void is_ideal(double level)
+        protected override IEnumerable<double> is_ideal_cases()
         {
-            var query = new PhLevelAnalysis(level, Organism);
-
-            var result = Sut.Handle(query);
-            result.IdealForOrganism.Should().BeTrue();
+            yield return 6.5;
+            yield return 9;
         }
     }
 }

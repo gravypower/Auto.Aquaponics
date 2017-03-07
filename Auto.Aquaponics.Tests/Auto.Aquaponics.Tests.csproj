@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AquaponicSystemIntergrationTests.cs" />
     <Compile Include="Components\ComponentTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Level\Ammonia\AmmoniaLevelQueryHandlerTests.cs" />

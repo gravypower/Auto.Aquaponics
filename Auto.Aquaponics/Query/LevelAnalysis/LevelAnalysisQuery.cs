@@ -1,18 +1,18 @@
-﻿using NodaTime;
-
-namespace Auto.Aquaponics.Query.LevelAnalysis
+﻿namespace Auto.Aquaponics.Query.LevelAnalysis
 {
     public abstract class LevelAnalysisQuery : Kernel.Query.Query
     {
-        public ZonedDateTime DateTime { get; }
-        public Organisms.Organism Organism { get; }
+        public Organisms.Organism Organism { get; set; }
 
         public double Vaue { get; }
 
-        public override string Key => DateTime.ToString();
-
         protected LevelAnalysisQuery()
         {
+        }
+
+        protected LevelAnalysisQuery(double value)
+        {
+            Vaue = value;
         }
 
         protected LevelAnalysisQuery(Organisms.Organism organism)
@@ -23,11 +23,6 @@ namespace Auto.Aquaponics.Query.LevelAnalysis
         protected LevelAnalysisQuery(double value, Organisms.Organism organism) : this(organism)
         {
             Vaue = value;
-        }
-
-        protected LevelAnalysisQuery(double value, Organisms.Organism organism, ZonedDateTime dateTime) : this(value, organism)
-        {
-            DateTime = dateTime;
         }
     }
 }
