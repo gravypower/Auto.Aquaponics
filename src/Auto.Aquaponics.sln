@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Aquaponics.Kernel.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Aquaponics.Tests", "Auto.Aquaponics.Tests\Auto.Aquaponics.Tests.csproj", "{B4296A96-DAEF-4DCC-B26F-B33D98C6A763}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebApplication1\WebApplication1.csproj", "{05F1B97E-2F8C-47EB-AB2C-8E0A81C5373C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Aquaponics.HardCodedData", "Auto.Aquaponics.HardCodedData\Auto.Aquaponics.HardCodedData.csproj", "{4F1E8A3E-76CE-4FC7-A4AB-F06608268A64}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{B4296A96-DAEF-4DCC-B26F-B33D98C6A763}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B4296A96-DAEF-4DCC-B26F-B33D98C6A763}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B4296A96-DAEF-4DCC-B26F-B33D98C6A763}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F1B97E-2F8C-47EB-AB2C-8E0A81C5373C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F1B97E-2F8C-47EB-AB2C-8E0A81C5373C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F1B97E-2F8C-47EB-AB2C-8E0A81C5373C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F1B97E-2F8C-47EB-AB2C-8E0A81C5373C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4F1E8A3E-76CE-4FC7-A4AB-F06608268A64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4F1E8A3E-76CE-4FC7-A4AB-F06608268A64}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4F1E8A3E-76CE-4FC7-A4AB-F06608268A64}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4F1E8A3E-76CE-4FC7-A4AB-F06608268A64}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,9 +2,9 @@
 
 namespace Auto.Aquaponics.Kernel.Tests.Query
 {
-    public class MockQueryResult:QueryResult
+    public class MockQueryResult
     {
-        public Query<QueryResult> Query { get; set; }
+        public IQuery<object> Query { get; set; }
 
     }
 }

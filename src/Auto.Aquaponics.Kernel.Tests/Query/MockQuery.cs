@@ -1,6 +1,8 @@
-﻿namespace Auto.Aquaponics.Kernel.Tests.Query
+﻿using Auto.Aquaponics.Kernel.Query;
+
+namespace Auto.Aquaponics.Kernel.Tests.Query
 {
-    public class MockQuery:Kernel.Query.Query<MockQueryResult>
+    public class MockQuery:IQuery<MockQueryResult>
     {
         
 

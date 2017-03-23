@@ -2,8 +2,6 @@
 {
     public interface IQueryProcessor
     {
-        TResult Process<TQuery, TResult>(TQuery query)
-            where TQuery : Query<TResult>
-            where TResult : QueryResult;
+        TResult Process<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>;
     }
 }

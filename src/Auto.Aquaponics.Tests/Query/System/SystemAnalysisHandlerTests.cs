@@ -1,5 +1,6 @@
 ﻿using Auto.Aquaponics.Analysis.Level;
 using Auto.Aquaponics.Analysis.System;
+using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
 using Auto.Aquaponics.Kernel.GraphTheory.Graphs;
 using Auto.Aquaponics.Kernel.Query;
@@ -22,7 +23,7 @@ namespace Auto.Aquaponics.Tests.Query.System
         {
             QueryProcessor = Substitute.For<IQueryProcessor>();
             Sut = new SystemAnalysisHandler(QueryProcessor);
-            System = new AquaponicSystem(new DirectedAcyclicGraph<Component>());
+            System = new AquaponicSystem("SomeName", new DirectedAcyclicGraph<Component>());
         }
 
         [Test]

@@ -1,4 +1,5 @@
-﻿using Auto.Aquaponics.Components;
+﻿using Auto.Aquaponics.AquaponicSystems;
+using Auto.Aquaponics.Components;
 using Auto.Aquaponics.Kernel.GraphTheory.Graphs;
 using FluentAssertions;
 using NSubstitute;
@@ -18,7 +19,7 @@ namespace Auto.Aquaponics.Tests
         {
             _graph = new DirectedAcyclicGraph<Component>();
 
-            Sut = new AquaponicSystem(_graph);
+            Sut = new AquaponicSystem("SomeName", _graph);
         }
 
         [Test]

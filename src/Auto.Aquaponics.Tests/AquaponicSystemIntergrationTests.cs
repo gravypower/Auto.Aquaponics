@@ -1,4 +1,5 @@
-﻿using Auto.Aquaponics.Components;
+﻿using Auto.Aquaponics.AquaponicSystems;
+using Auto.Aquaponics.Components;
 using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Kernel.GraphTheory.Graphs;
 using Auto.Aquaponics.Organisms;
@@ -13,7 +14,7 @@ namespace Auto.Aquaponics.Tests
         public void IntergrationTest()
         {
             var graph = new DirectedAcyclicGraph<Component>();
-            var system = new AquaponicSystem(graph);
+            var system = new AquaponicSystem("SomeName", graph);
 
             var fishTank = new Component();
 

@@ -6,26 +6,29 @@ namespace Auto.Aquaponics
 {
     public class AquaponicSystem
     {
-        public IGraph<Component> ComponentGraph { get; }
+        public string Name { get; }
+        public ICollection<Component> Components => _graph.VerticesAndEdges.Keys;
+        private readonly IGraph<Component> _graph;
 
-        public IEnumerable<Component> Components => ComponentGraph.VerticesAndEdges.Keys;
-
-        protected AquaponicSystem()
-        { }
-
-        public AquaponicSystem(IGraph<Component> componentGraph)
+        public AquaponicSystem(string name)
         {
-            ComponentGraph = componentGraph;
+            Name = name;
+        }
+
+        public AquaponicSystem(string name, IGraph<Component> graph):this(name)
+        {
+            _graph = graph;
+
         }
 
         public void AddComponents(params Component[] components)
         {
             for (var i = 0; i < components.Length; i++)
             {
-                ComponentGraph.InsertVertex(components[i]);
+                _graph.InsertVertex(components[i]);
                 if (i > 0)
                 {
-                    ComponentGraph.InsertEdge(components[i - 1], components[i]);
+                    _graph.InsertEdge(components[i - 1], components[i]);
                 }
             }
         }

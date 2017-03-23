@@ -1,8 +1,6 @@
-﻿using Auto.Aquaponics.Kernel.Query;
-
-namespace Auto.Aquaponics.Analysis.Level
+﻿namespace Auto.Aquaponics.Analysis.Level
 {
-    public class LevelAnalysis: QueryResult
+    public class LevelAnalysis
     {
         public bool? SutablalForOrganism { get; set; }
         public bool? IdealForOrganism { get; set; }

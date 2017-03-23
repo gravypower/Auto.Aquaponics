@@ -2,7 +2,7 @@
 
 namespace Auto.Aquaponics.Analysis.Level
 {
-    public class LevelAnalysisQuery<TLevelAnalysis> : Query<TLevelAnalysis> 
+    public class LevelAnalysisQuery<TLevelAnalysis> : IQuery<TLevelAnalysis> 
         where TLevelAnalysis:LevelAnalysis
     {
         public Organisms.Organism Organism { get; set; }
