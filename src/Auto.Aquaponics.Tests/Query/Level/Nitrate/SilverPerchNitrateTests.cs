@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Tests.Organisms;
+using Auto.Aquaponics.HardCodedData.Organisms;
 using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Nitrate

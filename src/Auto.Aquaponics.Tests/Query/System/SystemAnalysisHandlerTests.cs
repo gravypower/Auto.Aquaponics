@@ -2,9 +2,8 @@
 using Auto.Aquaponics.Analysis.System;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
-using Auto.Aquaponics.Kernel.GraphTheory.Graphs;
 using Auto.Aquaponics.Kernel.Query;
-using Auto.Aquaponics.Tests.Organisms;
+using Auto.Aquaponics.HardCodedData.Organisms;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -23,7 +22,7 @@ namespace Auto.Aquaponics.Tests.Query.System
         {
             QueryProcessor = Substitute.For<IQueryProcessor>();
             Sut = new SystemAnalysisHandler(QueryProcessor);
-            System = new AquaponicSystem("SomeName", new DirectedAcyclicGraph<Component>());
+            System = new AquaponicSystem("SomeName");
         }
 
         [Test]
@@ -52,7 +51,7 @@ namespace Auto.Aquaponics.Tests.Query.System
         public void Result_shoud_contain_Organism()
         {
             //Arrange
-            var fishTank = new Component();
+            var fishTank = new Component("fishTank");
             var silverPerch = new SilverPerch();
             fishTank.AddOrganisms(silverPerch);
 
@@ -72,7 +71,7 @@ namespace Auto.Aquaponics.Tests.Query.System
         public void Result_shoud_contain_Analysis()
         {
             //Arrange
-            var fishTank = new Component();
+            var fishTank = new Component("fishTank");
             var silverPerch = new SilverPerch();
             fishTank.AddOrganisms(silverPerch);
 

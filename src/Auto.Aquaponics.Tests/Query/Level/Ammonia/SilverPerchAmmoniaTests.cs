@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
+using Auto.Aquaponics.HardCodedData.Organisms;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Tests.Organisms;
 using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Ammonia

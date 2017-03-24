@@ -45,7 +45,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         public void organism_pH_tolerance_not_defined_ArgumentNullException_thrown()
         {
             Organism = Substitute.For<Organism>();
-            var tolerance = new Tolerance("SomeName", Scale.None, 0, 0, 0, 0 );
+            var tolerance = new Tolerance("SomeName", Scale.None, 0, 0, 0, 0);
             Organism.AddTolerances(tolerance);
 
             var query = new PhLevelAnalysisQuery(0);

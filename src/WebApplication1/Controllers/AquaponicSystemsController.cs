@@ -18,12 +18,21 @@ namespace WebApplication1.Controllers
         // GET: System
         public ActionResult Index()
         {
-            var list = new List<AquaponicSystem>
-            {
-                new AquaponicSystem("Test 1"),
-                new AquaponicSystem("Test 2"),
-            };
             return View(_getSystemsHandler.Handle(new GetSystems()));
         }
+
+        // GET: Default/Edit/5
+        public ActionResult Edit(int id)
+        {
+            return View();
+        }
+
+        // GET: api/Default
+        [Produces("application/json")]
+        public AquaponicSystem Get()
+        {
+            return _getSystemsHandler.Handle(new GetSystems())[0];
+        }
+
     }
 }

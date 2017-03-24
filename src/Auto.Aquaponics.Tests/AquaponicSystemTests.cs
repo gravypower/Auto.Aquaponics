@@ -1,6 +1,5 @@
 ﻿using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
-using Auto.Aquaponics.Kernel.GraphTheory.Graphs;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -11,15 +10,12 @@ namespace Auto.Aquaponics.Tests
     public class AquaponicSystemTests
     {
         public AquaponicSystem Sut;
-        private IGraph<Component> _graph;
-
 
         [SetUp]
         public void SetUp()
         {
-            _graph = new DirectedAcyclicGraph<Component>();
 
-            Sut = new AquaponicSystem("SomeName", _graph);
+            Sut = new AquaponicSystem("SomeName");
         }
 
         [Test]
@@ -33,8 +29,8 @@ namespace Auto.Aquaponics.Tests
             Sut.AddComponents(fishTank, growBed);
 
             //Assert
-            _graph.VerticesAndEdges.Keys.Should().Contain(fishTank);
-            _graph.VerticesAndEdges.Keys.Should().Contain(growBed);
+            Sut.Components.Should().Contain(fishTank);
+            Sut.Components.Should().Contain(growBed);
 
         }
 
@@ -50,9 +46,44 @@ namespace Auto.Aquaponics.Tests
             Sut.AddComponents(fishTank, growBed, sumpTank);
 
             //Assert
-            _graph.VerticesAndEdges.Keys.Should().Contain(fishTank);
-            _graph.VerticesAndEdges.Keys.Should().Contain(growBed);
-            _graph.VerticesAndEdges.Keys.Should().Contain(sumpTank);
+            Sut.Components.Should().Contain(fishTank);
+            Sut.Components.Should().Contain(growBed);
+            Sut.Components.Should().Contain(sumpTank);
+        }
+
+        [Test]
+        public void Given_Three_Components_Added_Then_Component_connections_are_correct()
+        {
+            //Arrange
+            var fishTank = Substitute.For<Component>("fishTank");
+            var growBed = Substitute.For<Component>("growBed");
+            var sumpTank = Substitute.For<Component>("sumpTank");
+
+            //Act
+            Sut.AddComponents(fishTank, growBed, sumpTank);
+
+            //Assert
+            Sut.ComponentConnections.Should().Contain(c=>c.SourceId == "fishTank" && c.TargetId == "growBed");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
+        }
+
+        [Test]
+        public void Given_Three_Components_Added_and_system_is_not_closed_Then_Component_connections_are_correct()
+        {
+            //Arrange
+            Sut = new AquaponicSystem("SomeName", false);
+            var fishTank = Substitute.For<Component>("fishTank");
+            var growBed = Substitute.For<Component>("growBed");
+            var sumpTank = Substitute.For<Component>("sumpTank");
+
+            //Act
+            Sut.AddComponents(fishTank, growBed, sumpTank);
+
+            //Assert
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "fishTank" && c.TargetId == "growBed");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
+            Sut.ComponentConnections.Should().NotContain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
         }
     }
 }

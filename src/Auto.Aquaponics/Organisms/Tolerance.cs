@@ -16,7 +16,7 @@ namespace Auto.Aquaponics.Organisms
             
         }
 
-        public Tolerance(string name, Scale scale, double upper, double lower, double desiredUpper, double desiredLower)
+        public Tolerance(string name, Scale scale, double lower, double upper, double desiredLower, double desiredUpper)
         {
             Scale = scale;
             Name = name;
