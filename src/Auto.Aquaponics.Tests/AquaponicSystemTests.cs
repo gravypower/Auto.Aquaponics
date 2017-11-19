@@ -14,7 +14,6 @@ namespace Auto.Aquaponics.Tests
         [SetUp]
         public void SetUp()
         {
-
             Sut = new AquaponicSystem("SomeName");
         }
 
@@ -31,7 +30,6 @@ namespace Auto.Aquaponics.Tests
             //Assert
             Sut.Components.Should().Contain(fishTank);
             Sut.Components.Should().Contain(growBed);
-
         }
 
         [Test]

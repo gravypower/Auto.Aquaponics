@@ -1,6 +1,5 @@
 ﻿using Auto.Aquaponics.Analysis.Level.Nitrate;
 using NSubstitute;
-using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Nitrate
 {
