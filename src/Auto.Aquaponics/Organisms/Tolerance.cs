@@ -4,12 +4,12 @@ namespace Auto.Aquaponics.Organisms
 {
     public class Tolerance
     {
-        public Scale Scale  { get; private set; }
-        public string Name { get; private set; }
-        public double Upper { get; private set; }
-        public double Lower { get; private set; }
-        public double DesiredLower { get; private set; }
-        public double DesiredUpper { get; private set; }
+        public Scale Scale  { get; }
+        public string Name { get; }
+        public double Upper { get; }
+        public double Lower { get; }
+        public double DesiredLower { get; }
+        public double DesiredUpper { get; }
 
         protected Tolerance()
         {

@@ -2,7 +2,7 @@
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
 using Auto.Aquaponics.HardCodedData.Organisms;
-using Auto.Aquaponics.Kernel.Query;
+using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.HardCodedData
 {
@@ -13,7 +13,7 @@ namespace Auto.Aquaponics.HardCodedData
             var nitrosomonas = new Nitrosomonas();
             var nitrospira = new Nitrospira();
 
-            var gravyNumberOne = new AquaponicSystem("Gravy Number One");
+            var gravyNumberOne = new AquaponicSystem("Gravypower_1");
 
             var fishTank = new Component("fishTank");
             fishTank.AddOrganisms(new SilverPerch(), nitrosomonas, nitrospira);

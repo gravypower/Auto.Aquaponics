@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Auto.Aquaponics.Analysis.Level;
-using Auto.Aquaponics.Kernel.Query;
 using Auto.Aquaponics.Organisms;
+using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.Analysis.System
 {

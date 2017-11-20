@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Auto.Aquaponics.Kernel\Auto.Aquaponics.Kernel.csproj" />
+    <ProjectReference Include="..\Auto.Aquaponics\Auto.Aquaponics.csproj" />
   </ItemGroup>
 
 </Project>

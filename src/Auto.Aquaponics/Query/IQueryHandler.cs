@@ -1,4 +1,4 @@
-﻿namespace Auto.Aquaponics.Kernel.Query
+﻿namespace Auto.Aquaponics.Query
 {
     public interface IQueryHandler<in TQuery, out TResult> where TQuery : IQuery<TResult>
     {

@@ -1,4 +1,4 @@
-﻿namespace Auto.Aquaponics.Kernel
+﻿namespace Auto.Aquaponics
 {
     public enum Scale
     {

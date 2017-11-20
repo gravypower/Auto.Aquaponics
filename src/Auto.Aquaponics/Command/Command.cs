@@ -1,4 +1,4 @@
-﻿namespace Auto.Aquaponics.Kernel.Command
+﻿namespace Auto.Aquaponics.Command
 {
     public abstract class Command
     {

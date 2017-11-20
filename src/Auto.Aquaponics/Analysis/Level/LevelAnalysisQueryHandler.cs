@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using Auto.Aquaponics.Kernel.Query;
+using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.Analysis.Level
 {

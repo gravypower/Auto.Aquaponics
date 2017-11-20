@@ -1,6 +1,6 @@
 ﻿using Auto.Aquaponics.Analysis.Level;
 using Auto.Aquaponics.AquaponicSystems;
-using Auto.Aquaponics.Kernel.Query;
+using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.Analysis.System
 {

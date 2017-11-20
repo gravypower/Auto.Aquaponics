@@ -2,8 +2,8 @@
 using Auto.Aquaponics.Analysis.System;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
-using Auto.Aquaponics.Kernel.Query;
 using Auto.Aquaponics.HardCodedData.Organisms;
+using Auto.Aquaponics.Query;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;

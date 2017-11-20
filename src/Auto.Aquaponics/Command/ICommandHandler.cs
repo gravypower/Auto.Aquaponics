@@ -1,4 +1,4 @@
-﻿namespace Auto.Aquaponics.Kernel.Command
+﻿namespace Auto.Aquaponics.Command
 {
     public interface ICommandHandler<in TCommand>
     {
