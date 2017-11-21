@@ -9,5 +9,10 @@
         public PhLevelAnalysisQuery(double value) : base(value)
         {
         }
+
+        public override LevelAnalysisQuery<PhLevelAnalysis> Clone()
+        {
+            return new PhLevelAnalysisQuery(Value);
+        }
     }
 }

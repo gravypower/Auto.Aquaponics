@@ -4,9 +4,9 @@ namespace Auto.Aquaponics.Api
 {
     public abstract class QueryService : Service
     {
-        public virtual object Exec<TQuery, TResult>(TQuery query) where TQuery : Query.IQuery<TResult>
+        public virtual object Exec<TQuery>(dynamic query)
         {
-            var queryHandler = Bootstrapper.GetQueryHandler<TQuery, TResult>();
+            var queryHandler = Bootstrapper.GetQueryHandler(query.GetType());
 
             return queryHandler.Handle(query);
         }

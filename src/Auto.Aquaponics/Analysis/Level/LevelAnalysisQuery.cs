@@ -2,8 +2,8 @@
 
 namespace Auto.Aquaponics.Analysis.Level
 {
-    public class LevelAnalysisQuery<TLevelAnalysis> : IQuery<TLevelAnalysis> 
-        where TLevelAnalysis:LevelAnalysis
+    public abstract class LevelAnalysisQuery<TLevelAnalysis> : IQuery<TLevelAnalysis>
+        where TLevelAnalysis : LevelAnalysis
     {
         public Organisms.Organism Organism { get; set; }
 
@@ -18,9 +18,6 @@ namespace Auto.Aquaponics.Analysis.Level
             Value = value;
         }
 
-        public LevelAnalysisQuery<TLevelAnalysis> Clone()
-        {
-            return new LevelAnalysisQuery<TLevelAnalysis>(Value);
-        }
+        public abstract LevelAnalysisQuery<TLevelAnalysis> Clone();
     }
 }

@@ -58,6 +58,8 @@ namespace Auto.Aquaponics.Tests.Query.System
             System.AddComponents(fishTank);
 
             var query = Substitute.For<LevelAnalysisQuery<LevelAnalysis>>();
+            query.Clone().Returns(Substitute.For<LevelAnalysisQuery<LevelAnalysis>>());
+
             var systemQuery = new SystemAnalysisQuery(System, query);
 
             //Act
@@ -78,6 +80,7 @@ namespace Auto.Aquaponics.Tests.Query.System
             System.AddComponents(fishTank);
 
             var query = Substitute.For<LevelAnalysisQuery<LevelAnalysis>>();
+            query.Clone().Returns(Substitute.For<LevelAnalysisQuery<LevelAnalysis>>());
 
             var systemQuery = new SystemAnalysisQuery(System, query);
 

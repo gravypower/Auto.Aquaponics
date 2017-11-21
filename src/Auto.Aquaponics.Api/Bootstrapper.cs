@@ -13,7 +13,7 @@ namespace Auto.Aquaponics.Api
     public class Bootstrapper
     {
         private static Container _container;
-        private static Assembly[] contractAssemblies = new[] { typeof(IQuery<>).Assembly };
+        private static readonly Assembly[] ContractAssemblies = {typeof(IQuery<>).Assembly};
 
         public static Container Bootstrap()
         {
@@ -30,22 +30,22 @@ namespace Auto.Aquaponics.Api
         }
 
         public static IEnumerable<Type> GetCommandTypes() =>
-            from assembly in contractAssemblies
+            from assembly in ContractAssemblies
             from type in assembly.GetExportedTypes()
             where type.Name.EndsWith("Command")
             select type;
 
         public static IEnumerable<QueryInfo> GetQueryTypes() =>
-            from assembly in contractAssemblies
+            from assembly in ContractAssemblies
             from type in assembly.GetExportedTypes()
-            where QueryInfo.IsQuery(type)
+            where QueryInfo.IsQuery(type) && !type.IsAbstract
             select new QueryInfo(type);
 
-        public static IQueryHandler<TQuery, TResult> GetQueryHandler<TQuery, TResult>() where TQuery : IQuery<TResult> =>
-            _container.GetInstance(CreateQueryHandlerType<TQuery, TResult>()) as IQueryHandler<TQuery, TResult>;
+        public static object GetQueryHandler(Type queryType) =>
+            _container.GetInstance(CreateQueryHandlerType(queryType));
 
-        private static Type CreateQueryHandlerType<TQuery, TResult>() =>
-            typeof(IQueryHandler<,>).MakeGenericType(typeof(TQuery), typeof(TResult));
+        private static Type CreateQueryHandlerType(Type queryType) =>
+            typeof(IQueryHandler<,>).MakeGenericType(queryType, new QueryInfo(queryType).ResultType);
     }
 
     [DebuggerDisplay("{QueryType.Name,nq}")]
@@ -56,8 +56,8 @@ namespace Auto.Aquaponics.Api
 
         public QueryInfo(Type queryType)
         {
-            this.QueryType = queryType;
-            this.ResultType = DetermineResultTypes(queryType).Single();
+            QueryType = queryType;
+            ResultType = DetermineResultTypes(queryType).Single();
         }
 
         public static bool IsQuery(Type type) => DetermineResultTypes(type).Any();
@@ -67,5 +67,6 @@ namespace Auto.Aquaponics.Api
             where interfaceType.IsGenericType
             where interfaceType.GetGenericTypeDefinition() == typeof(IQuery<>)
             select interfaceType.GetGenericArguments()[0];
+
     }
 }

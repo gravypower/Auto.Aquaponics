@@ -9,5 +9,10 @@
         public SalinityLevelAnalysisQuery(double value) : base(value)
         {
         }
+
+        public override LevelAnalysisQuery<SalinityLevelAnalysis> Clone()
+        {
+            return new SalinityLevelAnalysisQuery(Value);
+        }
     }
 }

@@ -18,7 +18,6 @@
     <PackageReference Include="ServiceStack.Server.Core" Version="1.0.44" />
     <PackageReference Include="ServiceStack.Text.Core" Version="1.0.44" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
-    <PackageReference Include="System.Reflection.Emit" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Auto.Aquaponics.HardCodedData\Auto.Aquaponics.HardCodedData.csproj" />

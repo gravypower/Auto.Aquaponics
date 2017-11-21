@@ -31,34 +31,41 @@ namespace Auto.Aquaponics.Api
             RegisterService(serviceType);
         }
 
-        Type GenerateMissingServices(IEnumerable<QueryInfo> misingRequestTypes, Type autoQueryServiceBaseType)
+        public Type GenerateMissingServices(IEnumerable<QueryInfo> misingRequestTypes,
+            Type autoQueryServiceBaseType)
         {
             var assemblyName = new AssemblyName(Guid.NewGuid().ToString());
-            var typeBuilder =
-                AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run)
-                .DefineDynamicModule("tmpModule")
-                .DefineType("__AutoQueryDataServices",
-                    TypeAttributes.Public | TypeAttributes.Class,
-                        autoQueryServiceBaseType);
+            var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
+            var moduleBuilder = assemblyBuilder.DefineDynamicModule("tmpModule");
 
-            foreach (var requestType in misingRequestTypes.Select(t=>t.QueryType))
+            var typeBuilder = moduleBuilder.DefineType(
+                "__AutoQueryServices",
+                TypeAttributes.Public |
+                TypeAttributes.Class,
+                autoQueryServiceBaseType);
+
+            foreach (var requestType in misingRequestTypes)
             {
-                var genericDef = requestType.GetTypeWithGenericTypeDefinitionOf(typeof(Query.IQuery<>));
-
-                if (genericDef == null)
+                var verbs = "GET";
+                if (requestType.QueryType.GetProperties().Any())
                 {
-                    genericDef = requestType.GetTypeWithGenericTypeDefinitionOf(typeof(Query.IQuery<>));
+                    verbs = "POST";
                 }
+
+                Routes.Add(requestType.QueryType, $"/{requestType.QueryType.Name}", verbs);
+
+                var genericDef = requestType.QueryType.GetTypeWithGenericTypeDefinitionOf(typeof(Query.IQuery<>));
+
                 if (genericDef == null)
                 {
                     continue;
                 }
 
-                var method = typeBuilder.DefineMethod("Any", MethodAttributes.Public | MethodAttributes.Virtual,
+                var method = typeBuilder.DefineMethod("Any",
+                    MethodAttributes.Public | MethodAttributes.Virtual,
                     CallingConventions.Standard,
-                    returnType: typeof(object),
-                    parameterTypes: new[] { requestType });
-
+                    requestType.ResultType,
+                    new[] {requestType.QueryType});
 
                 var il = method.GetILGenerator();
 
@@ -78,6 +85,7 @@ namespace Auto.Aquaponics.Api
             }
 
             var servicesType = typeBuilder.CreateTypeInfo().AsType();
+
             return servicesType;
         }
     }

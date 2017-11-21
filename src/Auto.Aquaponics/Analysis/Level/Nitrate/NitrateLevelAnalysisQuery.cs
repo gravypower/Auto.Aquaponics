@@ -9,5 +9,10 @@
         public NitrateLevelAnalysisQuery(double value) : base(value)
         {
         }
+
+        public override LevelAnalysisQuery<NitrateLevelAnalysis> Clone()
+        {
+            return new NitrateLevelAnalysisQuery(Value);
+        }
     }
 }

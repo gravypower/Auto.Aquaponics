@@ -9,5 +9,10 @@
         public AmmoniaLevelAnalysisQuery(double value) : base(value)
         {
         }
+
+        public override LevelAnalysisQuery<AmmoniaLevelAnalysis> Clone()
+        {
+            return new AmmoniaLevelAnalysisQuery(Value);
+        }
     }
 }
