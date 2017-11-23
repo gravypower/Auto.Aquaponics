@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Auto.Aquaponics.Analysis.Level;
 using SimpleInjector;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.HardCodedData;
@@ -18,7 +19,25 @@ namespace Auto.Aquaponics.Api
         public static Container Bootstrap()
         {
             _container = new Container();
-            _container.Register<IQueryHandler<GetSystems, IList<AquaponicSystem>>, GetSystemsHandler>();
+            _container.Register<IQueryHandler<GetAllSystems, IList<AquaponicSystem>>, GetAllSystemsHandler>();
+            _container.Register<IQueryHandler<GetSystem, AquaponicSystem>, GetSystemHandler>();
+
+            _container.Register(typeof(LevelAnalysisQueryHandler<,>), new[] { typeof(LevelAnalysisQueryHandler<,>).Assembly });
+            _container.Register(typeof(ILevelMagicStrings), new[] { typeof(ILevelMagicStrings).Assembly });
+
+            var levelMagicStringsAssembly = typeof(ILevelMagicStrings).Assembly;
+
+            var registrations =
+                from type in levelMagicStringsAssembly.GetExportedTypes()
+                where type.GetInterfaces().Any()
+                select new { Service = type.GetInterfaces().Single(), Implementation = type };
+
+            foreach (var reg in registrations)
+            {
+                _container.Register(reg.Service, reg.Implementation);
+            }
+
+
             _container.Verify();
 
             return _container;

@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="ServiceStack.Interfaces.Core" Version="1.0.44" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Auto.Aquaponics.Kernel\Auto.Aquaponics.Kernel.csproj" />
   </ItemGroup>
 

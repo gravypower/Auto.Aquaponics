@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Linq;
 using Auto.Aquaponics.Ph;
+using Auto.Aquaponics.Organisms;
+using System.Collections.Generic;
 
 namespace Auto.Aquaponics.Analysis.Level.Ph
 {
@@ -10,8 +13,9 @@ namespace Auto.Aquaponics.Analysis.Level.Ph
 
         public PhLevelAnalysisQueryHandler(
             IPhLevelAnalysisMagicStrings magicStrings,
-            IPhRange phRange
-            ) : base(magicStrings)
+            IPhRange phRange,
+            IEnumerable<Organism> organisms
+            ) : base(magicStrings, organisms)
         {
             _magicStrings = magicStrings;
             _phRange = phRange;
@@ -20,10 +24,12 @@ namespace Auto.Aquaponics.Analysis.Level.Ph
         protected override PhLevelAnalysis Analyse(PhLevelAnalysisQuery query, PhLevelAnalysis analysis)
         {
             GuardPhValue(query);
+            
+            var organism = Organisms.SingleOrDefault(o => o.Id == query.OrganismId);
 
-            if (!query.Organism.Tolerances.ContainsKey(_magicStrings.LevelKey))
+            if (!organism.Tolerances.ContainsKey(_magicStrings.LevelKey))
             {
-                throw new ArgumentNullException(nameof(query.Organism.Tolerances), _magicStrings.OrganismPhTolerancesNotDefinedExceptionMessage);
+                throw new ArgumentNullException(nameof(organism.Tolerances), _magicStrings.OrganismPhTolerancesNotDefinedExceptionMessage);
             }
 
             analysis.HydrogenIonConcentration = HydrogenIonConcentration(query);

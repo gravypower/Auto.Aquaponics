@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Auto.Aquaponics.Organisms
 {
     public class Organism
     {
         public string Name { get; }
+        public Guid Id { get; }
 
         public IDictionary<string, Tolerance> Tolerances { get;  }
 
@@ -13,8 +15,9 @@ namespace Auto.Aquaponics.Organisms
             Tolerances = new Dictionary<string, Tolerance>();
         }
 
-        public Organism(string name):this()
+        public Organism(Guid id, string name):this()
         {
+            Id = id;
             Name = name;
         }
 

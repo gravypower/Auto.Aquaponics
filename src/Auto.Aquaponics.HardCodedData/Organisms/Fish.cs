@@ -1,11 +1,11 @@
-﻿using Auto.Aquaponics.Kernel;
-using Auto.Aquaponics.Organisms;
+﻿using Auto.Aquaponics.Organisms;
+using System;
 
 namespace Auto.Aquaponics.HardCodedData.Organisms
 {
     public abstract class Fish : Organism
     {
-        protected Fish(string name):base(name)
+        protected Fish(string name):base(Guid.NewGuid(), name)
         {
             AddTolerances(new Tolerance("Salinity", Scale.Ppm, 0, 0.02, 0, 0));
             AddTolerances(new Tolerance("pH", Scale.Ph, 6, 10, 6.5, 9));

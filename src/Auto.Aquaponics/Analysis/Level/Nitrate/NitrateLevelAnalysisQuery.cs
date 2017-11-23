@@ -1,18 +1,13 @@
-﻿namespace Auto.Aquaponics.Analysis.Level.Nitrate
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Analysis.Level.Nitrate
 {
+    [Api("Returns Analysis of Nitrate level for an Organism")]
+    [Route("/LevelAnalysis/Nitrate", "POST")]
     public class NitrateLevelAnalysisQuery : LevelAnalysisQuery<NitrateLevelAnalysis>
     {
-        public NitrateLevelAnalysisQuery()
-        {
-        }
-
         public NitrateLevelAnalysisQuery(double value) : base(value)
         {
-        }
-
-        public override LevelAnalysisQuery<NitrateLevelAnalysis> Clone()
-        {
-            return new NitrateLevelAnalysisQuery(Value);
         }
     }
 }

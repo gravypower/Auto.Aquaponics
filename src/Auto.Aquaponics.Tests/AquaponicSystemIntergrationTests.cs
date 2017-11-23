@@ -3,6 +3,7 @@ using Auto.Aquaponics.Components;
 using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
 using NUnit.Framework;
+using System;
 
 namespace Auto.Aquaponics.Tests
 {
@@ -16,13 +17,13 @@ namespace Auto.Aquaponics.Tests
 
             var fishTank = new Component("fishTank");
 
-            var silverPerch = new Organism("silverPerch");
+            var silverPerch = new Organism(Guid.NewGuid(), "silverPerch");
             var silverPerchTolerances = new Tolerance("Ph", Scale.Ph, 6, 10, 6.5, 9);
             silverPerch.AddTolerances(silverPerchTolerances);
 
-            var catFish = new Organism("catFish");
+            var catFish = new Organism(Guid.NewGuid(), "catFish");
 
-            fishTank.AddOrganisms(silverPerch, catFish);
+            fishTank.AddOrganisms(silverPerch.Id, catFish.Id);
 
             var growBed = new Component("growBed");
             var sumpTank = new Component("sumpTank");

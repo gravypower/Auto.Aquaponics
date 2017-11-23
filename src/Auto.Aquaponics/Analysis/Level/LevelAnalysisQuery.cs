@@ -1,23 +1,23 @@
-﻿using Auto.Aquaponics.Query;
+﻿using ServiceStack;
+using System;
 
 namespace Auto.Aquaponics.Analysis.Level
 {
-    public abstract class LevelAnalysisQuery<TLevelAnalysis> : IQuery<TLevelAnalysis>
+    public abstract class LevelAnalysisQuery<TLevelAnalysis> : Query.IQuery<TLevelAnalysis>
         where TLevelAnalysis : LevelAnalysis
     {
-        public Organisms.Organism Organism { get; set; }
+        [ApiMember(Name = "OrganismId", Description = "The Id of an Organism",
+        ParameterType = "body", DataType = "Guid", IsRequired = true)]
+        public Guid OrganismId { get; set; }
 
+        [ApiMember(Name = "Value", Description = "The value of the level",
+        ParameterType = "body", DataType = "double", IsRequired = true)]
         public double Value { get; }
 
-        protected LevelAnalysisQuery()
-        {
-        }
 
         protected LevelAnalysisQuery(double value)
         {
             Value = value;
         }
-
-        public abstract LevelAnalysisQuery<TLevelAnalysis> Clone();
     }
 }

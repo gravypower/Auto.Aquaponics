@@ -1,18 +1,13 @@
-﻿namespace Auto.Aquaponics.Analysis.Level.Ammonia
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Analysis.Level.Ammonia
 {
+    [Api("Returns Analysis of Ammonia level for an Organism")]
+    [Route("/LevelAnalysis/Ammonia", "POST")]
     public class AmmoniaLevelAnalysisQuery : LevelAnalysisQuery<AmmoniaLevelAnalysis>
     {
-        public AmmoniaLevelAnalysisQuery()
-        {
-        }
-
         public AmmoniaLevelAnalysisQuery(double value) : base(value)
         {
-        }
-
-        public override LevelAnalysisQuery<AmmoniaLevelAnalysis> Clone()
-        {
-            return new AmmoniaLevelAnalysisQuery(Value);
         }
     }
 }

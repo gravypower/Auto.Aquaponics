@@ -1,6 +1,8 @@
-﻿namespace Auto.Aquaponics.Query
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Query
 {
-    public interface IQuery<TResult>
+    public interface IQuery<TResult> : IReturn<TResult>
     {
     }
 }

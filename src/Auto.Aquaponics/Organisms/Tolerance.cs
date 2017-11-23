@@ -1,6 +1,4 @@
-﻿using Auto.Aquaponics.Kernel;
-
-namespace Auto.Aquaponics.Organisms
+﻿namespace Auto.Aquaponics.Organisms
 {
     public class Tolerance
     {
@@ -13,7 +11,6 @@ namespace Auto.Aquaponics.Organisms
 
         protected Tolerance()
         {
-            
         }
 
         public Tolerance(string name, Scale scale, double lower, double upper, double desiredLower, double desiredUpper)

@@ -3,6 +3,7 @@ using Auto.Aquaponics.Organisms;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
+using System;
 
 namespace Auto.Aquaponics.Tests.Components
 {
@@ -21,7 +22,7 @@ namespace Auto.Aquaponics.Tests.Components
         public void Can_Add_Organism()
         {
             //Arrange
-            var organism = Substitute.For<Organism>();
+            var organism = Guid.NewGuid();
 
             //Act
             Sut.AddOrganisms(organism);
@@ -34,8 +35,8 @@ namespace Auto.Aquaponics.Tests.Components
         public void Can_Add_Organisms()
         {
             //Arrange
-            var fish = Substitute.For<Organism>();
-            var plant = Substitute.For<Organism>();
+            var fish = Guid.NewGuid();
+            var plant = Guid.NewGuid();
 
             //Act
             Sut.AddOrganisms(fish, plant);

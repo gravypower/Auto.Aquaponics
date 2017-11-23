@@ -14,7 +14,11 @@ namespace Auto.Aquaponics.Api
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
         public AppHost()
-            : base("Auto.Aquaponics.Api", typeof(QueryService).GetAssembly())
+            : base(
+                  "Auto.Aquaponics.Api", 
+                  new []{
+                      typeof(QueryService).GetAssembly()
+                  })
         {
         }
 
@@ -27,11 +31,11 @@ namespace Auto.Aquaponics.Api
             var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);
 
-            var serviceType = GenerateMissingServices(Bootstrapper.GetQueryTypes(), typeof(QueryService));
+            var serviceType = GenerateQueryServices(Bootstrapper.GetQueryTypes(), typeof(QueryService));
             RegisterService(serviceType);
         }
 
-        public Type GenerateMissingServices(IEnumerable<QueryInfo> misingRequestTypes,
+        public Type GenerateQueryServices(IEnumerable<QueryInfo> misingRequestTypes,
             Type autoQueryServiceBaseType)
         {
             var assemblyName = new AssemblyName(Guid.NewGuid().ToString());
@@ -46,14 +50,6 @@ namespace Auto.Aquaponics.Api
 
             foreach (var requestType in misingRequestTypes)
             {
-                var verbs = "GET";
-                if (requestType.QueryType.GetProperties().Any())
-                {
-                    verbs = "POST";
-                }
-
-                Routes.Add(requestType.QueryType, $"/{requestType.QueryType.Name}", verbs);
-
                 var genericDef = requestType.QueryType.GetTypeWithGenericTypeDefinitionOf(typeof(Query.IQuery<>));
 
                 if (genericDef == null)
