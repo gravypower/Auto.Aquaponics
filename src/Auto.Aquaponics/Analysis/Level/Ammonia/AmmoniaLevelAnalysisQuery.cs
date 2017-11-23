@@ -6,8 +6,5 @@ namespace Auto.Aquaponics.Analysis.Level.Ammonia
     [Route("/LevelAnalysis/Ammonia", "POST")]
     public class AmmoniaLevelAnalysisQuery : LevelAnalysisQuery<AmmoniaLevelAnalysis>
     {
-        public AmmoniaLevelAnalysisQuery(double value) : base(value)
-        {
-        }
     }
 }

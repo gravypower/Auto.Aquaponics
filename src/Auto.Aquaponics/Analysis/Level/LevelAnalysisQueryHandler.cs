@@ -3,6 +3,7 @@ using System.Linq;
 using Auto.Aquaponics.Query;
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
+using Auto.Aquaponics.Kernel.DataQuery;
 
 namespace Auto.Aquaponics.Analysis.Level
 {
@@ -11,22 +12,23 @@ namespace Auto.Aquaponics.Analysis.Level
         where TResult:LevelAnalysis, new()
     {
         protected readonly ILevelMagicStrings MagicStrings;
-        protected IEnumerable<Organism> Organisms { get; }
+        private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
 
         protected LevelAnalysisQueryHandler(
             ILevelMagicStrings magicStrings,
-            IEnumerable<Organism> organisms
+            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
             )
         {
             MagicStrings = magicStrings;
-            Organisms = organisms;
+            _getAllOrganismsDataQueryHandler = getAllOrganismsDataQueryHandler;
         }
 
-        protected abstract TResult Analyse(TQuery query, TResult analysis);
+        protected abstract TResult Analyse(TQuery query, TResult analysis, Organism organism);
 
         public TResult Handle(TQuery query)
         {
-            var organism = Organisms.SingleOrDefault(o => o.Id == query.OrganismId);
+            var organisms = _getAllOrganismsDataQueryHandler.Handle(new GetAllOrganisms());
+            var organism = organisms.SingleOrDefault(o => o.Id == query.OrganismId);
             if (organism == default(Organism))
             {
                 throw new ArgumentNullException(nameof(organism), MagicStrings.OrganismNotDefined);
@@ -43,7 +45,7 @@ namespace Auto.Aquaponics.Analysis.Level
                 SutablalForOrganism = SutablalForOrganism(query.Value, organism, MagicStrings.LevelKey)
             };
 
-            return Analyse(query, analysis);
+            return Analyse(query, analysis, organism);
         }
 
         protected bool? SutablalForOrganism(double value, Organism organism, string key)

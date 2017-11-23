@@ -15,7 +15,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
         protected override void DoSetUp()
         {
             LevelQueryHandlerMagicStrings.LevelKey.Returns("Nitrite");
-            Sut = new NitriteLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, Organisms);
+            Sut = new NitriteLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
     }

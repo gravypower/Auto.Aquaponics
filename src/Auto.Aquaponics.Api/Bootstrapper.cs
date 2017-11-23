@@ -7,6 +7,8 @@ using Auto.Aquaponics.Analysis.Level;
 using SimpleInjector;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.HardCodedData;
+using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Organisms;
 using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.Api
@@ -23,20 +25,21 @@ namespace Auto.Aquaponics.Api
             _container.Register<IQueryHandler<GetSystem, AquaponicSystem>, GetSystemHandler>();
 
             _container.Register(typeof(LevelAnalysisQueryHandler<,>), new[] { typeof(LevelAnalysisQueryHandler<,>).Assembly });
-            _container.Register(typeof(ILevelMagicStrings), new[] { typeof(ILevelMagicStrings).Assembly });
 
             var levelMagicStringsAssembly = typeof(ILevelMagicStrings).Assembly;
 
             var registrations =
                 from type in levelMagicStringsAssembly.GetExportedTypes()
-                where type.GetInterfaces().Any()
-                select new { Service = type.GetInterfaces().Single(), Implementation = type };
+                where typeof(ILevelMagicStrings).IsAssignableFrom(type)
+                where !type.IsAbstract
+                select type;
 
             foreach (var reg in registrations)
             {
-                _container.Register(reg.Service, reg.Implementation);
+                _container.Register(reg.GetInterfaces().Single(i=> i != typeof(ILevelMagicStrings)), reg);
             }
 
+            _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
 
             _container.Verify();
 

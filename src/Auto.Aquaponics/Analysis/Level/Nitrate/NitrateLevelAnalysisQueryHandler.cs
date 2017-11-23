@@ -1,5 +1,6 @@
 ﻿using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
+using Auto.Aquaponics.Kernel.DataQuery;
 
 namespace Auto.Aquaponics.Analysis.Level.Nitrate
 {
@@ -9,13 +10,13 @@ namespace Auto.Aquaponics.Analysis.Level.Nitrate
 
         public NitrateLevelAnalysisQueryHandler(
             INitrateLevelAnalysisMagicStrings magicStrings,
-            IEnumerable<Organism> organisms
-            ) : base(magicStrings, organisms)
+            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
+        ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;
         }
 
-        protected override NitrateLevelAnalysis Analyse(NitrateLevelAnalysisQuery query, NitrateLevelAnalysis analysis)
+        protected override NitrateLevelAnalysis Analyse(NitrateLevelAnalysisQuery query, NitrateLevelAnalysis analysis, Organism organism)
         {
             return analysis;
         }

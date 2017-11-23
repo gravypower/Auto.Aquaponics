@@ -1,5 +1,4 @@
 ﻿using System;
-using Auto.Aquaponics.Ph;
 using Auto.Aquaponics.Analysis.Level.Ph;
 using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
@@ -23,22 +22,15 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         
         protected const string PhKey = "pH";
 
-        protected IPhRange PhRange;
 
         protected override void DoSetUp()
         {
-            PhRange = Substitute.For<IPhRange>();
-
             LevelQueryHandlerMagicStrings.LevelKey.Returns(PhKey);
-
-            PhRange.Ceiling.Returns(14);
-            PhRange.Floor.Returns(0);
-
             LevelQueryHandlerMagicStrings.LowPhArgumentOutOfRangeExceptionMessage.Returns(LowPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.HightPhArgumentOutOfRangeExceptionMessage.Returns(HightPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.OrganismPhTolerancesNotDefinedExceptionMessage.Returns(OrganismPhTolerancesNotDefinedExceptionMessage);
 
-            Sut = new PhLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, PhRange, Organisms);
+            Sut = new PhLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
         [Test]
@@ -50,40 +42,52 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
 
             Organisms.Add(organism);
 
-            var query = new PhLevelAnalysisQuery(0);
-            query.OrganismId = organism.Id;
-            Action act = () => Sut.Handle(query);
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = organism.Id,
+                Value = 0
+            };
+            void Act() => Sut.Handle(query);
 
-            AssertArgumentNullException(act, OrganismPhTolerancesNotDefinedExceptionMessage, nameof(organism.Tolerances));
+            AssertArgumentNullException(Act, OrganismPhTolerancesNotDefinedExceptionMessage, nameof(organism.Tolerances));
         }
 
         [Test]
         public void pH_lower_than_floor_ArgumentOutOfRangeException_thrown()
         {
-            var query = new PhLevelAnalysisQuery(-2);
-            query.OrganismId = Organism.Id;
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = Organism.Id,
+                Value = -2
+            };
 
-            Action act = () => Sut.Handle(query);
+            void Act() => Sut.Handle(query);
 
-            AssertArgumentOutOfRangeException(act, LowPhArgumentOutOfRangeExceptionMessage, nameof(query.Value));
+            AssertArgumentOutOfRangeException(Act, LowPhArgumentOutOfRangeExceptionMessage, nameof(query.Value));
         }
 
         [Test]
         public void pH_higher_than_ceiling_ArgumentOutOfRangeException_thrown()
         {
-            var query = new PhLevelAnalysisQuery(16);
-            query.OrganismId = Organism.Id;
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = Organism.Id,
+                Value = 16
+            };
 
-            Action act = () => Sut.Handle(query);
+            void Act() => Sut.Handle(query);
 
-            AssertArgumentOutOfRangeException(act, HightPhArgumentOutOfRangeExceptionMessage, nameof(query.Value));
+            AssertArgumentOutOfRangeException(Act, HightPhArgumentOutOfRangeExceptionMessage, nameof(query.Value));
         }
 
         [Test]
         public void pH_of_14_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery(14);
-            query.OrganismId = Organism.Id;
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = Organism.Id,
+                Value = 14
+            };
             var result = Sut.Handle(query);
             result.HydrogenIonConcentration.Should().Be(1E-14);
             result.HydroxideIonsConcentration.Should().Be(1);
@@ -92,8 +96,11 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_13_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery(13);
-            query.OrganismId = Organism.Id;
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = Organism.Id,
+                Value = 13
+            };
             var result = Sut.Handle(query);
             result.HydrogenIonConcentration.Should().Be(1E-13);
             result.HydroxideIonsConcentration.Should().Be(0.1);
@@ -102,8 +109,11 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_1_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery(1);
-            query.OrganismId = Organism.Id;
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = Organism.Id,
+                Value = 1
+            };
             var result = Sut.Handle(query);
             result.HydrogenIonConcentration.Should().Be(0.1);
             result.HydroxideIonsConcentration.Should().Be(1E-13);
@@ -112,8 +122,11 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_2_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery(2);
-            query.OrganismId = Organism.Id;
+            var query = new PhLevelAnalysisQuery
+            {
+                OrganismId = Organism.Id,
+                Value = 2
+            };
             var result = Sut.Handle(query);
             result.HydrogenIonConcentration.Should().Be(0.01);
             result.HydroxideIonsConcentration.Should().Be(1E-12);

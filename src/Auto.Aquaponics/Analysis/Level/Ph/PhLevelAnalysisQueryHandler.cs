@@ -1,32 +1,26 @@
 ﻿using System;
-using System.Linq;
-using Auto.Aquaponics.Ph;
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
+using Auto.Aquaponics.Kernel.DataQuery;
 
 namespace Auto.Aquaponics.Analysis.Level.Ph
 {
     public class PhLevelAnalysisQueryHandler: LevelAnalysisQueryHandler<PhLevelAnalysisQuery, PhLevelAnalysis>
     {
         private readonly IPhLevelAnalysisMagicStrings _magicStrings;
-        private readonly IPhRange _phRange;
 
         public PhLevelAnalysisQueryHandler(
             IPhLevelAnalysisMagicStrings magicStrings,
-            IPhRange phRange,
-            IEnumerable<Organism> organisms
-            ) : base(magicStrings, organisms)
+            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
+        ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;
-            _phRange = phRange;
         }
 
-        protected override PhLevelAnalysis Analyse(PhLevelAnalysisQuery query, PhLevelAnalysis analysis)
+        protected override PhLevelAnalysis Analyse(PhLevelAnalysisQuery query, PhLevelAnalysis analysis, Organism organism)
         {
             GuardPhValue(query);
             
-            var organism = Organisms.SingleOrDefault(o => o.Id == query.OrganismId);
-
             if (!organism.Tolerances.ContainsKey(_magicStrings.LevelKey))
             {
                 throw new ArgumentNullException(nameof(organism.Tolerances), _magicStrings.OrganismPhTolerancesNotDefinedExceptionMessage);
@@ -40,13 +34,13 @@ namespace Auto.Aquaponics.Analysis.Level.Ph
 
         private void GuardPhValue(PhLevelAnalysisQuery query)
         {
-            if (query.Value < _phRange.Floor)
+            if (query.Value < PhRange.Floor)
             {
                 throw new ArgumentOutOfRangeException(nameof(query.Value),
                     _magicStrings.LowPhArgumentOutOfRangeExceptionMessage);
             }
 
-            if (query.Value > _phRange.Ceiling)
+            if (query.Value > PhRange.Ceiling)
             {
                 throw new ArgumentOutOfRangeException(nameof(query.Value),
                     _magicStrings.HightPhArgumentOutOfRangeExceptionMessage);

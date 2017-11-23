@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Auto.Aquaponics.Analysis.Level;
+using Auto.Aquaponics.Kernel.DataQuery;
 using Auto.Aquaponics.Organisms;
 using FluentAssertions;
 using NSubstitute;
@@ -9,7 +11,7 @@ using NUnit.Framework;
 namespace Auto.Aquaponics.Tests.Query.Level
 {
     public abstract class LevelAnalysisHandlerTests<TQueryHandler,TMagicStrings,TQuery,TResult>
-        where TQuery : LevelAnalysisQuery<TResult>
+        where TQuery : LevelAnalysisQuery<TResult>, new()
         where TResult : LevelAnalysis, new() 
         where TMagicStrings : class, ILevelMagicStrings
         where TQueryHandler : LevelAnalysisQueryHandler<TQuery, TResult>
@@ -19,7 +21,8 @@ namespace Auto.Aquaponics.Tests.Query.Level
         protected const string OrganismTolerancesNotDefinedExceptionMessage = "Organism tolerances not defined";
 
         protected Organism Organism;
-        protected IList<Organism> Organisms;
+        protected IList<Organism> Organisms = new List<Organism>();
+        protected IDataQueryHandler<GetAllOrganisms, IList<Organism>> GetAllOrganismsDataQueryHandler;
 
         protected TQueryHandler Sut;
         protected TMagicStrings LevelQueryHandlerMagicStrings;
@@ -36,7 +39,9 @@ namespace Auto.Aquaponics.Tests.Query.Level
         public void SetUp()
         {
             Organism = GetOrganism();
-            Organisms = new List<Organism> { Organism };
+            Organisms.Add(Organism);
+            GetAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, IList<Organism>>>();
+            GetAllOrganismsDataQueryHandler.Handle(Arg.Any<GetAllOrganisms>()).Returns(Organisms);
             LevelQueryHandlerMagicStrings = Substitute.For<TMagicStrings>();
             LevelQueryHandlerMagicStrings.OrganismNotDefined.Returns(OrganismNotDefinedExceptionMessage);
             LevelQueryHandlerMagicStrings.OrganismTolerancesNotDefined.Returns(OrganismTolerancesNotDefinedExceptionMessage);
@@ -46,9 +51,9 @@ namespace Auto.Aquaponics.Tests.Query.Level
         [Test]
         public void Organism_not_defined_ArgumentNullException_thrown()
         {
-            var query = Activator.CreateInstance(typeof(TQuery), null) as TQuery;
-            Action act = () => Sut.Handle(query);
-            AssertArgumentNullException(act, OrganismNotDefinedExceptionMessage, nameof(Organism));
+            var query = new TQuery();
+            void Act() => Sut.Handle(query);
+            AssertArgumentNullException(Act, OrganismNotDefinedExceptionMessage, nameof(Organism));
         }
 
         [Test]
@@ -56,11 +61,10 @@ namespace Auto.Aquaponics.Tests.Query.Level
         {
             var organism = new Organism(Guid.NewGuid(), "");
             Organisms.Add(organism);
-            var query = Activator.CreateInstance(typeof(TQuery),0) as TQuery;
-            query.OrganismId = organism.Id;
+            var query = new TQuery {OrganismId = organism.Id};
 
-            Action act = () => Sut.Handle(query);
-            AssertArgumentNullException(act, OrganismTolerancesNotDefinedExceptionMessage, nameof(organism.Tolerances));
+            void Act() => Sut.Handle(query);
+            AssertArgumentNullException(Act, OrganismTolerancesNotDefinedExceptionMessage, nameof(organism.Tolerances));
         }
 
         [Test]
@@ -68,8 +72,11 @@ namespace Auto.Aquaponics.Tests.Query.Level
         {
             foreach (var isSuitableCase in Is_suitable_cases())
             {
-                var query = Activator.CreateInstance(typeof(TQuery), isSuitableCase) as TQuery;
-                query.OrganismId = Organism.Id;
+                var query = new TQuery
+                {
+                    OrganismId = Organism.Id,
+                    Value = isSuitableCase
+                };
                 var result = Sut.Handle(query);
                 result.SutablalForOrganism.Should().BeTrue();
             }
@@ -80,8 +87,11 @@ namespace Auto.Aquaponics.Tests.Query.Level
         {
             foreach (var isNotSuitableCase in Is_not_suitable_cases())
             {
-                var query = Activator.CreateInstance(typeof(TQuery), isNotSuitableCase) as TQuery;
-                query.OrganismId = Organism.Id;
+                var query = new TQuery
+                {
+                    OrganismId = Organism.Id,
+                    Value =  isNotSuitableCase
+                };
 
                 var result = Sut.Handle(query);
                 result.SutablalForOrganism.Should().BeFalse();
@@ -93,8 +103,11 @@ namespace Auto.Aquaponics.Tests.Query.Level
         {
             foreach (var isNotIdealCase in Is_not_ideal_cases())
             {
-                var query = Activator.CreateInstance(typeof(TQuery), isNotIdealCase) as TQuery;
-                query.OrganismId = Organism.Id;
+                var query = new TQuery
+                {
+                    OrganismId = Organism.Id,
+                    Value = isNotIdealCase
+                };
 
                 var result = Sut.Handle(query);
                 result.IdealForOrganism.Should().BeFalse();
@@ -106,8 +119,11 @@ namespace Auto.Aquaponics.Tests.Query.Level
         {
             foreach (var isIdealCase in Is_ideal_cases())
             {
-                var query = Activator.CreateInstance(typeof(TQuery), isIdealCase) as TQuery;
-                query.OrganismId = Organism.Id;
+                var query = new TQuery
+                {
+                    OrganismId = Organism.Id,
+                    Value = isIdealCase
+                };
 
                 var result = Sut.Handle(query);
                 result.IdealForOrganism.Should().BeTrue();

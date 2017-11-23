@@ -14,7 +14,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.Salinity
         protected override void DoSetUp()
         {
             LevelQueryHandlerMagicStrings.LevelKey.Returns("Salinity");
-            Sut = new SalinityLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, Organisms);
+            Sut = new SalinityLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
     }

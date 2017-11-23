@@ -12,12 +12,6 @@ namespace Auto.Aquaponics.Analysis.Level
 
         [ApiMember(Name = "Value", Description = "The value of the level",
         ParameterType = "body", DataType = "double", IsRequired = true)]
-        public double Value { get; }
-
-
-        protected LevelAnalysisQuery(double value)
-        {
-            Value = value;
-        }
+        public double Value { get; set; }
     }
 }

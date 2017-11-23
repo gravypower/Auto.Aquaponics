@@ -1,10 +1,10 @@
-﻿using Auto.Aquaponics.Query;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.Organisms
 {
-    public class GetAllOrganisms : IQuery<IList<Organism>>
+    public class GetAllOrganisms : IDataQuery<IList<Organism>>, IQuery<IList<Organism>>
     {
     }
 }

@@ -13,7 +13,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.Ammonia
         protected override void DoSetUp()
         {
             LevelQueryHandlerMagicStrings.LevelKey.Returns("Ammonia");
-            Sut = new AmmoniaLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, Organisms);
+            Sut = new AmmoniaLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
     }

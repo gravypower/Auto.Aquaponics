@@ -6,7 +6,7 @@ using Auto.Aquaponics.Query;
 
 namespace Auto.Aquaponics.HardCodedData
 {
-    public class GetAllSystemsHandler:IQueryHandler<GetAllSystems, IList<AquaponicSystem>>
+    public class GetAllSystemsHandler: IQueryHandler<GetAllSystems, IList<AquaponicSystem>>
     {
         public IList<AquaponicSystem> Handle(GetAllSystems query)
         {

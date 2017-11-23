@@ -6,8 +6,5 @@ namespace Auto.Aquaponics.Analysis.Level.Ph
     [Route("/LevelAnalysis/Ph", "POST")]
     public class PhLevelAnalysisQuery : LevelAnalysisQuery<PhLevelAnalysis>
     {
-        public PhLevelAnalysisQuery(double value) : base(value)
-        {
-        }
     }
 }

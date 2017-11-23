@@ -6,8 +6,5 @@ namespace Auto.Aquaponics.Analysis.Level.Salinity
     [Route("/LevelAnalysis/Salinity", "POST")]
     public class SalinityLevelAnalysisQuery : LevelAnalysisQuery<SalinityLevelAnalysis>
     {
-        public SalinityLevelAnalysisQuery(double value) : base(value)
-        {
-        }
     }
 }

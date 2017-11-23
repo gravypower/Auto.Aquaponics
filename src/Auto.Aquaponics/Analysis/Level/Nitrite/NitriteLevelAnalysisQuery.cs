@@ -6,8 +6,5 @@ namespace Auto.Aquaponics.Analysis.Level.Nitrite
     [Route("/LevelAnalysis/Nitrite", "POST")]
     public class NitriteLevelAnalysisQuery : LevelAnalysisQuery<NitriteLevelAnalysis>
     {
-        public NitriteLevelAnalysisQuery(double value) : base(value)
-        {
-        }
     }
 }

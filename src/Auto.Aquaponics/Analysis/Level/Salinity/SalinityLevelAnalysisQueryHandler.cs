@@ -1,5 +1,6 @@
 ﻿using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
+using Auto.Aquaponics.Kernel.DataQuery;
 
 namespace Auto.Aquaponics.Analysis.Level.Salinity
 {
@@ -9,13 +10,13 @@ namespace Auto.Aquaponics.Analysis.Level.Salinity
 
         public SalinityLevelAnalysisQueryHandler(
             ISalinityLevelAnalysisMagicStrings magicStrings,
-            IEnumerable<Organism> organisms
-            ) : base(magicStrings, organisms)
+            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
+            ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;
         }
 
-        protected override SalinityLevelAnalysis Analyse(SalinityLevelAnalysisQuery query, SalinityLevelAnalysis analysis)
+        protected override SalinityLevelAnalysis Analyse(SalinityLevelAnalysisQuery query, SalinityLevelAnalysis analysis, Organism organism)
         {
             return analysis;
         }
