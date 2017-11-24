@@ -1,19 +1,19 @@
-﻿using Auto.Aquaponics.Analysis.Level.Ammonia;
+﻿using Auto.Aquaponics.Analysis.Levels.Ammonia;
 using NSubstitute;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Ammonia
 {
     public abstract class AmmoniaLevelAnalysisHandlerTests: LevelAnalysisHandlerTests<
-            AmmoniaLevelAnalysisQueryHandler,
-            IAmmoniaLevelAnalysisMagicStrings,
-            AmmoniaLevelAnalysisQuery,
-            AmmoniaLevelAnalysis
+            AnalyseAmmoniaQueryHandler,
+            IAnalyseAmmoniaMagicStrings,
+            AnalyseAmmonia,
+            AmmoniaAnalysis
         >
     {
         protected override void DoSetUp()
         {
             LevelQueryHandlerMagicStrings.LevelKey.Returns("Ammonia");
-            Sut = new AmmoniaLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
+            Sut = new AnalyseAmmoniaQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
     }

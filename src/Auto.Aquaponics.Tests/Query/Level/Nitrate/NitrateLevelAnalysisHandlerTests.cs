@@ -1,20 +1,20 @@
-﻿using Auto.Aquaponics.Analysis.Level.Nitrate;
+﻿using Auto.Aquaponics.Analysis.Levels.Nitrate;
 using NSubstitute;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Nitrate
 {
     public abstract class NitrateLevelAnalysisHandlerTests: LevelAnalysisHandlerTests<
-            NitrateLevelAnalysisQueryHandler,
-            INitrateLevelAnalysisMagicStrings,
-            NitrateLevelAnalysisQuery,
-            NitrateLevelAnalysis
+            AnalyseNitrateQueryHandler,
+            IAnalyseNitrateMagicStrings,
+            AnalyseNitrate,
+            NitrateAnalysis
         >
     {
 
         protected override void DoSetUp()
         {
             LevelQueryHandlerMagicStrings.LevelKey.Returns("Nitrate");
-            Sut = new NitrateLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
+            Sut = new AnalyseNitrateQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
     }

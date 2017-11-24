@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
 using Auto.Aquaponics.HardCodedData.Organisms;
@@ -13,7 +14,7 @@ namespace Auto.Aquaponics.HardCodedData
             var nitrosomonas = new Nitrosomonas();
             var nitrospira = new Nitrospira();
 
-            var gravyNumberOne = new AquaponicSystem("Gravypower_1");
+            var gravyNumberOne = new AquaponicSystem(Guid.Parse("47236a2e40f047a2923034c610c5e444"), "Aaron's Aquaponics System");
 
             var fishTank = new Component("fishTank");
             fishTank.AddOrganisms(new SilverPerch().Id, nitrosomonas.Id, nitrospira.Id);

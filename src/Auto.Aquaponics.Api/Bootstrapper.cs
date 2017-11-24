@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using Auto.Aquaponics.Analysis.Level;
+using Auto.Aquaponics.Analysis.Levels;
 using SimpleInjector;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.HardCodedData;
@@ -21,10 +21,13 @@ namespace Auto.Aquaponics.Api
         public static Container Bootstrap()
         {
             _container = new Container();
+
             _container.Register<IQueryHandler<GetAllSystems, IList<AquaponicSystem>>, GetAllSystemsHandler>();
             _container.Register<IQueryHandler<GetSystem, AquaponicSystem>, GetSystemHandler>();
 
-            _container.Register(typeof(LevelAnalysisQueryHandler<,>), new[] { typeof(LevelAnalysisQueryHandler<,>).Assembly });
+            _container.Register<IQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
+
+            _container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly });
 
             var levelMagicStringsAssembly = typeof(ILevelMagicStrings).Assembly;
 

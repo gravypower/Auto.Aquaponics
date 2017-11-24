@@ -1,4 +1,5 @@
-﻿using Auto.Aquaponics.AquaponicSystems;
+﻿using System;
+using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
 using FluentAssertions;
 using NSubstitute;
@@ -14,7 +15,7 @@ namespace Auto.Aquaponics.Tests
         [SetUp]
         public void SetUp()
         {
-            Sut = new AquaponicSystem("SomeName");
+            Sut = new AquaponicSystem(Guid.NewGuid(), "AquaponicSystem");
         }
 
         [Test]
@@ -70,7 +71,7 @@ namespace Auto.Aquaponics.Tests
         public void Given_Three_Components_Added_and_system_is_not_closed_Then_Component_connections_are_correct()
         {
             //Arrange
-            Sut = new AquaponicSystem("SomeName", false);
+            Sut = new AquaponicSystem(Guid.NewGuid(), "AquaponicSystem", false);
             var fishTank = Substitute.For<Component>("fishTank");
             var growBed = Substitute.For<Component>("growBed");
             var sumpTank = Substitute.For<Component>("sumpTank");

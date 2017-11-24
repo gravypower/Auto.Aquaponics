@@ -28,6 +28,8 @@ namespace Auto.Aquaponics.Api
         /// </summary>
         public override void Configure(Container container)
         {
+            Plugins.Add(new PostmanFeature());
+
             var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);
 
@@ -35,7 +37,8 @@ namespace Auto.Aquaponics.Api
             RegisterService(serviceType);
         }
 
-        public Type GenerateQueryServices(IEnumerable<QueryInfo> misingRequestTypes,
+        public Type GenerateQueryServices(
+            IEnumerable<QueryInfo> queryTypes,
             Type autoQueryServiceBaseType)
         {
             var assemblyName = new AssemblyName(Guid.NewGuid().ToString());
@@ -48,34 +51,24 @@ namespace Auto.Aquaponics.Api
                 TypeAttributes.Class,
                 autoQueryServiceBaseType);
 
-            foreach (var requestType in misingRequestTypes)
+            foreach (var queryInfo in queryTypes)
             {
-                var genericDef = requestType.QueryType.GetTypeWithGenericTypeDefinitionOf(typeof(Query.IQuery<>));
-
-                if (genericDef == null)
-                {
-                    continue;
-                }
-
                 var method = typeBuilder.DefineMethod("Any",
                     MethodAttributes.Public | MethodAttributes.Virtual,
                     CallingConventions.Standard,
-                    requestType.ResultType,
-                    new[] {requestType.QueryType});
+                    queryInfo.ResultType,
+                    new[] {queryInfo.QueryType});
+
 
                 var il = method.GetILGenerator();
 
-                var genericArgs = genericDef.GetGenericArguments();
-                var mi = autoQueryServiceBaseType.GetMethods()
-                    .First(x => x.GetGenericArguments().Length == genericArgs.Length);
-                var genericMi = mi.MakeGenericMethod(genericArgs);
-
-                var queryType = typeof(Query.IQuery<>).MakeGenericType(genericArgs);
+                var mi = autoQueryServiceBaseType.GetMethods().First();
+                var genericMi = mi.MakeGenericMethod(queryInfo.QueryType, queryInfo.ResultType);
 
                 il.Emit(OpCodes.Nop);
                 il.Emit(OpCodes.Ldarg_0);
                 il.Emit(OpCodes.Ldarg_1);
-                il.Emit(OpCodes.Box, queryType);
+                il.Emit(OpCodes.Box, queryInfo.QueryType);
                 il.Emit(OpCodes.Callvirt, genericMi);
                 il.Emit(OpCodes.Ret);
             }

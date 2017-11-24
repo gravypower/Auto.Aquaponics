@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Auto.Aquaponics.Analysis.Level;
+using Auto.Aquaponics.Analysis.Levels;
 using Auto.Aquaponics.Kernel.DataQuery;
 using Auto.Aquaponics.Organisms;
 using FluentAssertions;
@@ -11,17 +10,17 @@ using NUnit.Framework;
 namespace Auto.Aquaponics.Tests.Query.Level
 {
     public abstract class LevelAnalysisHandlerTests<TQueryHandler,TMagicStrings,TQuery,TResult>
-        where TQuery : LevelAnalysisQuery<TResult>, new()
-        where TResult : LevelAnalysis, new() 
+        where TQuery : AnalyseQuery<TResult>, new()
+        where TResult : Analysis.Levels.Analysis, new() 
         where TMagicStrings : class, ILevelMagicStrings
-        where TQueryHandler : LevelAnalysisQueryHandler<TQuery, TResult>
+        where TQueryHandler : AnalyseLevelsQueryHandler<TQuery, TResult>
     {
 
         protected const string OrganismNotDefinedExceptionMessage = "Organism not defined";
         protected const string OrganismTolerancesNotDefinedExceptionMessage = "Organism tolerances not defined";
 
         protected Organism Organism;
-        protected IList<Organism> Organisms = new List<Organism>();
+        protected IList<Organism> Organisms;
         protected IDataQueryHandler<GetAllOrganisms, IList<Organism>> GetAllOrganismsDataQueryHandler;
 
         protected TQueryHandler Sut;
@@ -39,7 +38,7 @@ namespace Auto.Aquaponics.Tests.Query.Level
         public void SetUp()
         {
             Organism = GetOrganism();
-            Organisms.Add(Organism);
+            Organisms = new List<Organism> {Organism};
             GetAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, IList<Organism>>>();
             GetAllOrganismsDataQueryHandler.Handle(Arg.Any<GetAllOrganisms>()).Returns(Organisms);
             LevelQueryHandlerMagicStrings = Substitute.For<TMagicStrings>();

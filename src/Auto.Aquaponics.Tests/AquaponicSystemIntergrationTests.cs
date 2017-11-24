@@ -13,7 +13,7 @@ namespace Auto.Aquaponics.Tests
         [Test]
         public void IntergrationTest()
         {
-            var system = new AquaponicSystem("SomeName");
+            var system = new AquaponicSystem(Guid.NewGuid(), "IntergrationTest");
 
             var fishTank = new Component("fishTank");
 

@@ -14,6 +14,7 @@ namespace Auto.Aquaponics.HardCodedData
         {
             return new List<Organism>
             {
+                new SilverPerch(),
                 new GoldFish(),
                 new Nitrosomonas(),
                 new Nitrospira(),

@@ -1,5 +1,5 @@
 ﻿using System;
-using Auto.Aquaponics.Analysis.Level.Ph;
+using Auto.Aquaponics.Analysis.Levels.Ph;
 using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
 using FluentAssertions;
@@ -10,10 +10,10 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
 {
     public abstract class PhLevelAnalysisHandlerTests: 
         LevelAnalysisHandlerTests<
-            PhLevelAnalysisQueryHandler,
-            IPhLevelAnalysisMagicStrings,
-            PhLevelAnalysisQuery,
-            PhLevelAnalysis
+            AnalysePhQueryHandler,
+            IAnalysePhMagicStrings,
+            AnalysePh,
+            PhAnalysis
         >
     {
         protected const string LowPhArgumentOutOfRangeExceptionMessage = "Reported ph is too low";
@@ -30,7 +30,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
             LevelQueryHandlerMagicStrings.HightPhArgumentOutOfRangeExceptionMessage.Returns(HightPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.OrganismPhTolerancesNotDefinedExceptionMessage.Returns(OrganismPhTolerancesNotDefinedExceptionMessage);
 
-            Sut = new PhLevelAnalysisQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
+            Sut = new AnalysePhQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 
         [Test]
@@ -42,7 +42,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
 
             Organisms.Add(organism);
 
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = organism.Id,
                 Value = 0
@@ -55,7 +55,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_lower_than_floor_ArgumentOutOfRangeException_thrown()
         {
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = Organism.Id,
                 Value = -2
@@ -69,7 +69,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_higher_than_ceiling_ArgumentOutOfRangeException_thrown()
         {
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = Organism.Id,
                 Value = 16
@@ -83,7 +83,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_14_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = Organism.Id,
                 Value = 14
@@ -96,7 +96,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_13_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = Organism.Id,
                 Value = 13
@@ -109,7 +109,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_1_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = Organism.Id,
                 Value = 1
@@ -122,7 +122,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         [Test]
         public void pH_of_2_HydrogenIon_and_HydroxideIons_concentration_is_correct()
         {
-            var query = new PhLevelAnalysisQuery
+            var query = new AnalysePh
             {
                 OrganismId = Organism.Id,
                 Value = 2

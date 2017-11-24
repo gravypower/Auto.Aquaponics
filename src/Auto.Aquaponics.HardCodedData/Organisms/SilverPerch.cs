@@ -1,8 +1,10 @@
-﻿namespace Auto.Aquaponics.HardCodedData.Organisms
+﻿using System;
+
+namespace Auto.Aquaponics.HardCodedData.Organisms
 {
     public class SilverPerch : Fish
     {
-        public SilverPerch() : base("Silver Perch")
+        public SilverPerch() : base(Guid.Parse("41f7ac0ab53c478e845f20b85fdafd93"),  "Silver Perch")
         {
         }
     }

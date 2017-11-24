@@ -1,4 +1,5 @@
-﻿using ServiceStack;
+﻿using System;
+using ServiceStack;
 
 namespace Auto.Aquaponics.AquaponicSystems
 {
@@ -8,6 +9,6 @@ namespace Auto.Aquaponics.AquaponicSystems
     {
         [ApiMember(Name = "Id", Description = "The Id of a system",
         ParameterType = "path", DataType = "Guid", IsRequired = true)]
-        public string Id { get; set; }
+        public Guid Id { get; set; }
     }
 }

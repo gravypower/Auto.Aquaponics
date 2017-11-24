@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Auto.Aquaponics.Components;
 
@@ -7,12 +8,14 @@ namespace Auto.Aquaponics.AquaponicSystems
     public class AquaponicSystem
     {
         private readonly bool _closed;
-        public string Id { get; }
+        public Guid Id { get; }
+        public string Name { get; }
         public ICollection<Component> Components { get; }
         public ICollection<ComponentConnection> ComponentConnections { get; }
 
-        public AquaponicSystem(string id, bool closed = true)
+        public AquaponicSystem(Guid id, string name, bool closed = true)
         {
+            Name = name;
             _closed = closed;
             Id = id;
             Components = new List<Component>();
