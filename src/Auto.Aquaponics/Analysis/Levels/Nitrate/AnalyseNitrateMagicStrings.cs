@@ -2,6 +2,6 @@
 {
     public class AnalyseNitrateMagicStrings : AnalyseMagicStrings, IAnalyseNitrateMagicStrings
     {
-        public override string LevelKey => "Nitrate";
+        public override string LevelsKey => "Nitrate";
     }
 }

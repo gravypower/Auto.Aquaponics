@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Auto.Aquaponics.Analysis.Levels;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
 using Auto.Aquaponics.Organisms;
 using FluentAssertions;
 using NSubstitute;
@@ -9,11 +9,11 @@ using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level
 {
-    public abstract class LevelAnalysisHandlerTests<TQueryHandler,TMagicStrings,TQuery,TResult>
+    public abstract class LevelAnalysisHandlerTests<TQueryHandler,TMagicStrings,TQuery,TResult, TTolerance>
         where TQuery : AnalyseQuery<TResult>, new()
         where TResult : Analysis.Levels.Analysis, new() 
-        where TMagicStrings : class, ILevelMagicStrings
-        where TQueryHandler : AnalyseLevelsQueryHandler<TQuery, TResult>
+        where TMagicStrings : class, ILevelsMagicStrings
+        where TQueryHandler : AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance>
     {
 
         protected const string OrganismNotDefinedExceptionMessage = "Organism not defined";

@@ -6,17 +6,18 @@ using System.Reflection;
 using Auto.Aquaponics.Analysis.Levels;
 using SimpleInjector;
 using Auto.Aquaponics.AquaponicSystems;
+using Auto.Aquaponics.Commands;
 using Auto.Aquaponics.HardCodedData;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Query;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Api
 {
     public class Bootstrapper
     {
         private static Container _container;
-        private static readonly Assembly[] ContractAssemblies = {typeof(IQuery<>).Assembly};
+        private static readonly Assembly[] ContractAssemblies = {typeof(Query<>).Assembly};
 
         public static Container Bootstrap()
         {
@@ -29,17 +30,17 @@ namespace Auto.Aquaponics.Api
 
             _container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly });
 
-            var levelMagicStringsAssembly = typeof(ILevelMagicStrings).Assembly;
+            var levelMagicStringsAssembly = typeof(ILevelsMagicStrings).Assembly;
 
             var registrations =
                 from type in levelMagicStringsAssembly.GetExportedTypes()
-                where typeof(ILevelMagicStrings).IsAssignableFrom(type)
+                where typeof(ILevelsMagicStrings).IsAssignableFrom(type)
                 where !type.IsAbstract
                 select type;
 
             foreach (var reg in registrations)
             {
-                _container.Register(reg.GetInterfaces().Single(i=> i != typeof(ILevelMagicStrings)), reg);
+                _container.Register(reg.GetInterfaces().Single(i=> i != typeof(ILevelsMagicStrings)), reg);
             }
 
             _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
@@ -57,7 +58,7 @@ namespace Auto.Aquaponics.Api
         public static IEnumerable<Type> GetCommandTypes() =>
             from assembly in ContractAssemblies
             from type in assembly.GetExportedTypes()
-            where type.Name.EndsWith("Command")
+            where typeof(ICommand).IsAssignableFrom(type)
             select type;
 
         public static IEnumerable<QueryInfo> GetQueryTypes() =>

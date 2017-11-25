@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
 using ServiceStack;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Organisms
 {
     [Api("Get all Organisms")]
     [Route("/organisms", "GET")]
-    public class GetAllOrganisms : IDataQuery<IList<Organism>>, Query.IQuery<IList<Organism>>
+    public class GetAllOrganisms : Query<IList<Organism>>, IDataQuery<IList<Organism>>
     {
     }
 }

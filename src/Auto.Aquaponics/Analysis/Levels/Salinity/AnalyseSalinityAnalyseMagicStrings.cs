@@ -2,6 +2,6 @@
 {
     public class AnalyseSalinityAnalyseMagicStrings : AnalyseMagicStrings, IAnalyseSalinityMagicStrings
     {
-        public override string LevelKey => "Salinity";
+        public override string LevelsKey => "Salinity";
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Auto.Aquaponics.Analysis.Levels.Nitrate
 {
-    public interface IAnalyseNitrateMagicStrings: ILevelMagicStrings
+    public interface IAnalyseNitrateMagicStrings: ILevelsMagicStrings
     {
     }
 }

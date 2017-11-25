@@ -1,4 +1,4 @@
-﻿namespace Auto.Aquaponics.Kernel.DataQuery
+﻿namespace Auto.Aquaponics.Kernel.Data
 {
     public interface IDataQuery<TResult>
     {

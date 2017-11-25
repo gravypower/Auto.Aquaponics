@@ -1,10 +1,11 @@
 ﻿using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
+using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Analysis.Levels.Salinity
 {
-    public class AnalyseSalinityQueryHandler: AnalyseLevelsQueryHandler<AnalyseSalinity, SalinityAnalysis>
+    public class AnalyseSalinityQueryHandler: AnalyseLevelsQueryHandler<AnalyseSalinity, SalinityAnalysis, SalinityTolerance>
     {
         private readonly IAnalyseSalinityMagicStrings _magicStrings;
 

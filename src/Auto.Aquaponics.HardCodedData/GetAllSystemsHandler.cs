@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Components;
 using Auto.Aquaponics.HardCodedData.Organisms;
-using Auto.Aquaponics.Query;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.HardCodedData
 {

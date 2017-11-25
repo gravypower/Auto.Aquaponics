@@ -2,6 +2,6 @@
 {
     public class AnalyseAmmoniaMagicStrings : AnalyseMagicStrings, IAnalyseAmmoniaMagicStrings
     {
-        public override string LevelKey => "Ammonia";
+        public override string LevelsKey => "Ammonia";
     }
 }

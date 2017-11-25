@@ -1,10 +1,10 @@
-﻿using Auto.Aquaponics.Query;
+﻿using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Kernel.Tests.Query
 {
     public class MockQueryResult
     {
-        public IQuery<object> Query { get; set; }
+        public Query<object> Query { get; set; }
 
     }
 }

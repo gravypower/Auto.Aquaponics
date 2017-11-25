@@ -1,10 +1,11 @@
 ﻿using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
+using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Analysis.Levels.Nitrite
 {
-    public class AnalyseNitriteQueryHandler : AnalyseLevelsQueryHandler<AnalyseNitrite, NitriteAnalysis>
+    public class AnalyseNitriteQueryHandler : AnalyseLevelsQueryHandler<AnalyseNitrite, NitriteAnalysis, NitriteTolerance>
     {
         private readonly IAnalyseNitriteMagicStrings _magicStrings;
 

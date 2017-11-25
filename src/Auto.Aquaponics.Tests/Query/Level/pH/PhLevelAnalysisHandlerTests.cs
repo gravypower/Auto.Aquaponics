@@ -1,7 +1,7 @@
 ﻿using System;
 using Auto.Aquaponics.Analysis.Levels.Ph;
-using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
+using Auto.Aquaponics.Tolerances;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
@@ -13,7 +13,8 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
             AnalysePhQueryHandler,
             IAnalysePhMagicStrings,
             AnalysePh,
-            PhAnalysis
+            PhAnalysis,
+            PhTolerance
         >
     {
         protected const string LowPhArgumentOutOfRangeExceptionMessage = "Reported ph is too low";
@@ -25,7 +26,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
 
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelKey.Returns(PhKey);
+            LevelQueryHandlerMagicStrings.LevelsKey.Returns(PhKey);
             LevelQueryHandlerMagicStrings.LowPhArgumentOutOfRangeExceptionMessage.Returns(LowPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.HightPhArgumentOutOfRangeExceptionMessage.Returns(HightPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.OrganismPhTolerancesNotDefinedExceptionMessage.Returns(OrganismPhTolerancesNotDefinedExceptionMessage);
@@ -37,8 +38,8 @@ namespace Auto.Aquaponics.Tests.Query.Level.pH
         public void organism_pH_tolerance_not_defined_ArgumentNullException_thrown()
         {
             var organism = new Organism(Guid.NewGuid(), "");
-            var tolerance = new Tolerance("SomeName", Scale.None, 0, 0, 0, 0);
-            organism.AddTolerances(tolerance);
+            var tolerance = Substitute.For<Tolerance>(0, 0, 0, 0);
+            organism.Tolerances.Add(tolerance);
 
             Organisms.Add(organism);
 

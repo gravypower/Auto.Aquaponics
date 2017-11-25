@@ -1,8 +1,8 @@
 ﻿using Auto.Aquaponics.HardCodedData.Organisms;
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
-using Auto.Aquaponics.Kernel.DataQuery;
-using Auto.Aquaponics.Query;
+using Auto.Aquaponics.Kernel.Data;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.HardCodedData
 {

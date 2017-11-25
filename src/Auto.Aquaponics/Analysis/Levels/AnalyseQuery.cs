@@ -1,9 +1,10 @@
 ﻿using ServiceStack;
 using System;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Analysis.Levels
 {
-    public abstract class AnalyseQuery<TLevelAnalysis> : Query.IQuery<TLevelAnalysis>
+    public abstract class AnalyseQuery<TLevelAnalysis> : Query<TLevelAnalysis>
         where TLevelAnalysis : Analysis
     {
         [ApiMember(Name = "OrganismId", Description = "The Id of an Organism",

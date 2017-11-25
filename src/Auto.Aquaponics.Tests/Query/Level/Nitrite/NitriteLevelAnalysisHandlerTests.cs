@@ -1,4 +1,5 @@
 ﻿using Auto.Aquaponics.Analysis.Levels.Nitrite;
+using Auto.Aquaponics.Tolerances;
 using NSubstitute;
 using NUnit.Framework;
 
@@ -8,13 +9,14 @@ namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
             AnalyseNitriteQueryHandler,
             IAnalyseNitriteMagicStrings,
             AnalyseNitrite,
-            NitriteAnalysis
+            NitriteAnalysis,
+            NitriteTolerance
         >
     {
 
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelKey.Returns("Nitrite");
+            LevelQueryHandlerMagicStrings.LevelsKey.Returns("Nitrite");
             Sut = new AnalyseNitriteQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 

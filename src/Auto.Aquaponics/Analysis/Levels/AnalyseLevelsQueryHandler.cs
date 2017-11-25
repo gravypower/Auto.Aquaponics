@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Linq;
-using Auto.Aquaponics.Query;
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Analysis.Levels
 {
-    public abstract class AnalyseLevelsQueryHandler<TQuery, TResult> : IQueryHandler<TQuery, TResult>
+    public abstract class AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance> : IQueryHandler<TQuery, TResult>
         where TQuery: AnalyseQuery<TResult>
         where TResult:Analysis, new()
     {
-        protected readonly ILevelMagicStrings MagicStrings;
+        protected readonly ILevelsMagicStrings MagicStrings;
         private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
 
         protected AnalyseLevelsQueryHandler(
-            ILevelMagicStrings magicStrings,
+            ILevelsMagicStrings magicStrings,
             IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
             )
         {
@@ -40,16 +40,16 @@ namespace Auto.Aquaponics.Analysis.Levels
                 throw new ArgumentNullException(nameof(organism.Tolerances), MagicStrings.OrganismTolerancesNotDefined);
             }
 
-            if (!organism.Tolerances.ContainsKey(MagicStrings.LevelKey))
+            if (!organism.Tolerances.Any(t =>t is TTolerance))
             {
                 OrganismToleranceNotDefined();
             }
 
             var analysis = new TResult
             {
-                IdealForOrganism = IdealForOrganism(query.Value, organism, MagicStrings.LevelKey),
-                SutablalForOrganism = SutablalForOrganism(query.Value, organism, MagicStrings.LevelKey),
-                Tolerance = organism.Tolerances[MagicStrings.LevelKey]
+                IdealForOrganism = IdealForOrganism(query.Value, organism, MagicStrings.LevelsKey),
+                SutablalForOrganism = SutablalForOrganism(query.Value, organism, MagicStrings.LevelsKey),
+                Tolerance = organism.Tolerances.Single(t => t is TTolerance)
             };
 
             return Analyse(query, analysis, organism);
@@ -57,16 +57,17 @@ namespace Auto.Aquaponics.Analysis.Levels
 
         protected bool SutablalForOrganism(double value, Organism organism, string key)
         {
-            return
-                organism.Tolerances[key].Lower <= value &&
-                organism.Tolerances[key].Upper >= value;
+            var tolerance = organism.Tolerances.Single(t => t is TTolerance);
+
+            return tolerance.Lower <= value && tolerance.Upper >= value;
         }
 
         protected bool IdealForOrganism(double value, Organism organism, string key)
         {
-            return
-                organism.Tolerances[key].DesiredLower <= value &&
-                organism.Tolerances[key].DesiredUpper >= value;
+
+            var tolerance = organism.Tolerances.Single(t => t is TTolerance);
+
+            return tolerance.DesiredLower <= value && tolerance.DesiredUpper >= value;
         }
     }
 }

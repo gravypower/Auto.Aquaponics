@@ -1,4 +1,4 @@
-﻿using Auto.Aquaponics.Query;
+﻿using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Kernel.Tests.Query
 {

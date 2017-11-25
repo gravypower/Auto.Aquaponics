@@ -1,9 +1,9 @@
 ﻿namespace Auto.Aquaponics.Analysis.Levels
 {
-    public interface ILevelMagicStrings
+    public interface ILevelsMagicStrings
     {
         string OrganismNotDefined { get; }
         string OrganismTolerancesNotDefined { get; }
-        string LevelKey { get; }
+        string LevelsKey { get; }
     }
 }

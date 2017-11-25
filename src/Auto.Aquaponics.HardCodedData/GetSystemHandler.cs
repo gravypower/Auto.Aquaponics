@@ -1,6 +1,6 @@
 ﻿using System.Linq;
 using Auto.Aquaponics.AquaponicSystems;
-using Auto.Aquaponics.Query;
+using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.HardCodedData
 {

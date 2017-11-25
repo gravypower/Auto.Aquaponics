@@ -1,6 +1,6 @@
 ﻿namespace Auto.Aquaponics.Analysis.Levels.Salinity
 {
-    public interface IAnalyseSalinityMagicStrings: ILevelMagicStrings
+    public interface IAnalyseSalinityMagicStrings: ILevelsMagicStrings
     {
     }
 }

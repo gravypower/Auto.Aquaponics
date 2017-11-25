@@ -1,4 +1,5 @@
 ﻿using Auto.Aquaponics.Organisms;
+using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Analysis.Levels
 {

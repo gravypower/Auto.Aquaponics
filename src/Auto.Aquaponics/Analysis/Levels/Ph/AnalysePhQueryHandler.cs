@@ -1,11 +1,12 @@
 ﻿using System;
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
-using Auto.Aquaponics.Kernel.DataQuery;
+using Auto.Aquaponics.Kernel.Data;
+using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Analysis.Levels.Ph
 {
-    public class AnalysePhQueryHandler: AnalyseLevelsQueryHandler<AnalysePh, PhAnalysis>
+    public class AnalysePhQueryHandler: AnalyseLevelsQueryHandler<AnalysePh, PhAnalysis, PhTolerance>
     {
         private readonly IAnalysePhMagicStrings _magicStrings;
 

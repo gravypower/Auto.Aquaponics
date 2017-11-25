@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Organisms
 {
@@ -8,11 +9,11 @@ namespace Auto.Aquaponics.Organisms
         public string Name { get; }
         public Guid Id { get; }
 
-        public IDictionary<string, Tolerance> Tolerances { get;  }
+        public IList<Tolerance> Tolerances { get;  }
 
         protected Organism()
         {
-            Tolerances = new Dictionary<string, Tolerance>();
+            Tolerances = new List<Tolerance>();
         }
 
         public Organism(Guid id, string name):this()
@@ -21,9 +22,5 @@ namespace Auto.Aquaponics.Organisms
             Name = name;
         }
 
-        public void AddTolerances(Tolerance tolerance)
-        {
-            Tolerances[tolerance.Name] = tolerance;
-        }
     }
 }
