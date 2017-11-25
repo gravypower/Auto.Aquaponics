@@ -7,7 +7,7 @@ using Auto.Aquaponics.Analysis.Levels;
 using SimpleInjector;
 using Auto.Aquaponics.AquaponicSystems;
 using Auto.Aquaponics.Commands;
-using Auto.Aquaponics.HardCodedData;
+using Auto.Aquaponics.Data.Mongo;
 using Auto.Aquaponics.Kernel.Data;
 using Auto.Aquaponics.Organisms;
 using Auto.Aquaponics.Queries;
@@ -23,10 +23,8 @@ namespace Auto.Aquaponics.Api
         {
             _container = new Container();
 
-            _container.Register<IQueryHandler<GetAllSystems, IList<AquaponicSystem>>, GetAllSystemsHandler>();
-            _container.Register<IQueryHandler<GetSystem, AquaponicSystem>, GetSystemHandler>();
-
-            _container.Register<IQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
+            _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
+            _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
 
             _container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly });
 
@@ -44,6 +42,8 @@ namespace Auto.Aquaponics.Api
             }
 
             _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
+
+            var mongodbUri = Environment.GetEnvironmentVariable("MONGODB_URI");
 
             _container.Verify();
 

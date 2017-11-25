@@ -2,13 +2,11 @@
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
 using Auto.Aquaponics.Kernel.Data;
-using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.HardCodedData
 {
     public class GetAllOrganismsDataQueryHandler: 
-        IDataQueryHandler<GetAllOrganisms, IList<Organism>>,
-        IQueryHandler<GetAllOrganisms, IList<Organism>>
+        IDataQueryHandler<GetAllOrganisms, IList<Organism>>
     {
         public IList<Organism> Handle(GetAllOrganisms query)
         {
