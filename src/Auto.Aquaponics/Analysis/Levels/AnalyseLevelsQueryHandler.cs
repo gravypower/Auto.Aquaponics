@@ -52,8 +52,6 @@ namespace Auto.Aquaponics.Analysis.Levels
                 Tolerance = organism.Tolerances[MagicStrings.LevelKey]
             };
 
-           
-
             return Analyse(query, analysis, organism);
         }
 
@@ -62,7 +60,6 @@ namespace Auto.Aquaponics.Analysis.Levels
             return
                 organism.Tolerances[key].Lower <= value &&
                 organism.Tolerances[key].Upper >= value;
-
         }
 
         protected bool IdealForOrganism(double value, Organism organism, string key)
@@ -70,7 +67,6 @@ namespace Auto.Aquaponics.Analysis.Levels
             return
                 organism.Tolerances[key].DesiredLower <= value &&
                 organism.Tolerances[key].DesiredUpper >= value;
-
         }
     }
 }

@@ -20,12 +20,6 @@ namespace Auto.Aquaponics.Analysis.Levels.Ph
         protected override PhAnalysis Analyse(AnalysePh query, PhAnalysis analysis, Organism organism)
         {
             GuardPhValue(query);
-            
-            if (!organism.Tolerances.ContainsKey(_magicStrings.LevelKey))
-            {
-                throw new NotImplementedException();
-            }
-
             analysis.HydrogenIonConcentration = HydrogenIonConcentration(query);
             analysis.HydroxideIonsConcentration = HydroxideIonsConcentration(query);
 
