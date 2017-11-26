@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 
 namespace Auto.Aquaponics.Api
@@ -11,6 +8,11 @@ namespace Auto.Aquaponics.Api
     {
         public static void Main(string[] args)
         {
+#if DEBUG
+            var mongodbUri = @"mongodb://localhost:27017/Auto_Aquaponics";
+            Environment.SetEnvironmentVariable("MONGODB_URI", mongodbUri);
+#endif
+
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

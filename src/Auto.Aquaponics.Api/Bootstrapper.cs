@@ -4,13 +4,18 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using Auto.Aquaponics.Analysis.Levels;
-using SimpleInjector;
 using Auto.Aquaponics.AquaponicSystems;
+using SimpleInjector;
 using Auto.Aquaponics.Commands;
+using Auto.Aquaponics.Data.Decorator;
 using Auto.Aquaponics.Data.Mongo;
+using Auto.Aquaponics.Data.Mongo.CommandHandlers;
+using Auto.Aquaponics.Data.Mongo.QueryHandlers;
+using Auto.Aquaponics.Data.Seed;
 using Auto.Aquaponics.Kernel.Data;
 using Auto.Aquaponics.Organisms;
 using Auto.Aquaponics.Queries;
+using MongoDB.Driver;
 
 namespace Auto.Aquaponics.Api
 {
@@ -23,11 +28,56 @@ namespace Auto.Aquaponics.Api
         {
             _container = new Container();
 
-            _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
-            _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
+            
+            RegisterMongo();
+            RegisterLevelsMagicStrings();
 
-            _container.Register(typeof(IQueryHandler<,>), new[] { typeof(IQueryHandler<,>).Assembly });
+            RegisterQueryHandlers();
+            RegisterDataQueryHandlers();
 
+            _container.Register(typeof(SeedData<>), new[] { typeof(SeedData<>).Assembly });
+
+            _container.Register<
+                IDataCommandHandler<AddOrganism >,
+                AddOrganismDataCommandHandler>();
+
+            _container.RegisterDecorator(
+                typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>), 
+                typeof(SeedOrganismsDecorator));
+
+            _container.Verify();
+
+            return _container;
+        }
+
+        private static void RegisterDataQueryHandlers()
+        {
+            _container.Register<
+                IDataQueryHandler<GetAllOrganisms, IList<Organism>>, 
+                GetAllOrganismsDataQueryHandler>();
+
+            _container.Register<
+                IDataQueryHandler<GetAllSystems, IList<AquaponicSystem>>, 
+                GetAllSystemsHandlerDataQueryHandler>();
+        }
+
+        private static void RegisterQueryHandlers()
+        {
+            _container.Register(typeof(IQueryHandler<,>), new[] {typeof(IQueryHandler<,>).Assembly});
+        }
+
+        private static void RegisterMongo()
+        {
+            var mongodbUri = Environment.GetEnvironmentVariable("MONGODB_URI");
+
+            var mongoUrl = new MongoUrl(mongodbUri);
+            var dbname = mongoUrl.DatabaseName;
+            var db = new MongoClient(mongoUrl).GetDatabase(dbname);
+            _container.Register(() => db);
+        }
+
+        private static void RegisterLevelsMagicStrings()
+        {
             var levelMagicStringsAssembly = typeof(ILevelsMagicStrings).Assembly;
 
             var registrations =
@@ -38,16 +88,8 @@ namespace Auto.Aquaponics.Api
 
             foreach (var reg in registrations)
             {
-                _container.Register(reg.GetInterfaces().Single(i=> i != typeof(ILevelsMagicStrings)), reg);
+                _container.Register(reg.GetInterfaces().Single(i => i != typeof(ILevelsMagicStrings)), reg);
             }
-
-            _container.Register<IDataQueryHandler<GetAllOrganisms, IList<Organism>>, GetAllOrganismsDataQueryHandler>();
-
-            var mongodbUri = Environment.GetEnvironmentVariable("MONGODB_URI");
-
-            _container.Verify();
-
-            return _container;
         }
 
         public static object GetInstance(Type serviceType)
@@ -93,6 +135,5 @@ namespace Auto.Aquaponics.Api
             where interfaceType.IsGenericType
             where interfaceType.GetGenericTypeDefinition() == typeof(IQuery<>)
             select interfaceType.GetGenericArguments()[0];
-
     }
 }

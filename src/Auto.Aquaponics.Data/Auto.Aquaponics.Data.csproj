@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Auto.Aquaponics.HardCodedData\Auto.Aquaponics.HardCodedData.csproj" />
     <ProjectReference Include="..\Auto.Aquaponics\Auto.Aquaponics.csproj" />
   </ItemGroup>
 

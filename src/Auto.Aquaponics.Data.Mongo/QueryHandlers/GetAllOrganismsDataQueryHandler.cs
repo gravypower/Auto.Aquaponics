@@ -2,7 +2,7 @@
 using Auto.Aquaponics.Organisms;
 using MongoDB.Driver;
 
-namespace Auto.Aquaponics.Data.Mongo
+namespace Auto.Aquaponics.Data.Mongo.QueryHandlers
 {
     public class GetAllOrganismsDataQueryHandler:
         MongoDataQueryHandler<GetAllOrganisms, IList<Organism>>
