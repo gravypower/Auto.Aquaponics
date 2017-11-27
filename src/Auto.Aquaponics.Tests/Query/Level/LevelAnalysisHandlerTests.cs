@@ -58,7 +58,7 @@ namespace Auto.Aquaponics.Tests.Query.Level
         [Test]
         public void Tolerances_not_defined_ArgumentNullException_thrown()
         {
-            var organism = new Organism(Guid.NewGuid(), "");
+            var organism = new Organism{Id = Guid.NewGuid(), Name = ""};
             Organisms.Add(organism);
             var query = new TQuery {OrganismId = organism.Id};
 

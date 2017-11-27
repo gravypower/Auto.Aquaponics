@@ -6,7 +6,7 @@ namespace Auto.Aquaponics.HardCodedData.Organisms
 {
     public class Bacteria:Organism
     {
-        protected Bacteria(Guid id, string name):base(id, name)
+        protected Bacteria()
         {
             Tolerances.Add(new SalinityTolerance(0, 0.02, 0, 0));
             Tolerances.Add(new PhTolerance(6, 8.5, 6, 8.5));

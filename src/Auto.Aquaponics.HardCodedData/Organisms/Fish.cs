@@ -6,7 +6,7 @@ namespace Auto.Aquaponics.HardCodedData.Organisms
 {
     public abstract class Fish : Organism
     {
-        protected Fish(Guid id, string name):base(id, name)
+        protected Fish()
         {
             Tolerances.Add(new SalinityTolerance(0, 0.02, 0, 0));
             Tolerances.Add(new PhTolerance( 6, 10, 6.5, 9));

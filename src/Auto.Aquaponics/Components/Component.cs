@@ -6,18 +6,15 @@ namespace Auto.Aquaponics.Components
 {
     public class Component
     {
-        public string Id { get; }
-        public IList<Guid> Organisms { get; }
+        public string Name { get; set; }
+        
+        public IList<Guid> Organisms { get; set; }
 
         public Component()
         {
             Organisms = new List<Guid>();
         }
-        public Component(string id):this()
-        {
-            Id = id;
-        }
-
+        
         public void AddOrganisms(params Guid[] organisms)
         {
             foreach (var organism in organisms)

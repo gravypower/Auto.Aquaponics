@@ -8,18 +8,19 @@ using Auto.Aquaponics.AquaponicSystems;
 using SimpleInjector;
 using Auto.Aquaponics.Commands;
 using Auto.Aquaponics.Data.Decorator;
-using Auto.Aquaponics.Data.Mongo;
 using Auto.Aquaponics.Data.Mongo.CommandHandlers;
 using Auto.Aquaponics.Data.Mongo.QueryHandlers;
 using Auto.Aquaponics.Data.Seed;
 using Auto.Aquaponics.Kernel.Data;
 using Auto.Aquaponics.Organisms;
 using Auto.Aquaponics.Queries;
+using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
 
 namespace Auto.Aquaponics.Api
 {
-    public class Bootstrapper
+    public static class Bootstrapper
     {
         private static Container _container;
         private static readonly Assembly[] ContractAssemblies = {typeof(Query<>).Assembly};
@@ -28,7 +29,6 @@ namespace Auto.Aquaponics.Api
         {
             _container = new Container();
 
-            
             RegisterMongo();
             RegisterLevelsMagicStrings();
 
@@ -73,7 +73,15 @@ namespace Auto.Aquaponics.Api
             var mongoUrl = new MongoUrl(mongodbUri);
             var dbname = mongoUrl.DatabaseName;
             var db = new MongoClient(mongoUrl).GetDatabase(dbname);
-            _container.Register(() => db);
+            _container.Register(() => db, Lifestyle.Singleton);
+
+            
+            BsonClassMap.RegisterClassMap<Organism>(cm => 
+            {
+                cm.AutoMap();
+                cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
+            });
+
         }
 
         private static void RegisterLevelsMagicStrings()
@@ -100,7 +108,7 @@ namespace Auto.Aquaponics.Api
         public static IEnumerable<Type> GetCommandTypes() =>
             from assembly in ContractAssemblies
             from type in assembly.GetExportedTypes()
-            where typeof(ICommand).IsAssignableFrom(type)
+            where typeof(ICommand).IsAssignableFrom(type) && !type.IsAbstract
             select type;
 
         public static IEnumerable<QueryInfo> GetQueryTypes() =>
@@ -108,7 +116,10 @@ namespace Auto.Aquaponics.Api
             from type in assembly.GetExportedTypes()
             where QueryInfo.IsQuery(type) && !type.IsAbstract
             select new QueryInfo(type);
-
+        
+        public static object GetCommandHandler(Type commandType) =>
+            _container.GetInstance(typeof(ICommandHandler<>).MakeGenericType(commandType));
+        
         public static object GetQueryHandler(Type queryType) =>
             _container.GetInstance(CreateQueryHandlerType(queryType));
 

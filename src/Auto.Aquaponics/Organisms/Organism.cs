@@ -6,21 +6,15 @@ namespace Auto.Aquaponics.Organisms
 {
     public class Organism
     {
-        public string Name { get; }
-        public Guid Id { get; }
+        public string Name { get; set; }
+        public Guid Id { get; set; }
 
-        public IList<Tolerance> Tolerances { get;  }
+        public IList<Tolerance> Tolerances { get; set; }
 
-        protected Organism()
+
+        public Organism()
         {
             Tolerances = new List<Tolerance>();
         }
-
-        public Organism(Guid id, string name):this()
-        {
-            Id = id;
-            Name = name;
-        }
-
     }
 }

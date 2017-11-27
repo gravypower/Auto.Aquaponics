@@ -1,9 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="MongoDB.Driver" Version="2.4.4" />
     <PackageReference Include="System.Collections" Version="4.3.0" />
@@ -13,10 +11,8 @@
     <PackageReference Include="System.Runtime.InteropServices" Version="4.3.0" />
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
-
   <ItemGroup>
     <ProjectReference Include="..\Auto.Aquaponics.Kernel\Auto.Aquaponics.Kernel.csproj" />
     <ProjectReference Include="..\Auto.Aquaponics\Auto.Aquaponics.csproj" />
   </ItemGroup>
-
 </Project>

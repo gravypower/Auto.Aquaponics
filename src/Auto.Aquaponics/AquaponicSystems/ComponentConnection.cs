@@ -9,8 +9,8 @@ namespace Auto.Aquaponics.AquaponicSystems
 
         public ComponentConnection(Component source, Component target)
         {
-            TargetId = target.Id;
-            SourceId = source.Id;
+            TargetId = target.Name;
+            SourceId = source.Name;
         }
     }
 }

@@ -7,17 +7,15 @@ namespace Auto.Aquaponics.AquaponicSystems
 {
     public class AquaponicSystem
     {
-        private readonly bool _closed;
-        public Guid Id { get; }
-        public string Name { get; }
-        public ICollection<Component> Components { get; }
-        public ICollection<ComponentConnection> ComponentConnections { get; }
+        public bool Closed { get; set; }
+        public Guid Id { get; set; }
+        public string Name { get; set; }
+        public ICollection<Component> Components { get; set; }
+        public ICollection<ComponentConnection> ComponentConnections { get; set; }
 
-        public AquaponicSystem(Guid id, string name, bool closed = true)
+        public AquaponicSystem(bool closed = true)
         {
-            Name = name;
-            _closed = closed;
-            Id = id;
+            Closed = closed;
             Components = new List<Component>();
             ComponentConnections = new List<ComponentConnection>();
         }
@@ -33,7 +31,7 @@ namespace Auto.Aquaponics.AquaponicSystems
                 }
             }
 
-            if (_closed)
+            if (Closed)
             {
                 ComponentConnections.Add(new ComponentConnection(components.Last(), components.First()));
             }

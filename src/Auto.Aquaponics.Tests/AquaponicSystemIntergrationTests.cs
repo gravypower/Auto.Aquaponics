@@ -14,20 +14,21 @@ namespace Auto.Aquaponics.Tests
         [Test]
         public void IntergrationTest()
         {
-            var system = new AquaponicSystem(Guid.NewGuid(), "IntergrationTest");
+            var system = new AquaponicSystem {Id = Guid.NewGuid(), Name = "IntergrationTest"};
+            ;
 
-            var fishTank = new Component("fishTank");
+            var fishTank = new Component {Name = "fishTank"};
 
-            var silverPerch = new Organism(Guid.NewGuid(), "silverPerch");
-            var silverPerchTolerances = new PhTolerance( 6, 10, 6.5, 9);
+            var silverPerch = new Organism {Id = Guid.NewGuid(), Name = "silverPerch"};
+            var silverPerchTolerances = new PhTolerance(6, 10, 6.5, 9);
             silverPerch.Tolerances.Add(silverPerchTolerances);
 
-            var catFish = new Organism(Guid.NewGuid(), "catFish");
+            var catFish = new Organism {Id = Guid.NewGuid(), Name = "catFish"};
 
             fishTank.AddOrganisms(silverPerch.Id, catFish.Id);
 
-            var growBed = new Component("growBed");
-            var sumpTank = new Component("sumpTank");
+            var growBed = new Component {Name = "growBed"};
+            var sumpTank = new Component {Name = "sumpTank"};
 
             system.AddComponents(fishTank, growBed, sumpTank);
 

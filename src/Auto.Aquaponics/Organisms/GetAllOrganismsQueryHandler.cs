@@ -8,7 +8,8 @@ namespace Auto.Aquaponics.Organisms
     {
         private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
 
-        public GetAllOrganismsQueryHandler(IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler)
+        public GetAllOrganismsQueryHandler(
+            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler)
         {
             _getAllOrganismsDataQueryHandler = getAllOrganismsDataQueryHandler;
         }

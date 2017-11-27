@@ -13,12 +13,7 @@ namespace Auto.Aquaponics.Api
         /// <summary>
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
-        public AppHost()
-            : base(
-                  "Auto.Aquaponics.Api", 
-                  new []{
-                      typeof(QueryService).GetAssembly()
-                  })
+        public AppHost() : base("Auto.Aquaponics.Api", typeof(QueryService).GetAssembly())
         {
         }
 
@@ -33,18 +28,55 @@ namespace Auto.Aquaponics.Api
             var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);
 
-            var serviceType = GenerateQueryServices(Bootstrapper.GetQueryTypes(), typeof(QueryService));
-            RegisterService(serviceType);
-        }
-
-        public Type GenerateQueryServices(
-            IEnumerable<QueryInfo> queryTypes,
-            Type autoQueryServiceBaseType)
-        {
             var assemblyName = new AssemblyName(Guid.NewGuid().ToString());
             var assemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.Run);
             var moduleBuilder = assemblyBuilder.DefineDynamicModule("tmpModule");
+            
+            var queryServiceType = GenerateQueryServices(Bootstrapper.GetQueryTypes(), typeof(QueryService), moduleBuilder);
+            RegisterService(queryServiceType);
+            
+            var commandSserviceType = GenerateCommandServices(Bootstrapper.GetCommandTypes(), typeof(CommandService), moduleBuilder);
+            RegisterService(commandSserviceType);
 
+        }
+        
+        private static Type GenerateCommandServices(IEnumerable<Type> commandTypes, Type autoQueryServiceBaseType, ModuleBuilder moduleBuilder)
+        {
+            var typeBuilder = moduleBuilder.DefineType(
+                "__AutoCommandServices",
+                TypeAttributes.Public |
+                TypeAttributes.Class,
+                autoQueryServiceBaseType);
+
+            foreach (var commandType in commandTypes)
+            {
+                var method = typeBuilder.DefineMethod("Any",
+                    MethodAttributes.Public | MethodAttributes.Virtual,
+                    CallingConventions.Standard,
+                    null,
+                    new[] {commandType});
+
+
+                var il = method.GetILGenerator();
+
+                var mi = autoQueryServiceBaseType.GetMethods().First();
+                var genericMi = mi.MakeGenericMethod(commandType);
+
+                il.Emit(OpCodes.Nop);
+                il.Emit(OpCodes.Ldarg_0);
+                il.Emit(OpCodes.Ldarg_1);
+                il.Emit(OpCodes.Box, commandType);
+                il.Emit(OpCodes.Callvirt, genericMi);
+                il.Emit(OpCodes.Ret);
+            }
+
+            var servicesType = typeBuilder.CreateTypeInfo().AsType();
+
+            return servicesType;
+        }
+
+        private static Type GenerateQueryServices(IEnumerable<QueryInfo> queryTypes, Type autoQueryServiceBaseType, ModuleBuilder moduleBuilder)
+        {
             var typeBuilder = moduleBuilder.DefineType(
                 "__AutoQueryServices",
                 TypeAttributes.Public |

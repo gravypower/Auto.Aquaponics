@@ -15,7 +15,7 @@ namespace Auto.Aquaponics.Tests
         [SetUp]
         public void SetUp()
         {
-            Sut = new AquaponicSystem(Guid.NewGuid(), "AquaponicSystem");
+            Sut = new AquaponicSystem {Id = Guid.NewGuid(), Name = "AquaponicSystem"};
         }
 
         [Test]
@@ -71,7 +71,7 @@ namespace Auto.Aquaponics.Tests
         public void Given_Three_Components_Added_and_system_is_not_closed_Then_Component_connections_are_correct()
         {
             //Arrange
-            Sut = new AquaponicSystem(Guid.NewGuid(), "AquaponicSystem", false);
+            Sut = new AquaponicSystem {Id = Guid.NewGuid(), Name = "AquaponicSystem", Closed = false};
             var fishTank = Substitute.For<Component>("fishTank");
             var growBed = Substitute.For<Component>("growBed");
             var sumpTank = Substitute.For<Component>("sumpTank");

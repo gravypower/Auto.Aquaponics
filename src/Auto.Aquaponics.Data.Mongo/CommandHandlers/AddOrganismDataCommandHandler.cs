@@ -12,7 +12,7 @@ namespace Auto.Aquaponics.Data.Mongo.CommandHandlers
         public override void Handle(AddOrganism command)
         {
             var organisms = Database.GetCollection<Organism>(nameof(Organism));
-            organisms.InsertOne(command.Organism);
+            organisms.InsertOneAsync(command.Organism);
         }
     }
 }

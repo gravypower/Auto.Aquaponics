@@ -1,10 +1,12 @@
-﻿namespace Auto.Aquaponics.Commands
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Commands
 {
     public interface ICommand
     {
     }
 
-    public abstract class Command : ICommand
+    public abstract class Command : ICommand, IReturnVoid
     {
         public virtual string CommandVerb { get; } = string.Empty;
 
