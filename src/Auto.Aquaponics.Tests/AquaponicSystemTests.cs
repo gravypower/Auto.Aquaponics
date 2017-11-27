@@ -54,9 +54,14 @@ namespace Auto.Aquaponics.Tests
         public void Given_Three_Components_Added_Then_Component_connections_are_correct()
         {
             //Arrange
-            var fishTank = Substitute.For<Component>("fishTank");
-            var growBed = Substitute.For<Component>("growBed");
-            var sumpTank = Substitute.For<Component>("sumpTank");
+            var fishTank = Substitute.For<Component>();
+            fishTank.Name = "fishTank";
+
+            var growBed = Substitute.For<Component>();
+            growBed.Name = "growBed";
+
+            var sumpTank = Substitute.For<Component>();
+            sumpTank.Name = "sumpTank";
 
             //Act
             Sut.AddComponents(fishTank, growBed, sumpTank);
@@ -72,9 +77,14 @@ namespace Auto.Aquaponics.Tests
         {
             //Arrange
             Sut = new AquaponicSystem {Id = Guid.NewGuid(), Name = "AquaponicSystem", Closed = false};
-            var fishTank = Substitute.For<Component>("fishTank");
-            var growBed = Substitute.For<Component>("growBed");
-            var sumpTank = Substitute.For<Component>("sumpTank");
+            var fishTank = Substitute.For<Component>();
+            fishTank.Name = "fishTank";
+
+            var growBed = Substitute.For<Component>();
+            growBed.Name = "growBed";
+
+            var sumpTank = Substitute.For<Component>();
+            sumpTank.Name = "sumpTank";
 
             //Act
             Sut.AddComponents(fishTank, growBed, sumpTank);

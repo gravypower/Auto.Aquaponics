@@ -37,7 +37,6 @@ namespace Auto.Aquaponics.Api
             
             var commandSserviceType = GenerateCommandServices(Bootstrapper.GetCommandTypes(), typeof(CommandService), moduleBuilder);
             RegisterService(commandSserviceType);
-
         }
         
         private static Type GenerateCommandServices(IEnumerable<Type> commandTypes, Type autoQueryServiceBaseType, ModuleBuilder moduleBuilder)

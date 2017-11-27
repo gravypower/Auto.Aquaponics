@@ -4,7 +4,7 @@ using Auto.Aquaponics.Kernel;
 using Auto.Aquaponics.Organisms;
 using NUnit.Framework;
 using System;
-using Auto.Aquaponics.Tolerances;
+using Auto.Aquaponics.Analysis.Levels.Ph;
 
 namespace Auto.Aquaponics.Tests
 {

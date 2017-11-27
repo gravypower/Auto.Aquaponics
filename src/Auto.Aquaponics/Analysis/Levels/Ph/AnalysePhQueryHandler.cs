@@ -2,7 +2,6 @@
 using Auto.Aquaponics.Organisms;
 using System.Collections.Generic;
 using Auto.Aquaponics.Kernel.Data;
-using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Analysis.Levels.Ph
 {

@@ -2,7 +2,7 @@
 
 namespace Auto.Aquaponics.Analysis.Levels.Ph
 {
-    public class PhAnalysis : Analysis
+    public class PhAnalysis : Analysis<PhTolerance>
     {
         public double HydrogenIonConcentration   { get; set; }
         public double HydroxideIonsConcentration { get; set; }

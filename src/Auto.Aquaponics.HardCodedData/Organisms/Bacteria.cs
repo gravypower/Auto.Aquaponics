@@ -1,6 +1,9 @@
 ﻿using Auto.Aquaponics.Organisms;
-using System;
-using Auto.Aquaponics.Tolerances;
+using Auto.Aquaponics.Analysis.Levels.Ammonia;
+using Auto.Aquaponics.Analysis.Levels.Nitrate;
+using Auto.Aquaponics.Analysis.Levels.Nitrite;
+using Auto.Aquaponics.Analysis.Levels.Ph;
+using Auto.Aquaponics.Analysis.Levels.Salinity;
 
 namespace Auto.Aquaponics.HardCodedData.Organisms
 {

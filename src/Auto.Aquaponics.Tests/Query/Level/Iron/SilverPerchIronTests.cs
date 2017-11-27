@@ -15,14 +15,14 @@ namespace Auto.Aquaponics.Tests.Query.Level.Iron
 
         protected override IEnumerable<double> Is_suitable_cases()
         {
-            yield return 6;
-            yield return 10;
-            yield return 9;
+            yield return 0;
+            yield return .1;
+            yield return .2;
         }
 
         protected override IEnumerable<double> Is_not_suitable_cases()
         {
-            yield return 0;
+            yield return .4;
         }
 
         protected override IEnumerable<double> Is_not_ideal_cases()
@@ -32,8 +32,7 @@ namespace Auto.Aquaponics.Tests.Query.Level.Iron
 
         protected override IEnumerable<double> Is_ideal_cases()
         {
-            yield return 6.5;
-            yield return 9;
+            yield return 0;
         }
 
     }

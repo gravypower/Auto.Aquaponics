@@ -1,6 +1,5 @@
 ﻿using System;
-using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Tolerances;
+using Auto.Aquaponics.Analysis.Levels.Ph;
 
 namespace Auto.Aquaponics.HardCodedData.Organisms
 {

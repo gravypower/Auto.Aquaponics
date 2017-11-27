@@ -8,8 +8,9 @@ using Auto.Aquaponics.Queries;
 namespace Auto.Aquaponics.Analysis.Levels
 {
     public abstract class AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance> : IQueryHandler<TQuery, TResult>
-        where TQuery: AnalyseQuery<TResult>
-        where TResult:Analysis, new()
+        where TQuery: AnalyseQuery<TResult, TTolerance>
+        where TResult:Analysis<TTolerance>, new()
+        where TTolerance : Tolerance
     {
         protected readonly ILevelsMagicStrings MagicStrings;
         private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
@@ -45,11 +46,12 @@ namespace Auto.Aquaponics.Analysis.Levels
                 OrganismToleranceNotDefined();
             }
 
+
             var analysis = new TResult
             {
                 IdealForOrganism = IdealForOrganism(query.Value, organism, MagicStrings.LevelsKey),
                 SutablalForOrganism = SutablalForOrganism(query.Value, organism, MagicStrings.LevelsKey),
-                Tolerance = organism.Tolerances.Single(t => t is TTolerance)
+                Tolerance = organism.Tolerances.Single(t => t is TTolerance) as TTolerance
             };
 
             return Analyse(query, analysis, organism);

@@ -24,9 +24,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auto.Aquaponics.Tests", "Au
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auto.Aquaponics.Angular", "Auto.Aquaponics.Angular\Auto.Aquaponics.Angular.csproj", "{6F616D1C-BB3D-4A77-8F6F-EAEAC6A8FD44}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Aquaponics.Data.Tests", "Auto.Aquaponics.Data.Tests\Auto.Aquaponics.Data.Tests.csproj", "{0D626D47-9B04-4222-8318-F6842C903000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auto.Aquaponics.Data.Tests", "Auto.Aquaponics.Data.Tests\Auto.Aquaponics.Data.Tests.csproj", "{0D626D47-9B04-4222-8318-F6842C903000}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auto.Aquaponics.Data.Mongo", "Auto.Aquaponics.Data.Mongo\Auto.Aquaponics.Data.Mongo.csproj", "{FF90C914-B6BF-443F-8029-7E0FA728AE20}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auto.Aquaponics.Data.Mongo", "Auto.Aquaponics.Data.Mongo\Auto.Aquaponics.Data.Mongo.csproj", "{FF90C914-B6BF-443F-8029-7E0FA728AE20}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auto.Aquaponics.Data", "Auto.Aquaponics.Data\Auto.Aquaponics.Data.csproj", "{899014FD-11E6-4672-8EC8-0EE6FD822572}"
 EndProject

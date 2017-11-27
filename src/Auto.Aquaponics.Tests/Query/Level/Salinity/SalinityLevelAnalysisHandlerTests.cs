@@ -1,5 +1,4 @@
 ﻿using Auto.Aquaponics.Analysis.Levels.Salinity;
-using Auto.Aquaponics.Tolerances;
 using NSubstitute;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Salinity

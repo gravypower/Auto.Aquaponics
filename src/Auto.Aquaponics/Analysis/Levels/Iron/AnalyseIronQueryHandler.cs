@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Auto.Aquaponics.Kernel.Data;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Tolerances;
 
 namespace Auto.Aquaponics.Analysis.Levels.Iron
 {

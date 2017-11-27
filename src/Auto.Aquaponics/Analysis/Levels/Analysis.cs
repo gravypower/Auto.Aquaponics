@@ -1,12 +1,9 @@
-﻿using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Tolerances;
-
-namespace Auto.Aquaponics.Analysis.Levels
+﻿namespace Auto.Aquaponics.Analysis.Levels
 {
-    public class Analysis
+    public abstract class Analysis<TTolerance> where TTolerance: Tolerance
     {
         public bool SutablalForOrganism { get; set; }
         public bool IdealForOrganism { get; set; }
-        public Tolerance Tolerance { get; set; }
+        public TTolerance Tolerance { get; set; }
     }
 }

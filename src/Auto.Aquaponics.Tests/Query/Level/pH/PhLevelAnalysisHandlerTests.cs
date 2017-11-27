@@ -1,7 +1,7 @@
 ﻿using System;
+using Auto.Aquaponics.Analysis.Levels;
 using Auto.Aquaponics.Analysis.Levels.Ph;
 using Auto.Aquaponics.Organisms;
-using Auto.Aquaponics.Tolerances;
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;

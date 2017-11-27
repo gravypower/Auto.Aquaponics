@@ -75,13 +75,12 @@ namespace Auto.Aquaponics.Api
             var db = new MongoClient(mongoUrl).GetDatabase(dbname);
             _container.Register(() => db, Lifestyle.Singleton);
 
-            
             BsonClassMap.RegisterClassMap<Organism>(cm => 
             {
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
+                cm.UnmapProperty(c=>c.Tolerances);
             });
-
         }
 
         private static void RegisterLevelsMagicStrings()
@@ -108,7 +107,7 @@ namespace Auto.Aquaponics.Api
         public static IEnumerable<Type> GetCommandTypes() =>
             from assembly in ContractAssemblies
             from type in assembly.GetExportedTypes()
-            where typeof(ICommand).IsAssignableFrom(type) && !type.IsAbstract
+            where typeof(Command).IsAssignableFrom(type) && !type.IsAbstract
             select type;
 
         public static IEnumerable<QueryInfo> GetQueryTypes() =>

@@ -1,5 +1,4 @@
 ﻿using Auto.Aquaponics.Analysis.Levels.Ammonia;
-using Auto.Aquaponics.Tolerances;
 using NSubstitute;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Ammonia

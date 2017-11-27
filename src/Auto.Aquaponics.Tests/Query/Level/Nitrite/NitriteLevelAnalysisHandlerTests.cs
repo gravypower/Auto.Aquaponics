@@ -1,7 +1,5 @@
 ﻿using Auto.Aquaponics.Analysis.Levels.Nitrite;
-using Auto.Aquaponics.Tolerances;
 using NSubstitute;
-using NUnit.Framework;
 
 namespace Auto.Aquaponics.Tests.Query.Level.Nitrite
 {

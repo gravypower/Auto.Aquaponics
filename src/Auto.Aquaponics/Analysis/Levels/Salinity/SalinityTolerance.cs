@@ -1,7 +1,4 @@
-﻿
-using Auto.Aquaponics.Organisms;
-
-namespace Auto.Aquaponics.Tolerances
+﻿namespace Auto.Aquaponics.Analysis.Levels.Salinity
 {
     public class SalinityTolerance : Tolerance
     {

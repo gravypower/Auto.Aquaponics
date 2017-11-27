@@ -4,7 +4,7 @@ namespace Auto.Aquaponics.Analysis.Levels.Nitrate
 {
     [Api("Returns Analysis of Nitrate levels for an Organism")]
     [Route("/Levels/Nitrate", "GET,POST")]
-    public class AnalyseNitrate : AnalyseQuery<NitrateAnalysis>
+    public class AnalyseNitrate : AnalyseQuery<NitrateAnalysis, NitrateTolerance>
     {
     }
 }

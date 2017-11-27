@@ -10,10 +10,11 @@ using NUnit.Framework;
 namespace Auto.Aquaponics.Tests.Query.Level
 {
     public abstract class LevelAnalysisHandlerTests<TQueryHandler,TMagicStrings,TQuery,TResult, TTolerance>
-        where TQuery : AnalyseQuery<TResult>, new()
-        where TResult : Analysis.Levels.Analysis, new() 
+        where TQuery : AnalyseQuery<TResult, TTolerance>, new()
+        where TResult : Analysis<TTolerance>, new() 
         where TMagicStrings : class, ILevelsMagicStrings
         where TQueryHandler : AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance>
+        where TTolerance : Tolerance
     {
 
         protected const string OrganismNotDefinedExceptionMessage = "Organism not defined";

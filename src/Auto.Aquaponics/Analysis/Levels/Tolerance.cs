@@ -1,4 +1,4 @@
-﻿namespace Auto.Aquaponics.Tolerances
+﻿namespace Auto.Aquaponics.Analysis.Levels
 {
     public abstract class Tolerance
     {

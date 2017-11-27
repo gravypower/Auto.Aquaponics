@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Auto.Aquaponics.Tolerances;
+using Auto.Aquaponics.Analysis.Levels;
 
 namespace Auto.Aquaponics.Organisms
 {
@@ -10,7 +10,6 @@ namespace Auto.Aquaponics.Organisms
         public Guid Id { get; set; }
 
         public IList<Tolerance> Tolerances { get; set; }
-
 
         public Organism()
         {
