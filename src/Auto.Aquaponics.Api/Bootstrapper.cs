@@ -49,15 +49,28 @@ namespace Auto.Aquaponics.Api
                 where !type.IsAbstract
                 select type;
 
-            //var addToleranceCommandHandler = typeof(AddToleranceCommandHandler<>);
-            
+            var addToleranceCommandType = typeof(AddTolerance<>);
 
-            //foreach (var registration in registrations)
-            //{
-            //    var typeArgs = [] { registration };
-            //    var makeme = d1.MakeGenericType(typeArgs);
-            //    object o = Activator.CreateInstance(makeme);
-            //}
+
+            var commandHandlerType = typeof(ICommandHandler<>);
+            var addToleranceCommandHandlerType = typeof(AddToleranceCommandHandler<>);
+
+            var dataCcommandHandlerType = typeof(IDataCommandHandler<>);
+            var addToleranceDataCommandHandlerType = typeof(AddToleranceDataCommandHandler<>);
+
+
+            foreach (var registration in registrations)
+            {
+                var gernicAddToleranceCommandType = addToleranceCommandType.MakeGenericType(registration);
+
+                var gernicCommandHandlerType = commandHandlerType.MakeGenericType(gernicAddToleranceCommandType);
+                var genericAddToleranceCommandHandlerType = addToleranceCommandHandlerType.MakeGenericType(registration);
+                _container.Register(gernicCommandHandlerType, genericAddToleranceCommandHandlerType);
+
+                var gernicDataCommandHandlerType = dataCcommandHandlerType.MakeGenericType(gernicAddToleranceCommandType);
+                var genericGddToleranceDataCommandHandlerType = addToleranceDataCommandHandlerType.MakeGenericType(registration);
+                _container.Register(gernicDataCommandHandlerType, genericGddToleranceDataCommandHandlerType);
+            }
 
             _container.RegisterDecorator(
                 typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>), 
@@ -97,7 +110,6 @@ namespace Auto.Aquaponics.Api
             {
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
-                cm.UnmapProperty(c=>c.Tolerances);
             });
         }
 
