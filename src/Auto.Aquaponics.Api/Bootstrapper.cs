@@ -38,8 +38,26 @@ namespace Auto.Aquaponics.Api
             _container.Register(typeof(SeedData<>), new[] { typeof(SeedData<>).Assembly });
 
             _container.Register<
-                IDataCommandHandler<AddOrganism >,
+                IDataCommandHandler<AddOrganism>,
                 AddOrganismDataCommandHandler>();
+
+            var toleranceAssembly = typeof(Tolerance).Assembly;
+
+            var registrations =
+                from type in toleranceAssembly.GetExportedTypes()
+                where typeof(Tolerance).IsAssignableFrom(type)
+                where !type.IsAbstract
+                select type;
+
+            //var addToleranceCommandHandler = typeof(AddToleranceCommandHandler<>);
+            
+
+            //foreach (var registration in registrations)
+            //{
+            //    var typeArgs = [] { registration };
+            //    var makeme = d1.MakeGenericType(typeArgs);
+            //    object o = Activator.CreateInstance(makeme);
+            //}
 
             _container.RegisterDecorator(
                 typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>), 

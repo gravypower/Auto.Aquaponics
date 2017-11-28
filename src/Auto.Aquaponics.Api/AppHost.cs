@@ -13,7 +13,7 @@ namespace Auto.Aquaponics.Api
         /// <summary>
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
-        public AppHost() : base("Auto.Aquaponics.Api", typeof(QueryService).GetAssembly())
+        public AppHost() : base("Auto.Aquaponics.Api", typeof(QueryService).Assembly)
         {
         }
 
