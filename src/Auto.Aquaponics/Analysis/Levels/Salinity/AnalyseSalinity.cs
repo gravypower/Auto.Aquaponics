@@ -3,7 +3,7 @@
 namespace Auto.Aquaponics.Analysis.Levels.Salinity
 {
     [Api("Returns Analysis of Salinity level for an Organism")]
-    [Route("/Analysis/Salinity", "GET,POST")]
+    [Route("/organisms/{OrganismId}/Tolerances/Salinity/{Value}", "GET")]
     public class AnalyseSalinity : AnalyseQuery<SalinityAnalysis, SalinityTolerance>
     {
     }

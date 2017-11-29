@@ -9,11 +9,12 @@ namespace Auto.Aquaponics.Analysis.Levels
         where TTolerance : Tolerance
     {
         [ApiMember(Name = "OrganismId", Description = "The Id of an Organism",
-        ParameterType = "body", DataType = "Guid", IsRequired = true)]
+            ParameterType = "path", DataType = "string", IsRequired = true)]
+        [ApiAllowableValues("OrganismId", typeof(Guid))]
         public Guid OrganismId { get; set; }
 
         [ApiMember(Name = "Value", Description = "The value of the level",
-        ParameterType = "body", DataType = "double", IsRequired = true)]
+        ParameterType = "path", DataType = "number", Format = "double", IsRequired = true)]
         public double Value { get; set; }
     }
 }

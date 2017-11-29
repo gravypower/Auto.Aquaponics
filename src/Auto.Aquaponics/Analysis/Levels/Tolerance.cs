@@ -1,5 +1,4 @@
-﻿using System.Runtime.Serialization;
-using ServiceStack;
+﻿using ServiceStack;
 
 namespace Auto.Aquaponics.Analysis.Levels
 {
