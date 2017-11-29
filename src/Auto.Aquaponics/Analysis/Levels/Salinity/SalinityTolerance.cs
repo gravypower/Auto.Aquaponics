@@ -1,4 +1,6 @@
-﻿namespace Auto.Aquaponics.Analysis.Levels.Salinity
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Analysis.Levels.Salinity
 {
     public class SalinityTolerance : Tolerance
     {
@@ -6,6 +8,7 @@
         {
         }
 
+        [ApiMember(ExcludeInSchema = true)]
         public override Scale Scale => Scale.Ppm;
     }
 }

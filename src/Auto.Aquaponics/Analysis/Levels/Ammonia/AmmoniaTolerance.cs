@@ -1,4 +1,6 @@
-﻿namespace Auto.Aquaponics.Analysis.Levels.Ammonia
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Analysis.Levels.Ammonia
 {
     public class AmmoniaTolerance : Tolerance
     {
@@ -6,6 +8,7 @@
         {
         }
 
+        [ApiMember(ExcludeInSchema = true)]
         public override Scale Scale => Scale.Ppm;
     }
 }

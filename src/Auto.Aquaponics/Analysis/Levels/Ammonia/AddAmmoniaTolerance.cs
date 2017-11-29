@@ -6,5 +6,8 @@ namespace Auto.Aquaponics.Analysis.Levels.Ammonia
     [Route("/organisms/{OrganismId}/Tolerances/Ammonia", "POST")]
     public class AddAmmoniaTolerance:AddTolerance<AmmoniaTolerance>
     {
+        [ApiMember(Name = "Tolerance", Description = "Ammonia tolerance for an Organism",
+            ParameterType = "body", DataType = "AmmoniaTolerance", IsRequired = true)]
+        public override AmmoniaTolerance Tolerance { get; set; }
     }
 }

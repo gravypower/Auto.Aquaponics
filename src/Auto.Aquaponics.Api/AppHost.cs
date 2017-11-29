@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Reflection.Emit;
 using Funq;
 using ServiceStack;
+using ServiceStack.Api.OpenApi;
 
 namespace Auto.Aquaponics.Api
 {
@@ -24,6 +25,7 @@ namespace Auto.Aquaponics.Api
         public override void Configure(Container container)
         {
             Plugins.Add(new PostmanFeature());
+            Plugins.Add(new OpenApiFeature());
 
             var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);

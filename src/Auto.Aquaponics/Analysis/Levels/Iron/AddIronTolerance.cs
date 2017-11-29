@@ -6,5 +6,8 @@ namespace Auto.Aquaponics.Analysis.Levels.Iron
     [Route("/organisms/{OrganismId}/Tolerances/Iron", "POST")]
     public class AddIronTolerance: AddTolerance<IronTolerance>
     {
+        [ApiMember(Name = "Tolerance", Description = "Iron tolerance for an Organism",
+            ParameterType = "body", DataType = "IronTolerance", IsRequired = true)]
+        public override IronTolerance Tolerance { get; set; }
     }
 }

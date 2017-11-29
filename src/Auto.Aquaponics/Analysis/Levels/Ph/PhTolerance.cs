@@ -1,4 +1,6 @@
-﻿namespace Auto.Aquaponics.Analysis.Levels.Ph
+﻿using ServiceStack;
+
+namespace Auto.Aquaponics.Analysis.Levels.Ph
 {
     public class PhTolerance: Tolerance
     {
@@ -6,6 +8,7 @@
         {
         }
 
+        [ApiMember(ExcludeInSchema = true)]
         public override Scale Scale => Scale.Ph;
     }
 }
