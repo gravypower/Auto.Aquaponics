@@ -9,7 +9,8 @@ namespace Auto.Aquaponics.AquaponicSystems
     public class GetSystem : Query<AquaponicSystem>
     {
         [ApiMember(Name = "Id", Description = "The Id of a system",
-        ParameterType = "path", DataType = "Guid", IsRequired = true)]
+            ParameterType = "path", DataType = "string", IsRequired = true)]
+        [ApiAllowableValues("Id", typeof(Guid))]
         public Guid Id { get; set; }
     }
 }
