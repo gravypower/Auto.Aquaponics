@@ -15,7 +15,11 @@ namespace Auto.Aquaponics.Tests
         [SetUp]
         public void SetUp()
         {
-            Sut = new AquaponicSystem {Id = Guid.NewGuid(), Name = "AquaponicSystem"};
+            Sut = new AquaponicSystem
+            {
+                Id = Guid.NewGuid(),
+                Name = "AquaponicSystem"
+            };
         }
 
         [Test]
@@ -71,6 +75,30 @@ namespace Auto.Aquaponics.Tests
             Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
             Sut.ComponentConnections.Should().Contain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
         }
+
+        [Test]
+        public void Given_Three_Components_Added_And_system_is_unclosed_Then_Component_connections_are_correct()
+        {
+            //Arrange
+            Sut.Closed = false;
+            var fishTank = Substitute.For<Component>();
+            fishTank.Name = "fishTank";
+
+            var growBed = Substitute.For<Component>();
+            growBed.Name = "growBed";
+
+            var sumpTank = Substitute.For<Component>();
+            sumpTank.Name = "sumpTank";
+
+            //Act
+            Sut.AddComponents(fishTank, growBed, sumpTank);
+
+            //Assert
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "fishTank" && c.TargetId == "growBed");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
+            Sut.ComponentConnections.Should().NotContain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
+        }
+
 
         [Test]
         public void Given_Three_Components_Added_and_system_is_not_closed_Then_Component_connections_are_correct()

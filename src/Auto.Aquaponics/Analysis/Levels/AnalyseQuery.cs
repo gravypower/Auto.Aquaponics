@@ -8,7 +8,7 @@ namespace Auto.Aquaponics.Analysis.Levels
         where TLevelAnalysis : Analysis<TTolerance> 
         where TTolerance : Tolerance
     {
-        [ApiMember(Name = "OrganismId", Description = "The Id of an Organism",
+        [ApiMember(Name = "OrganismId", Description = "The id of an organism",
             ParameterType = "path", DataType = "string", IsRequired = true)]
         [ApiAllowableValues("OrganismId", typeof(Guid))]
         public Guid OrganismId { get; set; }

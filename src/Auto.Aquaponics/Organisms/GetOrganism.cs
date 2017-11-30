@@ -5,7 +5,7 @@ using ServiceStack;
 
 namespace Auto.Aquaponics.Organisms
 {
-    [Api("Get an Organism by Id")]
+    [Api("Get an organism by Id")]
     [Route("/organisms/{id}", "GET")]
     public class GetOrganism :Query<Organism>, IDataQuery<Organism>
     {

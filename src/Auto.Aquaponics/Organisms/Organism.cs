@@ -7,7 +7,7 @@ namespace Auto.Aquaponics.Organisms
 {
     public class Organism
     {
-        [ApiMember(Name = "Name", Description = "The Name of an organism",
+        [ApiMember(Name = "Name", Description = "The name of an organism",
             ParameterType = "body", DataType = "string", IsRequired = true)]
         public string Name { get; set; }
 

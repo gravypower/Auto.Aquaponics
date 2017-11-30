@@ -9,7 +9,7 @@ namespace Auto.Aquaponics.Organisms
     [Route("/organisms/{id}", "PUT")]
     public class UpdateOrganism : Command, IDataCommand
     {
-        [ApiMember(Name = "Id", Description = "The Id of an Organism",
+        [ApiMember(Name = "Id", Description = "The Id of an organism",
             ParameterType = "path", DataType = "string", IsRequired = true)]
         [ApiAllowableValues("Id", typeof(Guid))]
         public Guid Id { get; set; }

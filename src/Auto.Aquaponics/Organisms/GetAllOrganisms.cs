@@ -5,7 +5,7 @@ using Auto.Aquaponics.Queries;
 
 namespace Auto.Aquaponics.Organisms
 {
-    [Api("Get all Organisms")]
+    [Api("Get all organisms")]
     [Route("/organisms", "GET")]
     public class GetAllOrganisms : Query<IList<Organism>>, IDataQuery<IList<Organism>>
     {
