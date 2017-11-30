@@ -6,8 +6,6 @@ namespace Auto.Aquaponics.Analysis.Levels.Ph
     [Route("/organisms/{OrganismId}/Tolerances/Ph", "POST")]
     public class AddPhTolerance:AddTolerance<PhTolerance>
     {
-        [ApiMember(Name = "Tolerance", Description = "Ph tolerance for an Organism",
-            ParameterType = "body", DataType = "PhTolerance", IsRequired = true)]
         public override PhTolerance Tolerance { get; set; }
     }
 }

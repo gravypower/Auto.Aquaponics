@@ -13,6 +13,7 @@ namespace Auto.Aquaponics.Analysis.Levels
         [ApiAllowableValues("OrganismId", typeof(Guid))]
         public Guid OrganismId { get; set; }
 
+        [ApiMember(ExcludeInSchema = true)]
         public abstract TTolerance Tolerance { get; set; }
     }
 }

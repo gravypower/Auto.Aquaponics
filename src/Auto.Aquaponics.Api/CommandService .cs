@@ -11,6 +11,8 @@ namespace Auto.Aquaponics.Api
         {
             var commandHandler = Bootstrapper.GetCommandHandler(command.GetType()) as ICommandHandler<TCommand>;
 
+            var body = this.Request.GetRawBody();
+
             commandHandler.Handle(command);
         }
     }

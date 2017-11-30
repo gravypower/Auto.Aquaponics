@@ -4,6 +4,8 @@ namespace Auto.Aquaponics.Analysis.Levels
 {
     public abstract class Tolerance
     {
+        public string Type => GetType().Name;
+
         [ApiMember(ExcludeInSchema = true)]
         public abstract Scale Scale  { get; }
 

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using SimpleInjector;
 using Auto.Aquaponics.Analysis.Levels;
 using Auto.Aquaponics.AquaponicSystems;
-using SimpleInjector;
 using Auto.Aquaponics.Commands;
 using Auto.Aquaponics.Data.Decorator;
 using Auto.Aquaponics.Data.Mongo.CommandHandlers;
@@ -31,54 +31,57 @@ namespace Auto.Aquaponics.Api
 
             RegisterMongo();
             RegisterLevelsMagicStrings();
-
             RegisterQueryHandlers();
             RegisterDataQueryHandlers();
-
-            _container.Register(typeof(SeedData<>), new[] { typeof(SeedData<>).Assembly });
-
-            _container.Register<
-                IDataCommandHandler<AddOrganism>,
-                AddOrganismDataCommandHandler>();
-
-            var toleranceAssembly = typeof(Tolerance).Assembly;
-
-            var registrations =
-                from type in toleranceAssembly.GetExportedTypes()
-                where typeof(Tolerance).IsAssignableFrom(type)
-                where !type.IsAbstract
-                select type;
-
-            var addToleranceCommandType = typeof(AddTolerance<>);
-
-
-            var commandHandlerType = typeof(ICommandHandler<>);
-            var addToleranceCommandHandlerType = typeof(AddToleranceCommandHandler<>);
-
-            var dataCcommandHandlerType = typeof(IDataCommandHandler<>);
-            var addToleranceDataCommandHandlerType = typeof(AddToleranceDataCommandHandler<>);
-
-
-            foreach (var registration in registrations)
-            {
-                var gernicAddToleranceCommandType = addToleranceCommandType.MakeGenericType(registration);
-
-                var gernicCommandHandlerType = commandHandlerType.MakeGenericType(gernicAddToleranceCommandType);
-                var genericAddToleranceCommandHandlerType = addToleranceCommandHandlerType.MakeGenericType(registration);
-                _container.Register(gernicCommandHandlerType, genericAddToleranceCommandHandlerType);
-
-                var gernicDataCommandHandlerType = dataCcommandHandlerType.MakeGenericType(gernicAddToleranceCommandType);
-                var genericGddToleranceDataCommandHandlerType = addToleranceDataCommandHandlerType.MakeGenericType(registration);
-                _container.Register(gernicDataCommandHandlerType, genericGddToleranceDataCommandHandlerType);
-            }
-
-            _container.RegisterDecorator(
-                typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>), 
-                typeof(SeedOrganismsDecorator));
+            RegisterSeedData();
+            RegisterDataCommandHandlers();
+            RegisterAddTolerance();
+            RegisterDecorators();
 
             _container.Verify();
 
             return _container;
+        }
+
+        private static void RegisterDecorators()
+        {
+            _container.RegisterDecorator(
+                typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>),
+                typeof(SeedOrganismsDecorator));
+        }
+
+        private static void RegisterDataCommandHandlers()
+        {
+            _container.Register<
+                IDataCommandHandler<AddOrganism>,
+                AddOrganismDataCommandHandler>();
+        }
+
+        private static void RegisterSeedData()
+        {
+            _container.Register(typeof(SeedData<>), new[] {typeof(SeedData<>).Assembly});
+        }
+
+        private static void RegisterAddTolerance()
+        {
+            var commandHandlerType = typeof(ICommandHandler<>);
+            var addToleranceCommandHandlerType = typeof(AddToleranceCommandHandler<>);
+
+            var dataCommandHandlerType = typeof(IDataCommandHandler<>);
+            var addToleranceDataCommandHandlerType = typeof(AddToleranceDataCommandHandler<>);
+
+            foreach (var addToleranceType in GetAddToleranceTypes())
+            {
+                var toleranceType = addToleranceType.BaseType.GenericTypeArguments[0];
+
+                var gernicCommandHandlerType = commandHandlerType.MakeGenericType(addToleranceType);
+                var genericAddToleranceCommandHandlerType = addToleranceCommandHandlerType.MakeGenericType(toleranceType);
+                _container.Register(gernicCommandHandlerType, genericAddToleranceCommandHandlerType);
+
+                var gernicDataCommandHandlerType = dataCommandHandlerType.MakeGenericType(addToleranceType.BaseType);
+                var genericGddToleranceDataCommandHandlerType = addToleranceDataCommandHandlerType.MakeGenericType(toleranceType);
+                _container.Register(gernicDataCommandHandlerType, genericGddToleranceDataCommandHandlerType);
+            }
         }
 
         private static void RegisterDataQueryHandlers()
@@ -106,11 +109,23 @@ namespace Auto.Aquaponics.Api
             var db = new MongoClient(mongoUrl).GetDatabase(dbname);
             _container.Register(() => db, Lifestyle.Singleton);
 
+            BsonClassMap.RegisterClassMap<AquaponicSystem>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
+            });
+
             BsonClassMap.RegisterClassMap<Organism>(cm => 
             {
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
             });
+
+            foreach (var toleranceType in GetToleranceTypes())
+            {
+                var bsonClassMap = new BsonClassMap(toleranceType);
+                BsonClassMap.RegisterClassMap(bsonClassMap);
+            }
         }
 
         private static void RegisterLevelsMagicStrings()
@@ -154,6 +169,21 @@ namespace Auto.Aquaponics.Api
 
         private static Type CreateQueryHandlerType(Type queryType) =>
             typeof(IQueryHandler<,>).MakeGenericType(queryType, new QueryInfo(queryType).ResultType);
+
+        public static IEnumerable<Type> GetToleranceTypes() =>
+            from type in typeof(Tolerance).Assembly.GetExportedTypes()
+            where typeof(Tolerance).IsAssignableFrom(type)
+            where !type.IsAbstract
+            select type;
+
+        public static IEnumerable<Type> GetAddToleranceTypes() =>
+            from type in typeof(AddTolerance<>).Assembly.GetExportedTypes()
+            let baseType = type.BaseType
+            where baseType != null
+            where baseType.IsGenericType
+            where baseType.GetGenericTypeDefinition() == typeof(AddTolerance<>)
+            where !type.IsAbstract
+            select type;
     }
 
     [DebuggerDisplay("{QueryType.Name,nq}")]

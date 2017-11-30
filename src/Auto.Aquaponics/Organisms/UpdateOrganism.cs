@@ -5,11 +5,15 @@ using ServiceStack;
 
 namespace Auto.Aquaponics.Organisms
 {
-    [Api("Adds and Organism")]
+    [Api("Updates and Organism")]
     [Route("/organisms/{id}", "PUT")]
     public class UpdateOrganism : Command, IDataCommand
     {
+        [ApiMember(Name = "Id", Description = "The Id of an Organism",
+            ParameterType = "path", DataType = "string", IsRequired = true)]
+        [ApiAllowableValues("Id", typeof(Guid))]
         public Guid Id { get; set; }
+
         public Organism Organism { get; set; }
     }
 }
