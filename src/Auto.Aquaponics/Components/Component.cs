@@ -1,12 +1,19 @@
 ﻿using System.Collections.Generic;
 using System;
+using ServiceStack;
 
 namespace Auto.Aquaponics.Components
 {
     public class Component
     {
+        [ApiMember(ExcludeInSchema = true)]
+        public Guid Id { get; set; }
+
+        [ApiMember(Name = "Name", Description = "The name of a component",
+            ParameterType = "body", DataType = "string", IsRequired = true)]
         public string Name { get; set; }
-        
+
+        [ApiMember(ExcludeInSchema = true)]
         public IList<Guid> Organisms { get; set; }
 
         public Component()

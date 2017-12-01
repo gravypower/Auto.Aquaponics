@@ -21,6 +21,7 @@ namespace Auto.Aquaponics.AquaponicSystems
 
         [ApiMember(ExcludeInSchema = true)]
         public ICollection<Component> Components { get; set; }
+
         [ApiMember(ExcludeInSchema = true)]
         public ICollection<ComponentConnection> ComponentConnections { get; set; }
 
