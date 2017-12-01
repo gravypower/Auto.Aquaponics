@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Reflection.Emit;
 using Funq;
 using ServiceStack;
 using ServiceStack.Api.OpenApi;
@@ -17,6 +13,7 @@ namespace Auto.Aquaponics.Api
         /// </summary>
         public AppHost() : base("Auto.Aquaponics.Api", typeof(QueryService).Assembly)
         {
+            Licensing.RegisterLicense(Environment.GetEnvironmentVariable("servicestack:license"));
         }
 
         /// <summary>

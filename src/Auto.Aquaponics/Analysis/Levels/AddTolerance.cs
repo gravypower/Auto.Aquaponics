@@ -1,11 +1,10 @@
 ﻿using System;
 using Auto.Aquaponics.Commands;
-using Auto.Aquaponics.Kernel.Data;
 using ServiceStack;
 
 namespace Auto.Aquaponics.Analysis.Levels
 {
-    public abstract class AddTolerance<TTolerance>: Command, IDataCommand
+    public abstract class AddTolerance<TTolerance>: Command
         where TTolerance:Tolerance
     {
         [ApiMember(Name = "OrganismId", Description = "The id of an organism",

@@ -55,6 +55,10 @@ namespace Auto.Aquaponics.Api
             _container.Register<
                 IDataCommandHandler<AddOrganism>,
                 AddOrganismDataCommandHandler>();
+
+            _container.Register<
+                IDataCommandHandler<UpdateOrganism>,
+                UpdateOrganismDataCommandHandler>();
         }
 
         private static void RegisterSeedData()
@@ -67,9 +71,6 @@ namespace Auto.Aquaponics.Api
             var commandHandlerType = typeof(ICommandHandler<>);
             var addToleranceCommandHandlerType = typeof(AddToleranceCommandHandler<>);
 
-            var dataCommandHandlerType = typeof(IDataCommandHandler<>);
-            var addToleranceDataCommandHandlerType = typeof(AddToleranceDataCommandHandler<>);
-
             foreach (var addToleranceType in GetAddToleranceTypes())
             {
                 var toleranceType = addToleranceType.BaseType.GenericTypeArguments[0];
@@ -77,10 +78,6 @@ namespace Auto.Aquaponics.Api
                 var gernicCommandHandlerType = commandHandlerType.MakeGenericType(addToleranceType);
                 var genericAddToleranceCommandHandlerType = addToleranceCommandHandlerType.MakeGenericType(toleranceType);
                 _container.Register(gernicCommandHandlerType, genericAddToleranceCommandHandlerType);
-
-                var gernicDataCommandHandlerType = dataCommandHandlerType.MakeGenericType(addToleranceType.BaseType);
-                var genericGddToleranceDataCommandHandlerType = addToleranceDataCommandHandlerType.MakeGenericType(toleranceType);
-                _container.Register(gernicDataCommandHandlerType, genericGddToleranceDataCommandHandlerType);
             }
         }
 
@@ -130,6 +127,7 @@ namespace Auto.Aquaponics.Api
 
         private static void RegisterLevelsMagicStrings()
         {
+            _container.Register<IToleranceMagicStrings, ToleranceMagicStrings>(); 
             var levelMagicStringsAssembly = typeof(ILevelsMagicStrings).Assembly;
 
             var registrations =
