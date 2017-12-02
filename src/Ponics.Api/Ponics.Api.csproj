@@ -13,9 +13,9 @@
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Auto.Aquaponics.Data.Mongo\Ponics.Data.Mongo.csproj" />
-    <ProjectReference Include="..\Auto.Aquaponics.Data\Ponics.Data.csproj" />
-    <ProjectReference Include="..\Auto.Aquaponics.Kernel\Ponics.Kernel.csproj" />
-    <ProjectReference Include="..\Auto.Aquaponics\Ponics.csproj" />
+    <ProjectReference Include="..\Ponics.Data.Mongo\Ponics.Data.Mongo.csproj" />
+    <ProjectReference Include="..\Ponics.Data\Ponics.Data.csproj" />
+    <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
+    <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>
 </Project>

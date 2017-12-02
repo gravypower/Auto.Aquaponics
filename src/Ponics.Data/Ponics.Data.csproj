@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Auto.Aquaponics.HardCodedData\Ponics.HardCodedData.csproj" />
-    <ProjectReference Include="..\Auto.Aquaponics\Ponics.csproj" />
+    <ProjectReference Include="..\Ponics.HardCodedData\Ponics.HardCodedData.csproj" />
+    <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>
 
 </Project>

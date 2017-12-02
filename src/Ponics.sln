@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics", "Ponicss\Ponics.csproj", "{AFC92DDD-6DF3-44CE-A2A4-8000A1B68B16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics", "Ponics\Ponics.csproj", "{AFC92DDD-6DF3-44CE-A2A4-8000A1B68B16}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Kernel", "Ponicss.Kernel\Ponics.Kernel.csproj", "{9CDE2FCA-952C-4BF3-A121-14AFE4DB16B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Kernel", "Ponics.Kernel\Ponics.Kernel.csproj", "{9CDE2FCA-952C-4BF3-A121-14AFE4DB16B8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Kernel.Tests", "Ponicss.Kernel.Tests\Ponics.Kernel.Tests.csproj", "{A8C56539-5C3A-4416-BE0C-3F2B0C2D9B90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Kernel.Tests", "Ponics.Kernel.Tests\Ponics.Kernel.Tests.csproj", "{A8C56539-5C3A-4416-BE0C-3F2B0C2D9B90}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.HardCodedData", "Ponicss.HardCodedData\Ponics.HardCodedData.csproj", "{015487C7-F989-4143-958E-CCF6CCAB471F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.HardCodedData", "Ponics.HardCodedData\Ponics.HardCodedData.csproj", "{015487C7-F989-4143-958E-CCF6CCAB471F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{26900DF6-9396-400C-AB12-F521CCFC5215}"
 	ProjectSection(SolutionItems) = preProject
@@ -19,15 +19,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution", "Solution", "{26
 		NuGet.config = NuGet.config
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Api", "Ponicss.Api\Ponics.Api.csproj", "{88CC5B6E-6BAF-4A8A-8ED2-1831EE83FE11}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Api", "Ponics.Api\Ponics.Api.csproj", "{88CC5B6E-6BAF-4A8A-8ED2-1831EE83FE11}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Tests", "Ponicss.Tests\Ponics.Tests.csproj", "{5B2D7327-BAB8-4AF6-829B-A6D54D8EDBCA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Tests", "Ponics.Tests\Ponics.Tests.csproj", "{5B2D7327-BAB8-4AF6-829B-A6D54D8EDBCA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Tests", "Ponicss.Data.Tests\Ponics.Data.Tests.csproj", "{0D626D47-9B04-4222-8318-F6842C903000}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Tests", "Ponics.Data.Tests\Ponics.Data.Tests.csproj", "{0D626D47-9B04-4222-8318-F6842C903000}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data", "Ponicss.Data\Ponics.Data.csproj", "{899014FD-11E6-4672-8EC8-0EE6FD822572}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data", "Ponics.Data\Ponics.Data.csproj", "{899014FD-11E6-4672-8EC8-0EE6FD822572}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Mongo", "Ponicss.Data.Mongo\Ponics.Data.Mongo.csproj", "{3F4CE4A3-653E-4726-B797-81D9D84571B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Mongo", "Ponics.Data.Mongo\Ponics.Data.Mongo.csproj", "{3F4CE4A3-653E-4726-B797-81D9D84571B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

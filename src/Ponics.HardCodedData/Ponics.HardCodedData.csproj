@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Auto.Aquaponics.Kernel\Ponics.Kernel.csproj" />
-    <ProjectReference Include="..\Auto.Aquaponics\Ponics.csproj" />
+    <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
+    <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>
 
 </Project>

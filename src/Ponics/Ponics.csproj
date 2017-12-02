@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Auto.Aquaponics.Kernel\Ponics.Kernel.csproj" />
+    <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
   </ItemGroup>
 
 </Project>
