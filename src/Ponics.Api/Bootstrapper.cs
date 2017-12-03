@@ -34,6 +34,7 @@ namespace Ponics.Api
             RegisterQueryHandlers();
             RegisterDataQueryHandlers();
             RegisterSeedData();
+            RegisterCommandHandlers();
             RegisterDataCommandHandlers();
             RegisterAddTolerance();
             RegisterDecorators();
@@ -48,6 +49,13 @@ namespace Ponics.Api
             _container.RegisterDecorator(
                 typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>),
                 typeof(SeedOrganismsDecorator));
+        }
+
+        private static void RegisterCommandHandlers()
+        {
+            _container.Register<
+                ICommandHandler<AddOrganism>,
+                AddOrganismCommandHandler>();
         }
 
         private static void RegisterDataCommandHandlers()

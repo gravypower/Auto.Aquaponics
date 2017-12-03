@@ -60,20 +60,23 @@ namespace Ponics.Tests
             //Arrange
             var fishTank = Substitute.For<Component>();
             fishTank.Name = "fishTank";
+            fishTank.Id = Guid.NewGuid();
 
             var growBed = Substitute.For<Component>();
             growBed.Name = "growBed";
+            growBed.Id = Guid.NewGuid();
 
             var sumpTank = Substitute.For<Component>();
             sumpTank.Name = "sumpTank";
+            sumpTank.Id = Guid.NewGuid();
 
             //Act
             Sut.AddComponents(fishTank, growBed, sumpTank);
 
             //Assert
-            Sut.ComponentConnections.Should().Contain(c=>c.SourceId == "fishTank" && c.TargetId == "growBed");
-            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
-            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == fishTank.Id && c.TargetId == growBed.Id);
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == growBed.Id && c.TargetId == sumpTank.Id);
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == sumpTank.Id && c.TargetId == fishTank.Id);
         }
 
         [Test]
@@ -83,20 +86,23 @@ namespace Ponics.Tests
             Sut.Closed = false;
             var fishTank = Substitute.For<Component>();
             fishTank.Name = "fishTank";
+            fishTank.Id = Guid.NewGuid();
 
             var growBed = Substitute.For<Component>();
             growBed.Name = "growBed";
+            growBed.Id = Guid.NewGuid();
 
             var sumpTank = Substitute.For<Component>();
             sumpTank.Name = "sumpTank";
+            sumpTank.Id = Guid.NewGuid();
 
             //Act
             Sut.AddComponents(fishTank, growBed, sumpTank);
 
             //Assert
-            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "fishTank" && c.TargetId == "growBed");
-            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
-            Sut.ComponentConnections.Should().NotContain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == fishTank.Id && c.TargetId == growBed.Id);
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == growBed.Id && c.TargetId == sumpTank.Id);
+            Sut.ComponentConnections.Should().NotContain(c => c.SourceId == sumpTank.Id && c.TargetId == fishTank.Id);
         }
 
 
@@ -104,23 +110,32 @@ namespace Ponics.Tests
         public void Given_Three_Components_Added_and_system_is_not_closed_Then_Component_connections_are_correct()
         {
             //Arrange
-            Sut = new AquaponicSystem {Id = Guid.NewGuid(), Name = "AquaponicSystem", Closed = false};
+            Sut = new AquaponicSystem
+            {
+                Id = Guid.NewGuid(),
+                Name = "AquaponicSystem",
+                Closed = false
+            };
             var fishTank = Substitute.For<Component>();
             fishTank.Name = "fishTank";
+            fishTank.Id = Guid.NewGuid();
 
             var growBed = Substitute.For<Component>();
             growBed.Name = "growBed";
+            growBed.Id = Guid.NewGuid();
 
             var sumpTank = Substitute.For<Component>();
             sumpTank.Name = "sumpTank";
+            sumpTank.Id = Guid.NewGuid();
 
             //Act
             Sut.AddComponents(fishTank, growBed, sumpTank);
 
             //Assert
-            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "fishTank" && c.TargetId == "growBed");
-            Sut.ComponentConnections.Should().Contain(c => c.SourceId == "growBed" && c.TargetId == "sumpTank");
-            Sut.ComponentConnections.Should().NotContain(c => c.SourceId == "sumpTank" && c.TargetId == "fishTank");
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == fishTank.Id && c.TargetId == growBed.Id);
+            Sut.ComponentConnections.Should().Contain(c => c.SourceId == growBed.Id && c.TargetId == sumpTank.Id);
+            Sut.ComponentConnections.Should().NotContain(c => c.SourceId == sumpTank.Id && c.TargetId == fishTank.Id);
         }
     }
 }
+

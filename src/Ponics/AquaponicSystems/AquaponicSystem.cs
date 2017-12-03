@@ -20,10 +20,10 @@ namespace Ponics.AquaponicSystems
         public string Name { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public ICollection<Component> Components { get; set; }
+        public IList<Component> Components { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public ICollection<ComponentConnection> ComponentConnections { get; set; }
+        public IList<ComponentConnection> ComponentConnections { get; set; }
 
         public AquaponicSystem()
         {
@@ -39,13 +39,22 @@ namespace Ponics.AquaponicSystems
                 Components.Add(components[i]);
                 if (i > 0)
                 {
-                    ComponentConnections.Add(new ComponentConnection(components[i - 1], components[i]));
+                    ComponentConnections.Add(new ComponentConnection
+                    {
+                        SourceId = components[i - 1].Id,
+                        TargetId = components[i].Id
+                    });
                 }
             }
 
             if (Closed)
             {
-                ComponentConnections.Add(new ComponentConnection(components.Last(), components.First()));
+                ComponentConnections.Add(
+                    new ComponentConnection
+                    {
+                        SourceId = components.Last().Id,
+                        TargetId = components.First().Id
+                    });
             }
         }
     }

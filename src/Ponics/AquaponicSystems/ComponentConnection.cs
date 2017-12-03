@@ -1,16 +1,18 @@
-using Ponics.Components;
+using System;
+using ServiceStack;
 
 namespace Ponics.AquaponicSystems
 {
     public class ComponentConnection
     {
-        public string SourceId { get; }
-        public string TargetId { get; }
+        [ApiMember(Name = "SourceId", Description = "The id of the source component",
+            ParameterType = "body", DataType = "string", IsRequired = true)]
+        [ApiAllowableValues("SourceId", typeof(Guid))]
+        public Guid SourceId { get; set; }
 
-        public ComponentConnection(Component source, Component target)
-        {
-            TargetId = target.Name;
-            SourceId = source.Name;
-        }
+        [ApiMember(Name = "DestinationId", Description = "The id of the destination component",
+            ParameterType = "body", DataType = "string", IsRequired = true)]
+        [ApiAllowableValues("DestinationId", typeof(Guid))]
+        public Guid TargetId { get; set; }
     }
 }

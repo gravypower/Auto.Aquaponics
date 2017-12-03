@@ -4,11 +4,10 @@ using ServiceStack;
 
 namespace Ponics.AquaponicSystems
 {
-    [Api("Add an Aquaponic Systems")]
+    [Api("Add an Aquaponic System")]
     [Route("/systems", "POST")]
     public class AddSystem : Command, IDataCommand
     {
-        [ApiMember(ExcludeInSchema = true)]
         public AquaponicSystem System { get; set; }
     }
 }

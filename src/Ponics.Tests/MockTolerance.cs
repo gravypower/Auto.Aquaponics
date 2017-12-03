@@ -1,6 +1,6 @@
 ﻿using Ponics.Analysis.Levels;
 
-namespace Ponics.Tests.Command
+namespace Ponics.Tests
 {
     public class MockTolerance : Tolerance
     {
