@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Ponics.Data.Seed;
 using Ponics.Kernel.Data;
@@ -30,8 +31,9 @@ namespace Ponics.Data.Decorator
             if (result.Any()) return result;
             foreach (var organism in _organisms.GetSeedData())
             {
-                _addOrganisms.Handle(new AddOrganism{Organism = organism });
+                _addOrganisms.Handle(new AddOrganism { Organism = organism });
             }
+
             result = _decorated.Handle(query);
 
             return result;
