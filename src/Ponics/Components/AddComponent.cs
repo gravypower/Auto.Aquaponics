@@ -5,7 +5,7 @@ using ServiceStack;
 
 namespace Ponics.Components
 {
-    [Api("Adds a component")]
+    [Api("Adds a component to a system")]
     [Route("/systems/{SystemsId}/components", "POST")]
     public class AddComponent : Command, IDataCommand
     {

@@ -6,9 +6,9 @@ using ServiceStack;
 
 namespace Ponics.Components
 {
-    [Api("Get an organism by Id")]
+    [Api("Get a list of component connections")]
     [Route("/systems/{SystemsId}/components/connections", "GET")]
-    public class GetConnections:IQuery<IList<ComponentConnection>>
+    public class GetConnections: Query<IList<ComponentConnection>>
     {
         [ApiMember(Name = "SystemId", Description = "The id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]
