@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Ponics.Data.v3.ncrunchproject" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Ponics.HardCodedData\Ponics.HardCodedData.csproj" />
     <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>

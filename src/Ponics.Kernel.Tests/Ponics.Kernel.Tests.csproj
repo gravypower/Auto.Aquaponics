@@ -3,6 +3,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
+    <None Remove="Ponics.Kernel.Tests.v3.ncrunchproject" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
     <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>

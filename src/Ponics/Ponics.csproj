@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Ponics.v3.ncrunchproject" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="ServiceStack.Interfaces" Version="5.0.0" />
   </ItemGroup>
 
