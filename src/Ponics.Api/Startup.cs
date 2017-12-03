@@ -29,7 +29,7 @@ namespace Ponics.Api
             
             app.Run(context =>
             {
-                context.Response.Redirect("/metadata");
+                context.Response.Redirect("/swagger-ui");
                 return Task.FromResult(0);
             });
         }
