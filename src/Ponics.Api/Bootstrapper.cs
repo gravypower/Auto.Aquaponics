@@ -10,6 +10,7 @@ using MongoDB.Driver;
 using Ponics.Analysis.Levels;
 using Ponics.AquaponicSystems;
 using Ponics.Commands;
+using Ponics.Components;
 using Ponics.Data.Decorator;
 using Ponics.Data.Mongo.CommandHandlers;
 using Ponics.Data.Mongo.QueryHandlers;
@@ -56,6 +57,18 @@ namespace Ponics.Api
             _container.Register<
                 ICommandHandler<AddOrganism>,
                 AddOrganismCommandHandler>();
+
+            _container.Register<
+                ICommandHandler<AddSystem>,
+                AddSystemCommandHandler>();
+
+            _container.Register<
+                ICommandHandler<ConnectComponents>,
+                ConnectComponentsCommandHandler>();
+
+            _container.Register<
+                ICommandHandler<AddComponent>,
+                AddComponentCommandHandler>();
         }
 
         private static void RegisterDataCommandHandlers()
@@ -63,6 +76,14 @@ namespace Ponics.Api
             _container.Register<
                 IDataCommandHandler<AddOrganism>,
                 AddOrganismDataCommandHandler>();
+
+            _container.Register<
+                IDataCommandHandler<AddSystem>,
+                AddSystemDataCommandHandler>();
+
+            _container.Register<
+                IDataCommandHandler<UpdateSystem>,
+                UpdateSystemDataCommandHandler>();
 
             _container.Register<
                 IDataCommandHandler<UpdateOrganism>,
@@ -97,7 +118,11 @@ namespace Ponics.Api
 
             _container.Register<
                 IDataQueryHandler<GetAllSystems, IList<AquaponicSystem>>, 
-                GetAllSystemsHandlerDataQueryHandler>();
+                GetAllSystemsDataQueryHandler>();
+
+            _container.Register<
+                IDataQueryHandler<GetSystem, AquaponicSystem>,
+                GetSystemDataQueryHandler>();
         }
 
         private static void RegisterQueryHandlers()

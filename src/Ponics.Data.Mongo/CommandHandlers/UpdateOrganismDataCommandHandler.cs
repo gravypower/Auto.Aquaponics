@@ -11,10 +11,8 @@ namespace Ponics.Data.Mongo.CommandHandlers
 
         public override void Handle(UpdateOrganism command)
         { 
-            var filter = Builders<Organism>.Filter.Eq("_id", command.Id);
             var organisms = Database.GetCollection<Organism>(nameof(Organism));
-            var update = Builders<Organism>.Update.Set(nameof(Organism), command.Organism);
-            organisms.UpdateOne(filter, update);
+            organisms.ReplaceOne(doc => doc.Id == command.Id, command.Organism);
         }
     }
 }

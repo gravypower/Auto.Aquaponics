@@ -6,7 +6,7 @@ using ServiceStack;
 namespace Ponics.Components
 {
     [Api("Connects two a components")]
-    [Route("/systems/{SystemsId}/components/connections", "POST")]
+    [Route("/systems/{SystemId}/components/connections", "POST")]
     public class ConnectComponents : Command, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The id of a system",

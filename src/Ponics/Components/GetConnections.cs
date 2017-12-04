@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ponics.AquaponicSystems;
 using Ponics.Queries;
 using ServiceStack;
 
 namespace Ponics.Components
 {
     [Api("Get a list of component connections")]
-    [Route("/systems/{SystemsId}/components/connections", "GET")]
+    [Route("/systems/{SystemId}/components/connections", "GET")]
     public class GetConnections: Query<IList<ComponentConnection>>
     {
         [ApiMember(Name = "SystemId", Description = "The id of a system",

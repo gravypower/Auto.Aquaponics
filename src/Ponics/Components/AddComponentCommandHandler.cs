@@ -31,7 +31,8 @@ namespace Ponics.Components
 
             _updateSystemDataCommandHandler.Handle(new UpdateSystem
             {
-                System = system
+                System = system,
+                Id = command.SystemId
             });
         }
     }

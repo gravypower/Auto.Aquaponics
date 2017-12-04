@@ -21,7 +21,11 @@ namespace Ponics.Tests.Command
         {
             //Assign
             var component = new Component();
-            var command = new AddComponent {Component = component};
+            var command = new AddComponent
+            {
+                Component = component,
+                SystemId = Guid.NewGuid()
+            };
 
             //Act
             Sut.Handle(command);
@@ -30,6 +34,10 @@ namespace Ponics.Tests.Command
             UpdateSystemDataCommandHandler.Received().Handle(
                 Arg.Is<UpdateSystem>(
                     c => c.System.Components.Contains(component)));
+
+            UpdateSystemDataCommandHandler.Received().Handle(
+                Arg.Is<UpdateSystem>(
+                    c => c.Id == command.SystemId));
         }
 
         [Test]

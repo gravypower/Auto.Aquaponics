@@ -10,7 +10,6 @@ namespace Ponics.Tests.Command
     [TestFixture]
     public class AddOrganismTests
     {
-
         public AddOrganismCommandHandler Sut;
         private IDataCommandHandler<AddOrganism> _addOrganismDataCommandHandler;
 

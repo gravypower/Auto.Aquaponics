@@ -2,8 +2,6 @@
 using NUnit.Framework;
 using Ponics.AquaponicSystems;
 using Ponics.Kernel.Data;
-using System;
-using Ponics.Components;
 
 namespace Ponics.Tests.Command
 {
