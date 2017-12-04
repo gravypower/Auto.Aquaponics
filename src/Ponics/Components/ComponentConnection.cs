@@ -1,7 +1,7 @@
 using System;
 using ServiceStack;
 
-namespace Ponics.AquaponicSystems
+namespace Ponics.Components
 {
     public class ComponentConnection
     {

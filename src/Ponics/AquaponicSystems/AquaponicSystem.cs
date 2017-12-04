@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Ponics.Components;
 using ServiceStack;
 
@@ -30,32 +29,6 @@ namespace Ponics.AquaponicSystems
             Closed = true;
             Components = new List<Component>();
             ComponentConnections = new List<ComponentConnection>();
-        }
-
-        public void AddComponents(params Component[] components)
-        {
-            for (var i = 0; i < components.Length; i++)
-            {
-                Components.Add(components[i]);
-                if (i > 0)
-                {
-                    ComponentConnections.Add(new ComponentConnection
-                    {
-                        SourceId = components[i - 1].Id,
-                        TargetId = components[i].Id
-                    });
-                }
-            }
-
-            if (Closed)
-            {
-                ComponentConnections.Add(
-                    new ComponentConnection
-                    {
-                        SourceId = components.Last().Id,
-                        TargetId = components.First().Id
-                    });
-            }
         }
     }
 }
