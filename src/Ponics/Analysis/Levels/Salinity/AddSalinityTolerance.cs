@@ -2,7 +2,7 @@
 
 namespace Ponics.Analysis.Levels.Salinity
 {
-    [Api("Add salinity tolerance to an organism")]
+    [Api("Adds a salinity tolerance to an organism")]
     [Route("/organisms/{OrganismId}/tolerances/salinity", "POST")]
     public class AddSalinityTolerance:AddTolerance<SalinityTolerance>
     {

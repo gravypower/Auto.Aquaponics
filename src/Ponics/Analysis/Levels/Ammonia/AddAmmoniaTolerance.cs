@@ -2,7 +2,7 @@
 
 namespace Ponics.Analysis.Levels.Ammonia
 {
-    [Api("Add Ammonia tolerance to an organism")]
+    [Api("Add a Ammonia tolerance to an organism")]
     [Route("/organisms/{OrganismId}/tolerances/ammonia", "POST")]
     public class AddAmmoniaTolerance:AddTolerance<AmmoniaTolerance>
     {

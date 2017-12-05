@@ -2,9 +2,9 @@
 
 namespace Ponics.Analysis.Levels.Nitrite
 {
-    [Api("Add a Nitrite tolerance to an organism")]
+    [Api("Updates the Nitrite tolerance of an organism")]
     [Route("/organisms/{OrganismId}/tolerances/nitrite", "POST")]
-    public class AddNitriteTolerance: AddTolerance<NitriteTolerance>
+    public class UpdateNitriteTolerance: UpdateTolerance<NitriteTolerance>
     {
         public override NitriteTolerance Tolerance { get; set; }
     }

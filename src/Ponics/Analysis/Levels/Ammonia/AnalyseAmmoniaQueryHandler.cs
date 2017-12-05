@@ -13,7 +13,7 @@ namespace Ponics.Analysis.Levels.Ammonia
             IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
         ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
-            _magicStrings = magicStrings;
+            _magicStrings = magicStrings; 
         }
 
         protected override AmmoniaAnalysis Analyse(AnalyseAmmonia query, AmmoniaAnalysis analysis, Organism organism)
