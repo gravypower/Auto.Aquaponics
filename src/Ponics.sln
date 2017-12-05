@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics", "Ponics\Ponics.csproj", "{AFC92DDD-6DF3-44CE-A2A4-8000A1B68B16}"
 EndProject
@@ -28,6 +28,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data", "Ponics.Data\Ponics.Data.csproj", "{899014FD-11E6-4672-8EC8-0EE6FD822572}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Mongo", "Ponics.Data.Mongo\Ponics.Data.Mongo.csproj", "{3F4CE4A3-653E-4726-B797-81D9D84571B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ponics.Admin", "Ponics.Admin\Ponics.Admin.csproj", "{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,6 +73,10 @@ Global
 		{3F4CE4A3-653E-4726-B797-81D9D84571B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F4CE4A3-653E-4726-B797-81D9D84571B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F4CE4A3-653E-4726-B797-81D9D84571B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
