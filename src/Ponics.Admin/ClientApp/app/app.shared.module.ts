@@ -7,12 +7,18 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
+import { AquaponicSystemComponent } from './components/aquaponicsystems/aquaponicsystem/aquaponicsystem.component';
+import { AquaponicSystemsComponent } from './components/aquaponicsystems/aquaponicsystems.component';
+import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavMenuComponent,
-        HomeComponent
+        HomeComponent,
+        AquaponicSystemComponent,
+        AquaponicSystemsComponent,
+        AlertComponent
     ],
     imports: [
         CommonModule,
@@ -21,6 +27,7 @@ import { HomeComponent } from './components/home/home.component';
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
+            { path: 'aquaponics-systems', component: AquaponicSystemsComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
