@@ -1,4 +1,5 @@
 ﻿import { Component, Input } from "@angular/core";
+import { AquaponicSystem } from "../../../Ponics.Api.dtos";
 
 @Component({
     selector: 'app-aquaponicsystem',
@@ -6,5 +7,5 @@
 })
 
 export class AquaponicSystemComponent {
-    @Input() name: string = "";
+    @Input() aquaponicSystem: AquaponicSystem ;
 }

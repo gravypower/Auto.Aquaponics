@@ -9,6 +9,7 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { AquaponicSystemComponent } from './components/aquaponicsystems/aquaponicsystem/aquaponicsystem.component';
 import { AquaponicSystemsComponent } from './components/aquaponicsystems/aquaponicsystems.component';
+import { AddAquaponicSystemComponent } from './components/aquaponicsystems/addaquaponicsystem/addaquaponicsystem.component';
 import { AlertComponent } from './components/alert/alert.component';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { AlertComponent } from './components/alert/alert.component';
         HomeComponent,
         AquaponicSystemComponent,
         AquaponicSystemsComponent,
+        AddAquaponicSystemComponent,
         AlertComponent
     ],
     imports: [

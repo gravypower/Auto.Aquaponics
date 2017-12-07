@@ -1,5 +1,5 @@
 {
-  "name": "Ponics.Admin",
+  "name": "ponics.admin",
   "version": "0.0.0",
   "lockfileVersion": 1,
   "requires": true,
@@ -257,6 +257,15 @@
       "resolved": "https://registry.npmjs.org/amdefine/-/amdefine-1.0.1.tgz",
       "integrity": "sha1-SlKCrBZHKek2Gbz9OtFR+BfOkfU=",
       "dev": true
+    },
+    "angular2-router-loader": {
+      "version": "0.3.5",
+      "resolved": "https://registry.npmjs.org/angular2-router-loader/-/angular2-router-loader-0.3.5.tgz",
+      "integrity": "sha1-Kxj6loPg6Kqz6UL12ToR1jw3wwM=",
+      "dev": true,
+      "requires": {
+        "loader-utils": "0.2.17"
+      }
     },
     "angular2-template-loader": {
       "version": "0.6.2",
@@ -3879,7 +3888,8 @@
     "popper.js": {
       "version": "1.12.9",
       "resolved": "https://registry.npmjs.org/popper.js/-/popper.js-1.12.9.tgz",
-      "integrity": "sha1-DfvC3/lsRRuzMu3Pz6r1ZtMx1bM="
+      "integrity": "sha1-DfvC3/lsRRuzMu3Pz6r1ZtMx1bM=",
+      "dev": true
     },
     "posix-character-classes": {
       "version": "0.1.1",
@@ -5548,6 +5558,12 @@
       "version": "2.4.1",
       "resolved": "https://registry.npmjs.org/typescript/-/typescript-2.4.1.tgz",
       "integrity": "sha1-w8yxbdqgsjFN4DHn5v7onlujRrw=",
+      "dev": true
+    },
+    "typescript-dotnet-commonjs": {
+      "version": "4.9.10",
+      "resolved": "https://registry.npmjs.org/typescript-dotnet-commonjs/-/typescript-dotnet-commonjs-4.9.10.tgz",
+      "integrity": "sha1-JyA5rbCDEVWCKDHCnYPrCOG2qfw=",
       "dev": true
     },
     "uglify-js": {
