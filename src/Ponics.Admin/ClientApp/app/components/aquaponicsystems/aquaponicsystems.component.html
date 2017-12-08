@@ -7,16 +7,27 @@
         </div>
         <ul class="nav nav-pills flex-column">
             <li class="nav-item" *ngFor="let aquaponicSystem of aquaponicSystems">
-                <a class="nav-link" href="#">{{aquaponicSystem.Name}}</a>
+                <a
+                    class="nav-link"
+                    (click)="onAquaponicSystemSelected(aquaponicSystem)">
+                    {{aquaponicSystem.Name}}
+                </a>
             </li>
         </ul>
 
     </nav>
 
     <main role="main" class="col-sm-9 ml-sm-auto col-md-10 pt-3">
-        <app-aquaponicsystem></app-aquaponicsystem>
+        <app-aquaponicsystem
+            [aquaponicSystem] ="selectedAquaponicSystem"
+            *ngIf="selectedAquaponicSystem; else infoText"></app-aquaponicsystem>
+        <ng-template #infoText>
+            <p>
+                Please select an Aquaponic System
+            </p>
+        </ng-template>
     </main>
 </div>
 
 
-<app-addaquaponicsystem (aquaponicSystemaAdded)="onAquaponicSystemaAdded($event)"></app-addaquaponicsystem>
+<app-addaquaponicsystem (aquaponicSystemAdded)="onAquaponicSystemAdded($event)"></app-addaquaponicsystem>

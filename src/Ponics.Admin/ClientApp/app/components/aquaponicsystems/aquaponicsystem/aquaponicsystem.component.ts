@@ -7,5 +7,5 @@ import { AquaponicSystem } from "../../../Ponics.Api.dtos";
 })
 
 export class AquaponicSystemComponent {
-    @Input() aquaponicSystem: AquaponicSystem ;
+    @Input() aquaponicSystem: AquaponicSystem;
 }

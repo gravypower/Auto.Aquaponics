@@ -7,10 +7,11 @@ import { AquaponicSystem } from "../../../Ponics.Api.dtos";
 })
 
 export class AddAquaponicSystemComponent {
-    @Output() aquaponicSystemaAdded = new EventEmitter<AquaponicSystem>();
+    @Output() aquaponicSystemAdded = new EventEmitter<AquaponicSystem>();
     newAquaponicSystem = new AquaponicSystem();
 
     onCreateAquaponicSystem() {
-        this.aquaponicSystemaAdded.emit(this.newAquaponicSystem);
+        this.aquaponicSystemAdded.emit(this.newAquaponicSystem);
+        this.newAquaponicSystem = new AquaponicSystem();
     }
 }
