@@ -13,11 +13,11 @@ namespace Ponics.Analysis.Levels
         where TTolerance : Tolerance
     {
         protected readonly ILevelsMagicStrings MagicStrings;
-        private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
+        private readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         protected AnalyseLevelsQueryHandler(
             ILevelsMagicStrings magicStrings,
-            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
+            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
             )
         {
             MagicStrings = magicStrings;

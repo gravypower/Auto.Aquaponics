@@ -7,7 +7,7 @@ namespace Ponics.Organisms
 {
     [Api("Get all organisms")]
     [Route("/organisms", "GET")]
-    public class GetAllOrganisms : Query<IList<Organism>>, IDataQuery<IList<Organism>>
+    public class GetAllOrganisms : Query<List<Organism>>, IDataQuery<List<Organism>>
     {
     }
 }

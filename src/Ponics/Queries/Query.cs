@@ -2,7 +2,7 @@
 
 namespace Ponics.Queries
 {
-    public interface IQuery<TResult> : IReturn
+    public interface IQuery<TResult> : IReturn<TResult>
     {
     }
 

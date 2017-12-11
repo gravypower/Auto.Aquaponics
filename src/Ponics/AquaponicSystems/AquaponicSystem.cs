@@ -19,10 +19,10 @@ namespace Ponics.AquaponicSystems
         public string Name { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public IList<Component> Components { get; set; }
+        public List<Component> Components { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public IList<ComponentConnection> ComponentConnections { get; set; }
+        public List<ComponentConnection> ComponentConnections { get; set; }
 
         public AquaponicSystem()
         {

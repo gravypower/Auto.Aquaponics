@@ -7,7 +7,7 @@ namespace Ponics.Components
 {
     [Api("Get a list of component connections")]
     [Route("/systems/{SystemId}/components/connections", "GET")]
-    public class GetConnections: Query<IList<ComponentConnection>>
+    public class GetConnections: Query<List<ComponentConnection>>
     {
         [ApiMember(Name = "SystemId", Description = "The id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

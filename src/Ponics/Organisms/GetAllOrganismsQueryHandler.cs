@@ -4,17 +4,17 @@ using Ponics.Queries;
 
 namespace Ponics.Organisms
 {
-    public class GetAllOrganismsQueryHandler : IQueryHandler<GetAllOrganisms, IList<Organism>>
+    public class GetAllOrganismsQueryHandler : IQueryHandler<GetAllOrganisms, List<Organism>>
     {
-        private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
+        private readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         public GetAllOrganismsQueryHandler(
-            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler)
+            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler)
         {
             _getAllOrganismsDataQueryHandler = getAllOrganismsDataQueryHandler;
         }
 
-        public IList<Organism> Handle(GetAllOrganisms query)
+        public List<Organism> Handle(GetAllOrganisms query)
         {
             return _getAllOrganismsDataQueryHandler.Handle(query);
         }

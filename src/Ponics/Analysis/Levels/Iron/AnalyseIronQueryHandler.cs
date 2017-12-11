@@ -10,7 +10,7 @@ namespace Ponics.Analysis.Levels.Iron
 
         public AnalyseIronQueryHandler(
             IAnalyseIronMagicStrings magicStrings,
-            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
+            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
         ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;

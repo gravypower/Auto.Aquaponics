@@ -7,9 +7,9 @@ namespace Ponics.Organisms
 {
     public class GetOrganismQueryHandler : IQueryHandler<GetOrganism, Organism>
     {
-        private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
+        private readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
-        public GetOrganismQueryHandler(IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler)
+        public GetOrganismQueryHandler(IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler)
         {
             _getAllOrganismsDataQueryHandler = getAllOrganismsDataQueryHandler;
         }

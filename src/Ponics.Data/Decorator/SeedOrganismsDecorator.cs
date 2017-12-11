@@ -6,14 +6,14 @@ using Ponics.Organisms;
 
 namespace Ponics.Data.Decorator
 {
-    public class SeedOrganismsDecorator: IDataQueryHandler<GetAllOrganisms, IList<Organism>>
+    public class SeedOrganismsDecorator: IDataQueryHandler<GetAllOrganisms, List<Organism>>
     {
-        private readonly IDataQueryHandler<GetAllOrganisms, IList<Organism>> _decorated;
+        private readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> _decorated;
         private readonly IDataCommandHandler<AddOrganism> _addOrganisms;
         private readonly SeedData<Organism> _organisms;
 
         public SeedOrganismsDecorator(
-            IDataQueryHandler<GetAllOrganisms, IList<Organism>> decorated,
+            IDataQueryHandler<GetAllOrganisms, List<Organism>> decorated,
             IDataCommandHandler<AddOrganism> addOrganisms,
             SeedData<Organism> organisms
             )
@@ -23,7 +23,7 @@ namespace Ponics.Data.Decorator
             _organisms = organisms;
         }
 
-        public IList<Organism> Handle(GetAllOrganisms query)
+        public List<Organism> Handle(GetAllOrganisms query)
         {
             var result = _decorated.Handle(query);
 

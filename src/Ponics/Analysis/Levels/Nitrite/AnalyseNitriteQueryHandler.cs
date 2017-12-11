@@ -10,7 +10,7 @@ namespace Ponics.Analysis.Levels.Nitrite
 
         public AnalyseNitriteQueryHandler(
             IAnalyseNitriteMagicStrings magicStrings,
-            IDataQueryHandler<GetAllOrganisms, IList<Organism>> getAllOrganismsDataQueryHandler
+            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
         ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;

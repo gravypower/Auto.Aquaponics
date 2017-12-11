@@ -7,7 +7,7 @@ namespace Ponics.AquaponicSystems
 {
     [Api("Returns a list of all Aquaponic Systems")]
     [Route("/systems", "GET")]
-    public class GetAllSystems: Query<IList<AquaponicSystem>>, IDataQuery<IList<AquaponicSystem>>
+    public class GetAllSystems: Query<List<AquaponicSystem>>, IDataQuery<List<AquaponicSystem>>
     {
     }
 }

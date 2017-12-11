@@ -48,7 +48,7 @@ namespace Ponics.Api
         private static void RegisterDecorators()
         {
             _container.RegisterDecorator(
-                typeof(IDataQueryHandler<GetAllOrganisms, IList<Organism>>),
+                typeof(IDataQueryHandler<GetAllOrganisms, List<Organism>>),
                 typeof(SeedOrganismsDecorator));
         }
 
@@ -113,11 +113,11 @@ namespace Ponics.Api
         private static void RegisterDataQueryHandlers()
         {
             _container.Register<
-                IDataQueryHandler<GetAllOrganisms, IList<Organism>>, 
+                IDataQueryHandler<GetAllOrganisms, List<Organism>>, 
                 GetAllOrganismsDataQueryHandler>();
 
             _container.Register<
-                IDataQueryHandler<GetAllSystems, IList<AquaponicSystem>>, 
+                IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>, 
                 GetAllSystemsDataQueryHandler>();
 
             _container.Register<

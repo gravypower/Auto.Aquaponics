@@ -14,7 +14,7 @@ namespace Ponics.Components
         public string Name { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public IList<Guid> Organisms { get; set; }
+        public List<Guid> Organisms { get; set; }
 
         public Component()
         {

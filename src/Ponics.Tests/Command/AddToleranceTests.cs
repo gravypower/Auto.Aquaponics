@@ -12,7 +12,7 @@ namespace Ponics.Tests.Command
     [TestFixture]
     public class AddToleranceTests
     {
-        private IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
+        private IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
         private Organism _organism;
         private MockTolerance _mockTolerance;
         private AddTolerance<MockTolerance> _addTolerance;
@@ -26,7 +26,7 @@ namespace Ponics.Tests.Command
         {
             var toleranceMagicStrings = new ToleranceMagicStrings();
 
-            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, IList<Organism>>>();
+            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
             _updateOrganismDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateOrganism>>();
 
             Sut = new AddToleranceCommandHandler<MockTolerance>(

@@ -4,16 +4,16 @@ using Ponics.Queries;
 
 namespace Ponics.AquaponicSystems
 {
-    public class GetAllSystemsQueryHandler : IQueryHandler<GetAllSystems, IList<AquaponicSystem>>
+    public class GetAllSystemsQueryHandler : IQueryHandler<GetAllSystems, List<AquaponicSystem>>
     {
-        private readonly IDataQueryHandler<GetAllSystems, IList<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+        private readonly IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
 
-        public GetAllSystemsQueryHandler(IDataQueryHandler<GetAllSystems, IList<AquaponicSystem>> getAllSystemsDataQueryHandler)
+        public GetAllSystemsQueryHandler(IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> getAllSystemsDataQueryHandler)
         {
             _getAllSystemsDataQueryHandler = getAllSystemsDataQueryHandler;
         }
 
-        public IList<AquaponicSystem> Handle(GetAllSystems query)
+        public List<AquaponicSystem> Handle(GetAllSystems query)
         {
             return _getAllSystemsDataQueryHandler.Handle(query);
         }

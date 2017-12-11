@@ -15,13 +15,13 @@ namespace Ponics.Data.Tests.Decorator
     {
         public SeedOrganismsDecorator Sut;
         private IDataCommandHandler<AddOrganism> _dataCommandHandler;
-        private IDataQueryHandler<GetAllOrganisms, IList<Organism>> _dataQueryHandler;
+        private IDataQueryHandler<GetAllOrganisms, List<Organism>> _dataQueryHandler;
         private SeedData<Organism> _organisms;
 
         [SetUp]
         public void SetUp()
         {
-            _dataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, IList<Organism>>>();
+            _dataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
             _dataCommandHandler = Substitute.For<IDataCommandHandler<AddOrganism>>();
             _organisms = Substitute.For<SeedData<Organism>>();
             Sut = new SeedOrganismsDecorator(_dataQueryHandler, _dataCommandHandler, _organisms);

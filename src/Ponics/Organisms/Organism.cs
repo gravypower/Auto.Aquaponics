@@ -15,7 +15,7 @@ namespace Ponics.Organisms
         public Guid Id { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public IList<Tolerance> Tolerances { get; set; }
+        public List<Tolerance> Tolerances { get; set; }
 
         public Organism()
         {

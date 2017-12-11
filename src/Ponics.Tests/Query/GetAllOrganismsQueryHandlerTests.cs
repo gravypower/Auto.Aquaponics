@@ -11,12 +11,12 @@ namespace Ponics.Tests.Query
     public class GetAllOrganismsQueryHandlerTests
     {
         public GetAllOrganismsQueryHandler Sut;
-        private IDataQueryHandler<GetAllOrganisms, IList<Organism>> _getAllOrganismsDataQueryHandler;
+        private IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, IList<Organism>>>();
+            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
             Sut = new GetAllOrganismsQueryHandler(_getAllOrganismsDataQueryHandler);
         }
 

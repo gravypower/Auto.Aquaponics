@@ -29,8 +29,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data", "Ponics.Data\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Mongo", "Ponics.Data.Mongo\Ponics.Data.Mongo.csproj", "{3F4CE4A3-653E-4726-B797-81D9D84571B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ponics.Admin", "Ponics.Admin\Ponics.Admin.csproj", "{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,10 +71,6 @@ Global
 		{3F4CE4A3-653E-4726-B797-81D9D84571B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F4CE4A3-653E-4726-B797-81D9D84571B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F4CE4A3-653E-4726-B797-81D9D84571B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{35FEA8FD-B4C8-4127-AB47-5B7BCEA5CE51}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
