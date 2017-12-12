@@ -11,7 +11,8 @@ namespace Ponics.Api
         /// <summary>
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
-        public AppHost() : base("Ponics.Api", typeof(QueryService).Assembly)
+        public AppHost() : base("Ponics.Api", typeof(QueryService).Assembly, typeof(CommandService).Assembly)
+
         {
             Licensing.RegisterLicense(Environment.GetEnvironmentVariable("servicestack:license"));
         }
@@ -23,6 +24,15 @@ namespace Ponics.Api
         public override void Configure(Container container)
         {
             Plugins.Add(new OpenApiFeature());
+
+            var allowOriginWhitelist =Environment.GetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST");
+            Plugins.Add(
+                new CorsFeature(
+                    allowedHeaders: "Content-Type",
+                    allowCredentials: true,
+                    allowOriginWhitelist: allowOriginWhitelist.Split(',')
+                )
+            );
 
             JsConfig.ExcludeTypeInfo = true;
 

@@ -11,6 +11,7 @@ namespace Ponics.Api
 #if DEBUG
             var mongodbUri = @"mongodb://localhost:27017/Auto_Aquaponics";
             Environment.SetEnvironmentVariable("MONGODB_URI", mongodbUri);
+            Environment.SetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST", "http://localhost:4200,http://localhost:51272");
 #endif
 
             var host = new WebHostBuilder()
