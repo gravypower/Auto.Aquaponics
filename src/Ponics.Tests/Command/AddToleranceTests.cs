@@ -4,6 +4,7 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using Ponics.Analysis.Levels;
+using Ponics.Analysis.Levels.MagicStrings;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 

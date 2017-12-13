@@ -14,7 +14,6 @@ namespace Ponics.Tests.Query.Level.Nitrate
 
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelsKey.Returns("Nitrate");
             Sut = new AnalyseNitrateQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 

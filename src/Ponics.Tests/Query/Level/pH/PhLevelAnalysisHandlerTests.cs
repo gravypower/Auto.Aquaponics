@@ -26,7 +26,6 @@ namespace Ponics.Tests.Query.Level.pH
 
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelsKey.Returns(PhKey);
             LevelQueryHandlerMagicStrings.LowPhArgumentOutOfRangeExceptionMessage.Returns(LowPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.HightPhArgumentOutOfRangeExceptionMessage.Returns(HightPhArgumentOutOfRangeExceptionMessage);
             LevelQueryHandlerMagicStrings.OrganismPhTolerancesNotDefinedExceptionMessage.Returns(OrganismPhTolerancesNotDefinedExceptionMessage);

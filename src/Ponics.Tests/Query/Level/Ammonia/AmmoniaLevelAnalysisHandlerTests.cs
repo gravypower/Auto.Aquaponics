@@ -13,7 +13,6 @@ namespace Ponics.Tests.Query.Level.Ammonia
     {
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelsKey.Returns("Ammonia");
             Sut = new AnalyseAmmoniaQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 

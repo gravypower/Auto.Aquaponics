@@ -14,7 +14,6 @@ namespace Ponics.Tests.Query.Level.Salinity
 
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelsKey.Returns("Salinity");
             Sut = new AnalyseSalinityQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
 

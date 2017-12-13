@@ -15,7 +15,6 @@ namespace Ponics.Tests.Query.Level.Iron
 
         protected override void DoSetUp()
         {
-            LevelQueryHandlerMagicStrings.LevelsKey.Returns("Iron");
             Sut = new AnalyseIronQueryHandler(LevelQueryHandlerMagicStrings, GetAllOrganismsDataQueryHandler);
         }
     }
