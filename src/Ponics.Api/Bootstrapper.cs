@@ -50,6 +50,11 @@ namespace Ponics.Api
             _container.RegisterDecorator(
                 typeof(IDataQueryHandler<GetAllOrganisms, List<Organism>>),
                 typeof(SeedOrganismsDecorator));
+
+            _container.RegisterDecorator(
+                typeof(IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>),
+                typeof(SeedAquaponicSystemsDecorator));
+        
         }
 
         private static void RegisterCommandHandlers()
