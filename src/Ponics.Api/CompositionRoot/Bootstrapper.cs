@@ -33,13 +33,10 @@ namespace Ponics.Api.CompositionRoot
             return _container;
         }
 
-
         public static object GetInstance(Type serviceType)
         {
             return _container.GetInstance(serviceType);
         }
-
-
 
         public static IEnumerable<Type> GetBootstrapTypes() =>
             from assembly in BootstrapAssemblies

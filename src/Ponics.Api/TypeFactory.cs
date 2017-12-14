@@ -15,7 +15,6 @@ namespace Ponics.Api
 
         static TypeFactory()
         {
-
             AssemblyName = new AssemblyName(Guid.NewGuid().ToString());
             AssemblyBuilder = AssemblyBuilder.DefineDynamicAssembly(AssemblyName, AssemblyBuilderAccess.Run);
             ModuleBuilder = AssemblyBuilder.DefineDynamicModule("tmpModule");

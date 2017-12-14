@@ -2,7 +2,7 @@
 using Ponics.Queries;
 using ServiceStack;
 
-namespace Ponics.Api
+namespace Ponics.Api.Services
 {
     public abstract class QueryService : Service
     {
