@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
+using Ponics.Analysis.Levels.MagicStrings;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 using Ponics.Queries;
@@ -49,8 +50,8 @@ namespace Ponics.Analysis.Levels
 
             var analysis = new TResult
             {
-                IdealForOrganism = IdealForOrganism(query.Value, organism, MagicStrings.LevelsKey),
-                SutablalForOrganism = SutablalForOrganism(query.Value, organism, MagicStrings.LevelsKey),
+                IdealForOrganism = IdealForOrganism(query.Value, organism, MagicStrings.LevelName),
+                SutablalForOrganism = SutablalForOrganism(query.Value, organism, MagicStrings.LevelName),
                 Tolerance = organism.Tolerances.Single(t => t is TTolerance) as TTolerance
             };
 

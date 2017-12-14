@@ -1,4 +1,5 @@
-﻿using Ponics.Queries;
+﻿using Ponics.Api.CompositionRoot;
+using Ponics.Queries;
 using ServiceStack;
 
 namespace Ponics.Api

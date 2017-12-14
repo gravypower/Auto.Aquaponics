@@ -1,7 +1,9 @@
-﻿namespace Ponics.Analysis.Levels.Ammonia
+﻿using Ponics.Analysis.Levels.MagicStrings;
+
+namespace Ponics.Analysis.Levels.Ammonia
 {
     public class AnalyseAmmoniaMagicStrings : AnalyseMagicStrings, IAnalyseAmmoniaMagicStrings
     {
-        public override string LevelsKey => "Ammonia";
+        public override string LevelName => "Ammonia";
     }
 }

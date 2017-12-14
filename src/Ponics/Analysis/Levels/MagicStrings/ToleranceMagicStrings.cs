@@ -1,4 +1,4 @@
-﻿namespace Ponics.Analysis.Levels
+﻿namespace Ponics.Analysis.Levels.MagicStrings
 {
     public class ToleranceMagicStrings: IToleranceMagicStrings
     {

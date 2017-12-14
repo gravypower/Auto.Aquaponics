@@ -1,9 +1,9 @@
-﻿namespace Ponics.Analysis.Levels
+﻿namespace Ponics.Analysis.Levels.MagicStrings
 {
     public interface ILevelsMagicStrings
     {
         string OrganismNotDefined { get; }
         string OrganismTolerancesNotDefined { get; }
-        string LevelsKey { get; }
+        string LevelName { get; }
     }
 }

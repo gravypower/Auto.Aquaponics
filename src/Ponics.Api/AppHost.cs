@@ -1,5 +1,6 @@
 using System;
 using Funq;
+using Ponics.Api.CompositionRoot;
 using ServiceStack;
 using ServiceStack.Api.OpenApi;
 using ServiceStack.Text;

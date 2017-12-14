@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Ponics.Analysis.Levels.MagicStrings;
 using Ponics.Commands;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;

@@ -1,4 +1,5 @@
-﻿using Ponics.Commands;
+﻿using Ponics.Api.CompositionRoot;
+using Ponics.Commands;
 using ServiceStack;
 using Command = Ponics.Commands.Command;
 

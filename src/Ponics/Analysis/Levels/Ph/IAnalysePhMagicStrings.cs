@@ -1,4 +1,6 @@
-﻿namespace Ponics.Analysis.Levels.Ph
+﻿using Ponics.Analysis.Levels.MagicStrings;
+
+namespace Ponics.Analysis.Levels.Ph
 {
     public interface IAnalysePhMagicStrings : ILevelsMagicStrings
     {

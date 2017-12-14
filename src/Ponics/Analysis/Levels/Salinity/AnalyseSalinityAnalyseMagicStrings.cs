@@ -1,7 +1,9 @@
-﻿namespace Ponics.Analysis.Levels.Salinity
+﻿using Ponics.Analysis.Levels.MagicStrings;
+
+namespace Ponics.Analysis.Levels.Salinity
 {
     public class AnalyseSalinityAnalyseMagicStrings : AnalyseMagicStrings, IAnalyseSalinityMagicStrings
     {
-        public override string LevelsKey => "Salinity";
+        public override string LevelName => "Salinity";
     }
 }
