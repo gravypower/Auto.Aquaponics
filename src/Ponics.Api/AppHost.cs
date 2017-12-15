@@ -15,7 +15,7 @@ namespace Ponics.Api
         /// </summary>
         public AppHost() : base("Ponics.Api", typeof(QueryService).Assembly, typeof(CommandService).Assembly)
         {
-            Licensing.RegisterLicense(Environment.GetEnvironmentVariable("servicestack_license"));
+            Licensing.RegisterLicense(Environment.GetEnvironmentVariable("SERVICESTACK_LICENSE"));
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace Ponics.Api
         {
             Plugins.Add(new OpenApiFeature());
 
-            var allowOriginWhitelist =Environment.GetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST");
+            var allowOriginWhitelist = Environment.GetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST");
             Plugins.Add(
                 new CorsFeature(
                     allowedHeaders: "Content-Type",
