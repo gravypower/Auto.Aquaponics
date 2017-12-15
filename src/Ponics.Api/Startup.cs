@@ -33,11 +33,13 @@ namespace Ponics.Api
                 ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto
             });
 
+#if DEBUG
             app.Run(context =>
             {
                 context.Response.Redirect("/swagger-ui");
                 return Task.FromResult(0);
             });
+#endif
         }
     }
 }
