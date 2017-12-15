@@ -24,7 +24,7 @@ namespace Ponics.Api
         /// </summary>
         public override void Configure(Container container)
         {
-            Plugins.Add(new OpenApiFeature());
+            //Plugins.Add(new OpenApiFeature());
 
             var allowOriginWhitelist = Environment.GetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST");
             Plugins.Add(
