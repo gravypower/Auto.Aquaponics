@@ -1,0 +1,73 @@
+﻿using System;
+using System.Collections.Generic;
+using FluentAssertions;
+using NSubstitute;
+using NUnit.Framework;
+using Ponics.AquaponicSystems;
+using Ponics.Components;
+using Ponics.Kernel.Data;
+using Ponics.Organisms;
+using Ponics.Organisms.Handlers;
+
+namespace Ponics.Tests.Command
+{
+    [TestFixture]
+    public class DeleteOrganismTests
+    {
+        public DeleteOrganismCommandHandler Sut;
+        private IDataCommandHandler<DeleteOrganism> _deleteOrganismDataCommandHandler;
+        private IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+
+
+        [SetUp]
+        public void SetUp()
+        {
+            _getAllSystemsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>>();
+            _deleteOrganismDataCommandHandler = Substitute.For<IDataCommandHandler<DeleteOrganism>>();
+            Sut = new DeleteOrganismCommandHandler(_deleteOrganismDataCommandHandler, _getAllSystemsDataQueryHandler);
+        }
+
+        [Test]
+        public void CanDeleteOrganism()
+        {
+            //Assign
+            var command = new DeleteOrganism();
+
+            //Act
+            Sut.Handle(command);
+
+            //Assert
+            _deleteOrganismDataCommandHandler.Received().Handle(command);
+        }
+
+        [Test]
+        public void GivenOrganismInASystem_WhenDeleteAttempted_ExceptionThrown()
+        {
+            //Assign
+            var organism = new Organism
+            {
+                Id = Guid.NewGuid()
+            };
+
+            var command = new DeleteOrganism {Id = organism.Id};
+
+            var system = new AquaponicSystem();
+            var component = new Component();
+            component.AddOrganisms(organism.Id);
+            system.Components.Add(component);
+            _getAllSystemsDataQueryHandler.Handle(Arg.Any<GetAllSystems>()).Returns(
+                new List<AquaponicSystem>
+                {
+                    system
+                }
+            );
+
+            //Act
+            Action act = () => Sut.Handle(command);
+
+            //Assert
+            act.ShouldThrow<OrganismReferencedException>();
+
+        }
+    }
+}

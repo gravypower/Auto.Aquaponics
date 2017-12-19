@@ -1,5 +1,4 @@
-﻿using System;
-using MongoDB.Driver;
+﻿using MongoDB.Driver;
 using Ponics.AquaponicSystems;
 
 namespace Ponics.Data.Mongo.CommandHandlers
@@ -12,7 +11,9 @@ namespace Ponics.Data.Mongo.CommandHandlers
 
         public override void Handle(DeleteSystem command)
         {
-            throw new NotImplementedException();
+            var aquaponicSystems = Database.GetCollection<AquaponicSystem>(nameof(AquaponicSystem));
+            aquaponicSystems.DeleteOne(doc => doc.Id == command.Id);
+
         }
     }
 }

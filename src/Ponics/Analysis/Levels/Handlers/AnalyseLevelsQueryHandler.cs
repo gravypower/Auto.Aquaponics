@@ -42,11 +42,10 @@ namespace Ponics.Analysis.Levels.Handlers
                 throw new ArgumentNullException(nameof(organism.Tolerances), MagicStrings.OrganismTolerancesNotDefined);
             }
 
-            if (!organism.Tolerances.Any(t =>t is TTolerance))
+            if (!organism.Tolerances.Any(t => t is TTolerance))
             {
                 OrganismToleranceNotDefined();
             }
-
 
             var analysis = new TResult
             {
@@ -67,9 +66,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
         protected bool IdealForOrganism(double value, Organism organism, string key)
         {
-
             var tolerance = organism.Tolerances.Single(t => t is TTolerance);
-
             return tolerance.DesiredLower <= value && tolerance.DesiredUpper >= value;
         }
     }

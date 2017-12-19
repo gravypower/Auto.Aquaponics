@@ -3,33 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using Ponics.Analysis.Levels.Commands;
 using Ponics.Analysis.Levels.MagicStrings;
-using Ponics.Commands;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Handlers
 {
-    public class AddToleranceCommandHandler<TTolerance> : ICommandHandler<AddTolerance<TTolerance>> 
+    public class AddToleranceCommandHandler<TTolerance> : ToleranceCommandHandler<TTolerance, AddTolerance<TTolerance>> 
         where TTolerance : Tolerance
     {
-        private readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
-        private readonly IDataCommandHandler<UpdateOrganism> _updateOrganismDataCommandHandler;
-        private readonly IToleranceMagicStrings _toleranceMagicStrings;
-
         public AddToleranceCommandHandler(
-            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler,
-            IDataCommandHandler<UpdateOrganism> updateOrganismDataCommandHandler,
-            IToleranceMagicStrings toleranceMagicStrings)
+            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler, 
+            IDataCommandHandler<UpdateOrganism> updateOrganismDataCommandHandler, 
+            IToleranceMagicStrings toleranceMagicStrings) : 
+            base(getAllOrganismsDataQueryHandler, updateOrganismDataCommandHandler, toleranceMagicStrings)
         {
-            _getAllOrganismsDataQueryHandler = getAllOrganismsDataQueryHandler;
-            _updateOrganismDataCommandHandler = updateOrganismDataCommandHandler;
-            _toleranceMagicStrings = toleranceMagicStrings;
         }
 
-        public void Handle(AddTolerance<TTolerance> command)
+        public override void DoHandle(AddTolerance<TTolerance> command, Organism organism)
         {
-            var organisms = _getAllOrganismsDataQueryHandler.Handle(new GetAllOrganisms());
-            var organism = organisms.Single(o => o.Id == command.OrganismId);
 
             if (organism.Tolerances.All(o => o.Type != command.Tolerance.Type))
             {
@@ -37,14 +28,8 @@ namespace Ponics.Analysis.Levels.Handlers
             }
             else
             {
-                throw new InvalidOperationException(_toleranceMagicStrings.ToleranceAlreadyDefinedForOrganism);
+                throw new InvalidOperationException(ToleranceMagicStrings.ToleranceAlreadyDefinedForOrganism);
             }
-
-            _updateOrganismDataCommandHandler.Handle(new UpdateOrganism
-            {
-                Id = organism.Id,
-                Organism = organism
-            });
         }
     }
 }

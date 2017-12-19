@@ -27,7 +27,7 @@ namespace Ponics.Api.CompositionRoot.ToleranceCommands
 
             foreach (var addToleranceType in GetToleranceCommandTypes())
             {
-                var toleranceType = addToleranceType.BaseType.GenericTypeArguments[0];
+                var toleranceType = addToleranceType.BaseType.GenericTypeArguments.First();
 
                 var genericCommandHandlerType = commandHandlerType.MakeGenericType(addToleranceType);
                 var genericAddToleranceCommandHandlerType = TToleranceCommandHandler.MakeGenericType(toleranceType);

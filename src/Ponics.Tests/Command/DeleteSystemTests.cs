@@ -21,7 +21,7 @@ namespace Ponics.Tests.Command
         }
 
         [Test]
-        public void SystemAdded()
+        public void CanDeletedSystem()
         {
             //Assign
             var command = new DeleteSystem
@@ -35,5 +35,6 @@ namespace Ponics.Tests.Command
             //Assert
             _addSystemDataCommandHandler.Received().Handle(Arg.Any<DeleteSystem>());
         }
+
     }
 }
