@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Ponics.Analysis.Levels.Handlers;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Iron
 {
-    public class AnalyseIronQueryHandler: AnalyseLevelsQueryHandler<AnalyseIron, IronAnalysis, IronTolerance>
+    public class AnalyseIronQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceIron, IronToleranceAnalysis, IronTolerance>
     {
         private readonly IAnalyseIronMagicStrings _magicStrings;
 
@@ -16,9 +17,9 @@ namespace Ponics.Analysis.Levels.Iron
             _magicStrings = magicStrings;
         }
 
-        protected override IronAnalysis Analyse(AnalyseIron query, IronAnalysis analysis, Organism organism)
+        protected override IronToleranceAnalysis Analyse(AnalyseToleranceIron query, IronToleranceAnalysis toleranceAnalysis, Organism organism)
         {
-            return analysis;
+            return toleranceAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()

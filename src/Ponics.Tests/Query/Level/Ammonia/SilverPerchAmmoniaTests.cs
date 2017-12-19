@@ -6,7 +6,7 @@ using Ponics.Organisms;
 namespace Ponics.Tests.Query.Level.Ammonia
 {
     [TestFixture]
-    public class SilverPerchAmmoniaTests: AmmoniaLevelAnalysisHandlerTests
+    public class SilverPerchAmmoniaTests: AmmoniaLevelAnalysisTests
     {
         protected override Organism GetOrganism()
         {

@@ -1,10 +1,11 @@
 ﻿using System.Collections.Generic;
+using Ponics.Analysis.Levels.Handlers;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Ammonia
 {
-    public class AnalyseAmmoniaQueryHandler: AnalyseLevelsQueryHandler<AnalyseAmmonia, AmmoniaAnalysis, AmmoniaTolerance>
+    public class AnalyseAmmoniaQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceAmmonia, AmmoniaToleranceAnalysis, AmmoniaTolerance>
     {
         private readonly IAnalyseAmmoniaMagicStrings _magicStrings;
 
@@ -16,9 +17,9 @@ namespace Ponics.Analysis.Levels.Ammonia
             _magicStrings = magicStrings; 
         }
 
-        protected override AmmoniaAnalysis Analyse(AnalyseAmmonia query, AmmoniaAnalysis analysis, Organism organism)
+        protected override AmmoniaToleranceAnalysis Analyse(AnalyseToleranceAmmonia query, AmmoniaToleranceAnalysis toleranceAnalysis, Organism organism)
         {
-            return analysis;
+            return toleranceAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()

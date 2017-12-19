@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ponics.Analysis.Levels.Handlers;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Ph
 {
-    public class AnalysePhQueryHandler: AnalyseLevelsQueryHandler<AnalysePh, PhAnalysis, PhTolerance>
+    public class AnalysePhQueryHandler: AnalyseLevelsQueryHandler<AnalyseTolerancePh, PhToleranceAnalysis, PhTolerance>
     {
         private readonly IAnalysePhMagicStrings _magicStrings;
 
@@ -17,13 +18,13 @@ namespace Ponics.Analysis.Levels.Ph
             _magicStrings = magicStrings;
         }
 
-        protected override PhAnalysis Analyse(AnalysePh query, PhAnalysis analysis, Organism organism)
+        protected override PhToleranceAnalysis Analyse(AnalyseTolerancePh query, PhToleranceAnalysis toleranceAnalysis, Organism organism)
         {
             GuardPhValue(query);
-            analysis.HydrogenIonConcentration = HydrogenIonConcentration(query);
-            analysis.HydroxideIonsConcentration = HydroxideIonsConcentration(query);
+            toleranceAnalysis.HydrogenIonConcentration = HydrogenIonConcentration(query);
+            toleranceAnalysis.HydroxideIonsConcentration = HydroxideIonsConcentration(query);
 
-            return analysis;
+            return toleranceAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()
@@ -31,7 +32,7 @@ namespace Ponics.Analysis.Levels.Ph
             throw new ArgumentNullException(nameof(Organism.Tolerances), _magicStrings.OrganismPhTolerancesNotDefinedExceptionMessage);
         }
 
-        private void GuardPhValue(AnalysePh query)
+        private void GuardPhValue(AnalyseTolerancePh query)
         {
             if (query.Value < PhRange.Floor)
             {
@@ -46,7 +47,7 @@ namespace Ponics.Analysis.Levels.Ph
             }
         }
 
-        private static double HydroxideIonsConcentration(AnalysePh query)
+        private static double HydroxideIonsConcentration(AnalyseTolerancePh query)
         {
             //pOH = 14 - pH
             //[OH-] 10 ^ -pOH
@@ -54,7 +55,7 @@ namespace Ponics.Analysis.Levels.Ph
             return hydroxideIonsConcentration;
         }
 
-        private static double HydrogenIonConcentration(AnalysePh query)
+        private static double HydrogenIonConcentration(AnalyseTolerancePh query)
         {
             //[H+] = 10 ^ -pH
             var hydrogenIonConcentration = Math.Pow(10, -query.Value);

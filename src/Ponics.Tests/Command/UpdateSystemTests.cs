@@ -1,24 +1,35 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Ponics.AquaponicSystems;
+using Ponics.AquaponicSystems.Handlers;
 using Ponics.Kernel.Data;
 
 namespace Ponics.Tests.Command
 {
-    public abstract class UpdateSystemTests<TSut>
+    [TestFixture]
+    public class UpdateSystemTests
     {
-        protected IDataCommandHandler<UpdateSystem> UpdateSystemDataCommandHandler;
-        protected IDataQueryHandler<GetSystem, AquaponicSystem> GetSystemDataCommandHandler;
-        protected AquaponicSystem AquaponicSystem;
-        protected TSut Sut;
+        public UpdateSystemCommandHandler Sut;
+        private IDataCommandHandler<UpdateSystem> _updateDataCommandHandler;
 
         [SetUp]
         public void SetUp()
         {
-            UpdateSystemDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateSystem>>();
-            GetSystemDataCommandHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
-            AquaponicSystem = new AquaponicSystem();
-            GetSystemDataCommandHandler.Handle(Arg.Any<GetSystem>()).Returns(AquaponicSystem);
+            _updateDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateSystem>>();
+            Sut = new UpdateSystemCommandHandler(_updateDataCommandHandler);
+        }
+
+        [Test]
+        public void CanUpdateSystem()
+        {
+            //Assign
+            var command = new UpdateSystem();
+
+            //Act
+            Sut.Handle(command);
+
+            //Assert
+            _updateDataCommandHandler.Received().Handle(command);
         }
     }
 }

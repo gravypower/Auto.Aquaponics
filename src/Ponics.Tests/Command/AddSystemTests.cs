@@ -1,6 +1,7 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Ponics.AquaponicSystems;
+using Ponics.AquaponicSystems.Handlers;
 using Ponics.Kernel.Data;
 
 namespace Ponics.Tests.Command

@@ -6,7 +6,7 @@ using Ponics.Organisms;
 namespace Ponics.Tests.Query.Level.Salinity
 {
     [TestFixture]
-    public class SilverPerchSalinityTests: SalinityLevelAnalysisHandlerTests
+    public class SilverPerchSalinityTests: SalinityLevelAnalysisTests
     {
         protected override Organism GetOrganism()
         {

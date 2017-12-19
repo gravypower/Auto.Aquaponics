@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using Ponics.Analysis.Levels.MagicStrings;
-using Ponics.Kernel;
 using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot

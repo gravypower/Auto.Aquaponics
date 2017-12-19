@@ -6,7 +6,7 @@ using Ponics.Organisms;
 namespace Ponics.Tests.Query.Level.pH
 {
     [TestFixture]
-    public class SilverPerchPhTests : PhLevelAnalysisHandlerTests
+    public class SilverPerchPhTests : PhLevelAnalysisTests
     {
         protected override Organism GetOrganism()
         {

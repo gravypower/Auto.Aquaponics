@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Ponics.AquaponicSystems;
 using Ponics.Data.Decorator;
 using Ponics.Data.Seed;
-using Ponics.Kernel;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 using SimpleInjector;

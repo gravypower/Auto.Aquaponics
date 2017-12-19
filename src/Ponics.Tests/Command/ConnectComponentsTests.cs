@@ -8,7 +8,7 @@ using Ponics.Components;
 namespace Ponics.Tests.Command
 {
     [TestFixture]
-    public class ConnectComponentsTests: UpdateSystemTests<ConnectComponentsCommandHandler>
+    public class ConnectComponentsTests: MutateSystemTests<ConnectComponentsCommandHandler>
     {
         [SetUp]
         public void ConnectComponentsSetUp()

@@ -6,7 +6,7 @@ using Ponics.Organisms;
 namespace Ponics.Tests.Query.Level.Iron
 {
     [TestFixture]
-    public class SilverPerchIronTests : IronLevelAnalysisHandlerTests
+    public class SilverPerchIronTests : IronLevelAnalysisTests
     {
         protected override Organism GetOrganism()
         {

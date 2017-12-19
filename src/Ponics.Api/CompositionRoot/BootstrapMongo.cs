@@ -43,33 +43,8 @@ namespace Ponics.Api.CompositionRoot
                 BsonClassMap.RegisterClassMap(bsonClassMap);
             }
 
-            container.Register<
-                IDataCommandHandler<AddOrganism>,
-                AddOrganismDataCommandHandler>();
-
-            container.Register<
-                IDataCommandHandler<AddSystem>,
-                AddSystemDataCommandHandler>();
-
-            container.Register<
-                IDataCommandHandler<UpdateSystem>,
-                UpdateSystemDataCommandHandler>();
-
-            container.Register<
-                IDataCommandHandler<UpdateOrganism>,
-                UpdateOrganismDataCommandHandler>();
-
-            container.Register<
-                IDataQueryHandler<GetAllOrganisms, List<Organism>>,
-                GetAllOrganismsDataQueryHandler>();
-
-            container.Register<
-                IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>,
-                GetAllSystemsDataQueryHandler>();
-
-            container.Register<
-                IDataQueryHandler<GetSystem, AquaponicSystem>,
-                GetSystemDataQueryHandler>();
+            container.Register(typeof(IDataQueryHandler<,>), new[] { typeof(GetAllOrganismsDataQueryHandler).Assembly });
+            container.Register(typeof(IDataCommandHandler<>), new[] { typeof(AddOrganismDataCommandHandler).Assembly });
         }
 
         public static IEnumerable<Type> GetToleranceTypes() =>

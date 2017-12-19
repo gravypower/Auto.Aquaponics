@@ -6,7 +6,7 @@ using Ponics.Organisms;
 namespace Ponics.Tests.Query.Level.Nitrate
 {
     [TestFixture]
-    public class SilverPerchNitrateTests: NitrateLevelAnalysisHandlerTests
+    public class SilverPerchNitrateTests: NitrateLevelAnalysisTests
     {
         protected override Organism GetOrganism()
         {
