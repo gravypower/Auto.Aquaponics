@@ -7,6 +7,5 @@ namespace Ponics.Analysis.Levels.Ammonia.Commands
     [Route("/organisms/{OrganismId}/tolerances/ammonia", "DELETE")]
     public class DeleteAmmoniaTolerance:DeleteTolerance<AmmoniaTolerance>
     {
-        public override AmmoniaTolerance Tolerance { get; set; }
     }
 }

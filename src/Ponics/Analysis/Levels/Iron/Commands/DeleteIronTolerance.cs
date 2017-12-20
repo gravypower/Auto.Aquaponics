@@ -7,6 +7,5 @@ namespace Ponics.Analysis.Levels.Iron.Commands
     [Route("/organisms/{OrganismId}/tolerances/iron", "DELETE")]
     public class DeleteIronTolerance: DeleteTolerance<IronTolerance>
     {
-        public override IronTolerance Tolerance { get; set; }
     }
 }

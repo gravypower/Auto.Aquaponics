@@ -7,6 +7,5 @@ namespace Ponics.Analysis.Levels.Ph.Commands
     [Route("/organisms/{OrganismId}/tolerances/ph", "DELETE")]
     public class DeletePhTolerance:DeleteTolerance<PhTolerance>
     {
-        public override PhTolerance Tolerance { get; set; }
     }
 }

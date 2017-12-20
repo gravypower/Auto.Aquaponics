@@ -3,5 +3,6 @@
     public interface IToleranceMagicStrings
     {
         string ToleranceAlreadyDefinedForOrganism { get; }
+        string ToleranceUndefined { get; }
     }
 }

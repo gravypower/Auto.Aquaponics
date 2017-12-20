@@ -7,6 +7,5 @@ namespace Ponics.Analysis.Levels.Nitrate.Commands
     [Route("/organisms/{OrganismId}/tolerances/nitrate", "DELETE")]
     public class DeleteNitrateTolerance : DeleteTolerance<NitrateTolerance>
     {
-        public override NitrateTolerance Tolerance { get; set; }
     }
 }

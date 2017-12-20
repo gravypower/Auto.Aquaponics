@@ -1,4 +1,5 @@
-﻿using ServiceStack;
+﻿using System;
+using ServiceStack;
 
 namespace Ponics.Analysis.Levels.Commands
 {
@@ -6,6 +7,6 @@ namespace Ponics.Analysis.Levels.Commands
         where TTolerance : Tolerance
     {
         [ApiMember(ExcludeInSchema = true)]
-        public abstract TTolerance Tolerance { get; set; }
+        public string ToleranceType => typeof(TTolerance).Name;
     }
 }

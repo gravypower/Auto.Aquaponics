@@ -21,7 +21,10 @@ namespace Ponics.Analysis.Levels.Handlers
 
         public override void DoHandle(AddTolerance<TTolerance> command, Organism organism)
         {
-
+            if (command.Tolerance == null)
+            {
+                throw new InvalidOperationException(ToleranceMagicStrings.ToleranceUndefined);
+            }
             if (organism.Tolerances.All(o => o.Type != command.Tolerance.Type))
             {
                 organism.Tolerances.Add(command.Tolerance);

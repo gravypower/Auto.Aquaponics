@@ -7,6 +7,5 @@ namespace Ponics.Analysis.Levels.Salinity.Commands
     [Route("/organisms/{OrganismId}/tolerances/salinity", "DELETE")]
     public class DeleteSalinityTolerance : DeleteTolerance<SalinityTolerance>
     {
-        public override SalinityTolerance Tolerance { get; set; }
     }
 }

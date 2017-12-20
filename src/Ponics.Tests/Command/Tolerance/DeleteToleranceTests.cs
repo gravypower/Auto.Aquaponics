@@ -28,7 +28,6 @@ namespace Ponics.Tests.Command.Tolerance
             //Arrange
             var command = Substitute.For<DeleteTolerance<MockTolerance>>();
             command.OrganismId = Organism.Id;
-            command.Tolerance.Returns(MockTolerance);
 
             //Act
             Sut.Handle(command);

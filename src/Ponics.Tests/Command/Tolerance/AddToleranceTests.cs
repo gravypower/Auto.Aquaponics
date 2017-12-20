@@ -50,6 +50,20 @@ namespace Ponics.Tests.Command.Tolerance
             AssertInvalidOperationException(Act, "Tolerance already defined for organism");
         }
 
+        [Test]
+        public void CanNotAdd_An_UndefinedTolerance()
+        {
+            //Assign
+            AddTolerance.Tolerance = null;
+
+            // Act
+            void Act() => Sut.Handle(AddTolerance);
+
+            //Assert
+            AssertInvalidOperationException(Act, "Can not add an Undefined Tolerance");
+        }
+
+
 
         protected static void AssertInvalidOperationException(Action act, string message)
         {

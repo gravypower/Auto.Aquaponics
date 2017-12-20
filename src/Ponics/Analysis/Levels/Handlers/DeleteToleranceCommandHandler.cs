@@ -20,7 +20,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
         public override void DoHandle(DeleteTolerance<TTolerance> command, Organism organism)
         {
-            var tolerance = organism.Tolerances.SingleOrDefault(t => t.Type == command.Tolerance.Type);
+            var tolerance = organism.Tolerances.SingleOrDefault(t => t.Type == command.ToleranceType);
             organism.Tolerances.Remove(tolerance);
         }
     }
