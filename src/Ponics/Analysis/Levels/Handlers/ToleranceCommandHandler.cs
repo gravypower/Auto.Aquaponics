@@ -13,12 +13,12 @@ namespace Ponics.Analysis.Levels.Handlers
         where TToleranceCommand : ToleranceCommand<TTolerance>
         where TTolerance : Tolerance
     {
-        protected readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
+        protected readonly IDataQueryHandler<GetOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
         protected readonly IDataCommandHandler<UpdateOrganism> UpdateOrganismDataCommandHandler;
         protected readonly IToleranceMagicStrings ToleranceMagicStrings;
 
         protected ToleranceCommandHandler(
-            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler,
+            IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler,
             IDataCommandHandler<UpdateOrganism> updateOrganismDataCommandHandler,
             IToleranceMagicStrings toleranceMagicStrings)
         {
@@ -30,7 +30,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
         public void Handle(TToleranceCommand command)
         {
-            var organisms = GetAllOrganismsDataQueryHandler.Handle(new GetAllOrganisms());
+            var organisms = GetAllOrganismsDataQueryHandler.Handle(new GetOrganisms());
             var organism = organisms.Single(o => o.Id == command.OrganismId);
 
             DoHandle(command, organism);

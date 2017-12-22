@@ -12,7 +12,7 @@ namespace Ponics.Analysis.Levels.Handlers
         where TTolerance : Tolerance
     {
         public AddToleranceCommandHandler(
-            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler, 
+            IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler, 
             IDataCommandHandler<UpdateOrganism> updateOrganismDataCommandHandler, 
             IToleranceMagicStrings toleranceMagicStrings) : 
             base(getAllOrganismsDataQueryHandler, updateOrganismDataCommandHandler, toleranceMagicStrings)

@@ -13,12 +13,12 @@ namespace Ponics.Tests.Query
     public class GetOrganismTests
     {
         public GetOrganismQueryHandler Sut;
-        private IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
+        private IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
+            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetOrganisms, List<Organism>>>();
             Sut = new GetOrganismQueryHandler(_getAllOrganismsDataQueryHandler);
         }
 
@@ -29,7 +29,7 @@ namespace Ponics.Tests.Query
             var organism = new Organism{ Id = Guid.NewGuid() };
             var query = new GetOrganism { Id = organism.Id };
 
-            _getAllOrganismsDataQueryHandler.Handle(Arg.Any<GetAllOrganisms>()).Returns(
+            _getAllOrganismsDataQueryHandler.Handle(Arg.Any<GetOrganisms>()).Returns(
                 new List<Organism>
                 {
                     new Organism(),
@@ -40,7 +40,7 @@ namespace Ponics.Tests.Query
             var result = Sut.Handle(query);
 
             //Assert
-            _getAllOrganismsDataQueryHandler.Received().Handle(Arg.Any<GetAllOrganisms>());
+            _getAllOrganismsDataQueryHandler.Received().Handle(Arg.Any<GetOrganisms>());
             result.Should().Be(organism);
         }
     }

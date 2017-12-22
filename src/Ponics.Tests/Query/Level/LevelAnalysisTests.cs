@@ -24,7 +24,7 @@ namespace Ponics.Tests.Query.Level
 
         protected Organism Organism;
         protected IList<Organism> Organisms;
-        protected IDataQueryHandler<GetAllOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
+        protected IDataQueryHandler<GetOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
 
         protected TQueryHandler Sut;
         protected TMagicStrings LevelQueryHandlerMagicStrings;
@@ -42,8 +42,8 @@ namespace Ponics.Tests.Query.Level
         {
             Organism = GetOrganism();
             Organisms = new List<Organism> {Organism};
-            GetAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
-            GetAllOrganismsDataQueryHandler.Handle(Arg.Any<GetAllOrganisms>()).Returns(Organisms);
+            GetAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetOrganisms, List<Organism>>>();
+            GetAllOrganismsDataQueryHandler.Handle(Arg.Any<GetOrganisms>()).Returns(Organisms);
             LevelQueryHandlerMagicStrings = Substitute.For<TMagicStrings>();
             LevelQueryHandlerMagicStrings.OrganismNotDefined.Returns(OrganismNotDefinedExceptionMessage);
             LevelQueryHandlerMagicStrings.OrganismTolerancesNotDefined.Returns(OrganismTolerancesNotDefinedExceptionMessage);

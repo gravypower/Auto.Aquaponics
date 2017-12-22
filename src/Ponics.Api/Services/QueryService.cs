@@ -10,7 +10,7 @@ namespace Ponics.Api.Services
         public virtual TResult Exec<TQuery, TResult>(TQuery query) where TQuery : Query<TResult>
         {
 #if DEBUG
-            Thread.Sleep(3000);
+            Thread.Sleep(500);
 #endif
             var queryHandler = Bootstrapper.GetQueryHandler(query.GetType()) as IQueryHandler<TQuery, TResult>;
 

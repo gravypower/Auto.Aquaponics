@@ -15,7 +15,7 @@ namespace Ponics.Api.CompositionRoot
             container.Register(typeof(SeedData<>), new[] { typeof(SeedData<>).Assembly });
 
             container.RegisterDecorator(
-                typeof(IDataQueryHandler<GetAllOrganisms, List<Organism>>),
+                typeof(IDataQueryHandler<GetOrganisms, List<Organism>>),
                 typeof(SeedOrganismsDecorator));
 
             container.RegisterDecorator(

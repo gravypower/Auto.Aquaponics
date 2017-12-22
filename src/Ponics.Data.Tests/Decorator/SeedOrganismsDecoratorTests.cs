@@ -15,13 +15,13 @@ namespace Ponics.Data.Tests.Decorator
     {
         public SeedOrganismsDecorator Sut;
         private IDataCommandHandler<AddOrganism> _dataCommandHandler;
-        private IDataQueryHandler<GetAllOrganisms, List<Organism>> _dataQueryHandler;
+        private IDataQueryHandler<GetOrganisms, List<Organism>> _dataQueryHandler;
         private SeedData<Organism> _organisms;
 
         [SetUp]
         public void SetUp()
         {
-            _dataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
+            _dataQueryHandler = Substitute.For<IDataQueryHandler<GetOrganisms, List<Organism>>>();
             _dataCommandHandler = Substitute.For<IDataCommandHandler<AddOrganism>>();
             _organisms = Substitute.For<SeedData<Organism>>();
             Sut = new SeedOrganismsDecorator(_dataQueryHandler, _dataCommandHandler, _organisms);
@@ -31,7 +31,7 @@ namespace Ponics.Data.Tests.Decorator
         public void GivenOrganisms_ThenPassesThroughResults()
         {
             //Assign
-            var query = new GetAllOrganisms();
+            var query = new GetOrganisms();
 
             _dataQueryHandler.Handle(query).Returns(
                 new List<Organism>
@@ -51,7 +51,7 @@ namespace Ponics.Data.Tests.Decorator
         public void GivenNoOrganisms_ThenDataShouldBeSeeded()
         {
             //Assign
-            var query = new GetAllOrganisms();
+            var query = new GetOrganisms();
             _dataQueryHandler.Handle(query).Returns(new List<Organism>());
 
             var organism = new SilverPerch();

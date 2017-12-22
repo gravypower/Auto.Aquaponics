@@ -14,11 +14,11 @@ namespace Ponics.Analysis.Levels.Handlers
         where TTolerance : Tolerance
     {
         protected readonly ILevelsMagicStrings MagicStrings;
-        private readonly IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
+        private readonly IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         protected AnalyseLevelsQueryHandler(
             ILevelsMagicStrings magicStrings,
-            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
+            IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
             )
         {
             MagicStrings = magicStrings;
@@ -30,7 +30,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
         public TResult Handle(TQuery query)
         {
-            var organisms = _getAllOrganismsDataQueryHandler.Handle(new GetAllOrganisms());
+            var organisms = _getAllOrganismsDataQueryHandler.Handle(new GetOrganisms());
             var organism = organisms.SingleOrDefault(o => o.Id == query.OrganismId);
             if (organism == default(Organism))
             {

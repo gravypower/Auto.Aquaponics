@@ -15,7 +15,7 @@ namespace Ponics.Tests.Command.Tolerance
         where TToleranceCommand : ToleranceCommand<TTolerance>
         where TTolerance : Analysis.Levels.Tolerance
     {
-        protected IDataQueryHandler<GetAllOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
+        protected IDataQueryHandler<GetOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
         protected Organism Organism;
         protected MockTolerance MockTolerance;
         protected IDataCommandHandler<UpdateOrganism> UpdateOrganismDataCommandHandler;
@@ -28,7 +28,7 @@ namespace Ponics.Tests.Command.Tolerance
         {
             ToleranceMagicStrings = new ToleranceMagicStrings();
 
-            GetAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
+            GetAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetOrganisms, List<Organism>>>();
             UpdateOrganismDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateOrganism>>();
 
             Organism = new Organism
@@ -36,7 +36,7 @@ namespace Ponics.Tests.Command.Tolerance
                 Id = Guid.NewGuid()
             };
 
-            GetAllOrganismsDataQueryHandler.Handle(Arg.Any<GetAllOrganisms>()).Returns(new List<Organism> { Organism });
+            GetAllOrganismsDataQueryHandler.Handle(Arg.Any<GetOrganisms>()).Returns(new List<Organism> { Organism });
 
             MockTolerance = new MockTolerance();
         }

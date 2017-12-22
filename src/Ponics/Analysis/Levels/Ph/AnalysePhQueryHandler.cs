@@ -12,7 +12,7 @@ namespace Ponics.Analysis.Levels.Ph
 
         public AnalysePhQueryHandler(
             IAnalysePhMagicStrings magicStrings,
-            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
+            IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
         ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;

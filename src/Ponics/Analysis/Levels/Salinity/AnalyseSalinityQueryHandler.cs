@@ -11,7 +11,7 @@ namespace Ponics.Analysis.Levels.Salinity
 
         public AnalyseSalinityQueryHandler(
             IAnalyseSalinityMagicStrings magicStrings,
-            IDataQueryHandler<GetAllOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
+            IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
             ) : base(magicStrings, getAllOrganismsDataQueryHandler)
         {
             _magicStrings = magicStrings;

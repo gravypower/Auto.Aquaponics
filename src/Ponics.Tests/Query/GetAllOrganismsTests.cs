@@ -13,26 +13,26 @@ namespace Ponics.Tests.Query
     [TestFixture]
     public class GetAllOrganismsTests
     {
-        public GetAllOrganismsQueryHandler Sut;
-        private IDataQueryHandler<GetAllOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
+        public GetOrganismsQueryHandler Sut;
+        private IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllOrganisms, List<Organism>>>();
-            Sut = new GetAllOrganismsQueryHandler(_getAllOrganismsDataQueryHandler);
+            _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetOrganisms, List<Organism>>>();
+            Sut = new GetOrganismsQueryHandler(_getAllOrganismsDataQueryHandler);
         }
 
         [Test]
         public void CanGetAllOrganisms()
         {
             //Assign
-            var query = new GetAllOrganisms();
+            var query = new GetOrganisms();
             //Assign
             var organismOne = new Organism { Id = Guid.NewGuid() };
             var organismTwo = new Organism { Id = Guid.NewGuid() };
 
-            _getAllOrganismsDataQueryHandler.Handle(Arg.Any<GetAllOrganisms>()).Returns(
+            _getAllOrganismsDataQueryHandler.Handle(Arg.Any<GetOrganisms>()).Returns(
                 new List<Organism>
                 {
                     organismOne,
