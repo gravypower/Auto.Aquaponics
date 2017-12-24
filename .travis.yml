@@ -6,12 +6,12 @@ script:
     - dotnet publish ./src/Ponics.sln -c Release -o ${TRAVIS_BUILD_DIR}/publish
     - dotnet test ./src/Ponics.Tests    
 before_deploy:
-    - tar -zcf ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}.tar.gz ${TRAVIS_BUILD_DIR}/publish
+    - tar -zcf ${TRAVIS_BUILD_DIR}${REPO}.tar.gz -C ${TRAVIS_BUILD_DIR}/publish
 deploy:
   provider: releases
   api_key:
     secure: w7VCQsXFicXMeaf+3jDEz0vEwZKFiUoD6Ja80mhhHq/bnsU+EekvGL3wtpFIP41r2ijqhK2WvrAX5tZ9TDyyNARMc+21s2EBsZnFEQsVZx9RrjyC1lcRRhRiT8TS0jlbMXrflBee9Y++5oSnOvZ77cEzh/isO6WV3PAqEJpqea3P52liiIOwNhHTKc8rhecjpjRNw8foomHFO8dLWJjvVNp8xYyBGe3tu8a3gwF3OILB20rKkLb06OH0BBML/M3SWpnpt39Cwk42A+UINQJm4cK8FoC7Bn8x0hZH597unyikNOxY+F01udP+Oh2mFa8jVA7XQAAQjTM6sQEFd8zpoPfPvVQTWOZ26BA7s0u/eYNFXqKQ4z2MT/l1PYNrh2FiL5gY3eFFXFj5wl7WcvOtOHKJvHatc/YIrNyxJ5fupRWp5XaQkmGxUxr8zlbMngdH4esGc14x9t8jVJkc14Ea677NyQHniMpfvZjK+ImtkEAdCqGTrAdOTbAM80vCU53ME8ehEqCPh30ItChb82v36UsWopj00l1OeQLiR66vSolvvaEb5S7oA09/hBilECjgQWEULIlqU6rMKKtkQOPl8QcP4F/2e3pser+WWe9cpgNzFBqWx3URMtnGDf+ZAXeQqm5A/e3SNoi7ZC7W7Hpq3vdj3A8puoJlUhX3hFMTL8c=
-  file: ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}.tar.gz
+  file: ${TRAVIS_BUILD_DIR}${REPO}.tar.gz
   skip_cleanup: true
   on:
     repo: simpleponics/Ponics
