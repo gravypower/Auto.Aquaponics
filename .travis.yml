@@ -6,7 +6,7 @@ script:
     - dotnet test ./src/Ponics.Tests    
     - dotnet publish ./src/Ponics.sln -c Release -o ${TRAVIS_BUILD_DIR}/publish
 before_deploy:
-    -cd ${TRAVIS_BUILD_DIR}/publish
+    - cd ${TRAVIS_BUILD_DIR}/publish
     - tar -zcf ${TRAVIS_BUILD_DIR}${REPO}.tar.gz *
 deploy:
   provider: releases
