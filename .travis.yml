@@ -3,11 +3,11 @@ mono: none
 dotnet: 2.0.0
 script:
 - dotnet restore ./src
-- dotnet publish ./src/Ponics.sln -c Release -o ./publish
+- dotnet publish ./src/Ponics.sln -c Release -o ${TRAVIS_BUILD_DIR}/publish
 - dotnet test ./src/Ponics.Tests    
 before_deploy:
-- cd ..
-- tar -zcf ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.tar.gz ./publish
+- cd ${TRAVIS_BUILD_DIR}/publish
+- tar -zcf ${TRAVIS_BUILD_DIR}${REPO}-${BUILD_ENV}-${TRAVIS_TAG}-${TRAVIS_BUILD_NUMBER}.tar.gz ${TRAVIS_BUILD_DIR}/publish
 deploy:
   provider: releases
   api_key:
