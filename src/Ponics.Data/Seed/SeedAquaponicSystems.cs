@@ -1,6 +1,6 @@
 ﻿
 using System.Collections.Generic;
-using Ponics.AquaponicSystems;
+using Ponics.Aquaponics;
 using Ponics.HardCodedData.AquaponicSystems;
 
 namespace Ponics.Data.Seed
@@ -9,7 +9,7 @@ namespace Ponics.Data.Seed
     {
         public override IEnumerable<AquaponicSystem> GetSeedData()
         {
-            yield return new AaronsAquaponicSystem();
+            yield return AaronsAquaponicSystem.SeedSystem();
         }
     }
 }

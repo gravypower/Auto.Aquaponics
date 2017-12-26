@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Ponics.Analysis.Levels;
-using Ponics.AquaponicSystems;
 using Ponics.Data.Mongo.CommandHandlers;
 using Ponics.Data.Mongo.QueryHandlers;
+using Ponics.Data.Mongo.Serializers;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 using SimpleInjector;
@@ -25,7 +26,7 @@ namespace Ponics.Api.CompositionRoot
             var db = new MongoClient(mongoUrl).GetDatabase(dbname);
             container.Register(() => db, Lifestyle.Singleton);
 
-            BsonClassMap.RegisterClassMap<AquaponicSystem>(cm =>
+            BsonClassMap.RegisterClassMap<PonicsSystem>(cm =>
             {
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
@@ -36,6 +37,13 @@ namespace Ponics.Api.CompositionRoot
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
             });
+
+            BsonClassMap.RegisterClassMap<LevelReading>(cm =>
+            {
+                cm.AutoMap();
+                cm.GetMemberMap(c => c.DateTime).SetSerializer(ZonedDateTimeSerializer.Instance);
+            });
+
 
             foreach (var toleranceType in GetToleranceTypes())
             {

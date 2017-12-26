@@ -26,6 +26,7 @@ namespace Ponics.Api
                 app.UseDeveloperExceptionPage();
             }
 
+
             app.UseServiceStack(new AppHost());
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions

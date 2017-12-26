@@ -1,6 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
-using Ponics.AquaponicSystems;
+using Ponics.Aquaponics;
 
 namespace Ponics.Tests
 {

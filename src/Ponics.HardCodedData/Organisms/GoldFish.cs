@@ -1,5 +1,4 @@
 ﻿using System;
-using Ponics.Organisms;
 using Ponics.Analysis.Levels.Ph;
 
 namespace Ponics.HardCodedData.Organisms

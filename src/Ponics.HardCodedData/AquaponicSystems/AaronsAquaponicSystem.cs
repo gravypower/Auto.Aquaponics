@@ -1,16 +1,19 @@
 ﻿using System;
-using Ponics.AquaponicSystems;
+using NodaTime;
+using Ponics.Analysis.Levels;
+using Ponics.Aquaponics;
 using Ponics.Components;
 using Ponics.HardCodedData.Organisms;
 
 namespace Ponics.HardCodedData.AquaponicSystems
 {
-    public class AaronsAquaponicSystem: AquaponicSystem
+    public class AaronsAquaponicSystem
     {
-        public AaronsAquaponicSystem()
+        public static AquaponicSystem SeedSystem()
         {
-            Id = Guid.Parse("47236a2e40f047a2923034c610c5e444");
-            Name = "Aaron's Aquaponics System";
+            var system = new AquaponicSystem();
+            system.Id = Guid.Parse("47236a2e40f047a2923034c610c5e444");
+            system.Name = "Aaron's Aquaponics System";
 
             var nitrosomonas = new Nitrosomonas();
             var nitrospira = new Nitrospira();
@@ -22,7 +25,7 @@ namespace Ponics.HardCodedData.AquaponicSystems
             };
 
             fishTank.AddOrganisms(new SilverPerch().Id, nitrosomonas.Id, nitrospira.Id);
-            Components.Add(fishTank);
+            system.Components.Add(fishTank);
 
             var growBed = new Component
             {
@@ -30,7 +33,7 @@ namespace Ponics.HardCodedData.AquaponicSystems
                 Name = "growBed"
             };
             growBed.AddOrganisms(new Worm().Id, nitrosomonas.Id, nitrospira.Id);
-            Components.Add(growBed);
+            system.Components.Add(growBed);
 
             var sumpTank = new Component
             {
@@ -38,25 +41,35 @@ namespace Ponics.HardCodedData.AquaponicSystems
                 Name = "sumpTank"
             };
             sumpTank.AddOrganisms(new GoldFish().Id, nitrosomonas.Id, nitrospira.Id);
-            Components.Add(sumpTank);
+            system.Components.Add(sumpTank);
 
-            ComponentConnections.Add( new ComponentConnection
+            system.ComponentConnections.Add( new ComponentConnection
             {
                 SourceId = fishTank.Id,
                 TargetId = growBed.Id
             });
 
-            ComponentConnections.Add(new ComponentConnection
+            system.ComponentConnections.Add(new ComponentConnection
             {
                 SourceId = growBed.Id,
                 TargetId = sumpTank.Id
             });
 
-            ComponentConnections.Add(new ComponentConnection
+            system.ComponentConnections.Add(new ComponentConnection
             {
                 SourceId = sumpTank.Id,
                 TargetId = fishTank.Id
             });
+
+            var now = SystemClock.Instance.GetCurrentInstant();
+            var tz = DateTimeZoneProviders.Tzdb.GetSystemDefault();
+            var zdt = now.InZone(tz);
+            system.LevelReadings.Add(new LevelReading
+            {
+                DateTime = zdt
+            });
+
+            return system;
         }
     }
 }

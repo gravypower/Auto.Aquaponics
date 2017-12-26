@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using MongoDB.Driver;
-using Ponics.AquaponicSystems;
+using Ponics.Aquaponics;
 
 namespace Ponics.Data.Mongo.QueryHandlers
 {
@@ -13,8 +12,9 @@ namespace Ponics.Data.Mongo.QueryHandlers
 
         public override List<AquaponicSystem> Handle(GetAllSystems query)
         {
-            return Database.GetCollection<AquaponicSystem>(nameof(AquaponicSystem))
-                .AsQueryable()
+            var typeFilter = Builders<AquaponicSystem>.Filter.Eq("_t", typeof(AquaponicSystem).Name);
+            return Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem))
+                .Find(typeFilter)
                 .ToList();
         }
     }

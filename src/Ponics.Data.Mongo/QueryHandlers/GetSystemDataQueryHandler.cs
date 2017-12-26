@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using Ponics.AquaponicSystems;
+using Ponics.Aquaponics;
 
 namespace Ponics.Data.Mongo.QueryHandlers
 {
@@ -11,9 +11,12 @@ namespace Ponics.Data.Mongo.QueryHandlers
 
         public override AquaponicSystem Handle(GetSystem query)
         {
-            var filter = Builders<AquaponicSystem>.Filter.Eq("_id", query.Id);
-            var aquaponicSystem = Database.GetCollection<AquaponicSystem>(nameof(AquaponicSystem));
-            return aquaponicSystem.Find(filter).SingleOrDefault();
+            var idFilter = Builders<AquaponicSystem>.Filter.Eq("_id", query.Id);
+            var typeFilter = Builders<AquaponicSystem>.Filter.Eq("_t", typeof(AquaponicSystem).Name);
+            var aquaponicSystem = Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem));
+            return aquaponicSystem
+                .Find(idFilter & typeFilter)
+                .SingleOrDefault();
         }
     }
 }

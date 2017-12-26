@@ -1,6 +1,4 @@
-﻿using System;
-using Ponics.Commands;
-using ServiceStack;
+﻿using ServiceStack;
 
 namespace Ponics.Analysis.Levels.Commands
 {

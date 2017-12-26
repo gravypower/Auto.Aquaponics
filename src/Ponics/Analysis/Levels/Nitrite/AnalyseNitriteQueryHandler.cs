@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Ponics.Analysis.Levels.Handlers;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
@@ -24,7 +25,7 @@ namespace Ponics.Analysis.Levels.Nitrite
 
         protected override void OrganismToleranceNotDefined()
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

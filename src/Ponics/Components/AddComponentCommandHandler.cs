@@ -1,5 +1,5 @@
 ﻿using System;
-using Ponics.AquaponicSystems;
+using Ponics.Aquaponics;
 using Ponics.Commands;
 using Ponics.Kernel.Data;
 

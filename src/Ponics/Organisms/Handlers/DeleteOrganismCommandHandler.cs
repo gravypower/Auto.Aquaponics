@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Ponics.AquaponicSystems;
+using Ponics.Aquaponics;
 using Ponics.Commands;
 using Ponics.Kernel.Data;
 
