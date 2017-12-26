@@ -1,5 +1,7 @@
 using System;
 using Funq;
+using NodaTime;
+using NodaTime.Text;
 using Ponics.Api.CompositionRoot;
 using Ponics.Api.Services;
 using ServiceStack;
@@ -36,6 +38,13 @@ namespace Ponics.Api
             );
 
             JsConfig.ExcludeTypeInfo = true;
+            JsConfig<ZonedDateTime>.SerializeFn = 
+                datetime => ZonedDateTimePattern.CreateWithInvariantCulture("G", DateTimeZoneProviders.Tzdb).Format(datetime);
+
+            JsConfig<ZonedDateTime>.DeSerializeFn =
+                datetime => ZonedDateTimePattern.CreateWithInvariantCulture("G", DateTimeZoneProviders.Tzdb)
+                    .Parse(datetime)
+                    .Value;
 
             var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);
