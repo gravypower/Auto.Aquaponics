@@ -12,14 +12,14 @@ namespace Ponics.Tests.Query.AquaponicSystems
     public class GetSystemTests
     {
         public GetSystemQueryHandler Sut;
-        private IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+        private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _getAllSystemsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>>();
+            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
 
-            Sut = new GetSystemQueryHandler(_getAllSystemsDataQueryHandler);
+            Sut = new GetSystemQueryHandler(_getSystemDataQueryHandler);
         }
 
         [Test]
@@ -28,17 +28,13 @@ namespace Ponics.Tests.Query.AquaponicSystems
             //Assign
             var query  = new GetSystem();
             var system = new AquaponicSystem();
-            _getAllSystemsDataQueryHandler.Handle(Arg.Any<GetAllSystems>()).Returns(
-                new List<AquaponicSystem>
-                {
-                 system   
-                });
+            _getSystemDataQueryHandler.Handle(Arg.Any<GetSystem>()).Returns(system);
 
             //Act
             var result = Sut.Handle(query);
 
             //Assert
-            _getAllSystemsDataQueryHandler.Received().Handle(Arg.Any<GetAllSystems>());
+            _getSystemDataQueryHandler.Received().Handle(Arg.Any<GetSystem>());
             result.Should().Be(system);
         }
     }

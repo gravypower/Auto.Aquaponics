@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NodaTime;
 using Ponics.Analysis.Levels;
 using Ponics.Aquaponics;
@@ -68,6 +69,64 @@ namespace Ponics.HardCodedData.AquaponicSystems
             {
                 DateTime = zdt
             });
+
+            system.LevelReadings = new List<LevelReading>
+            {
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "pH",
+                    Value = 7
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "pH",
+                    Value = 7.2
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "pH",
+                    Value = 7
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "pH",
+                    Value = 6.6
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "pH",
+                    Value = 6
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "Ammonia",
+                    Value = .2
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "Ammonia",
+                    Value = 0
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "Ammonia",
+                    Value = .8
+                },
+                new LevelReading
+                {
+                    DateTime = zdt,
+                    Type = "Ammonia",
+                    Value = .1
+                }
+            };
 
             return system;
         }

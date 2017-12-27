@@ -6,7 +6,7 @@ using ServiceStack;
 
 namespace Ponics.Commands
 {
-    [Api("Adds a level reading for system")]
+    [Api("Adds a level readings for system")]
     [Route("/systems/{SystemId}/reading", "POST")]
     public class AddLevelReading : Command, IDataCommand
     {
@@ -16,6 +16,5 @@ namespace Ponics.Commands
         public Guid SystemId { get; set; }
 
         public List<LevelReading> LevelReadings { get; set; }
-
     }
 }

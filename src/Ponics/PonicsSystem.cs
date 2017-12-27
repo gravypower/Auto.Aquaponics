@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.Serialization;
 using Ponics.Analysis.Levels;
 using ServiceStack;
 
@@ -15,9 +16,10 @@ namespace Ponics
         public string Name { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
+        [IgnoreDataMember]
         public List<LevelReading> LevelReadings { get; set; }
 
-        public PonicsSystem()
+        protected PonicsSystem()
         {
             LevelReadings = new List<LevelReading>();
         }

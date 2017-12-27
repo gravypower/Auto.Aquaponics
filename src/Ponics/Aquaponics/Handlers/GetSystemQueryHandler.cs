@@ -7,16 +7,15 @@ namespace Ponics.Aquaponics.Handlers
 {
     public class GetSystemQueryHandler : IQueryHandler<GetSystem, AquaponicSystem>
     {
-        private readonly IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+        private readonly IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
 
-        public GetSystemQueryHandler(IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> getAllSystemsDataQueryHandler)
+        public GetSystemQueryHandler(IDataQueryHandler<GetSystem, AquaponicSystem> getSystemDataQueryHandler)
         {
-            _getAllSystemsDataQueryHandler = getAllSystemsDataQueryHandler;
+            _getSystemDataQueryHandler = getSystemDataQueryHandler;
         }
         public AquaponicSystem Handle(GetSystem query)
         {
-            return _getAllSystemsDataQueryHandler.Handle(new GetAllSystems())
-                .Single(s => s.Id == query.Id);
+            return _getSystemDataQueryHandler.Handle(query);
         }
     }
 }
