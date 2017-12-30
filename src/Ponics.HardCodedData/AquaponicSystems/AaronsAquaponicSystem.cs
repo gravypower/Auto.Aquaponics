@@ -74,55 +74,49 @@ namespace Ponics.HardCodedData.AquaponicSystems
             {
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(1)),
                     Type = "pH",
                     Value = 7
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(2)),
                     Type = "pH",
                     Value = 7.2
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(3)),
                     Type = "pH",
                     Value = 7
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(4)),
                     Type = "pH",
                     Value = 6.6
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
-                    Type = "pH",
-                    Value = 6
-                },
-                new LevelReading
-                {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(1)),
                     Type = "Ammonia",
                     Value = .2
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(2)),
                     Type = "Ammonia",
                     Value = 0
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(3)),
                     Type = "Ammonia",
                     Value = .8
                 },
                 new LevelReading
                 {
-                    DateTime = zdt,
+                    DateTime = zdt.Plus(Duration.FromDays(4)),
                     Type = "Ammonia",
                     Value = .1
                 }
