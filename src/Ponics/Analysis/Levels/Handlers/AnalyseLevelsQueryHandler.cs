@@ -50,7 +50,7 @@ namespace Ponics.Analysis.Levels.Handlers
             var analysis = new TResult
             {
                 IdealForOrganism = IdealForOrganism(query.Value, organism, MagicStrings.LevelName),
-                SutablalForOrganism = SuitableForOrganism(query.Value, organism, MagicStrings.LevelName),
+                SuitableForOrganism = SuitableForOrganism(query.Value, organism, MagicStrings.LevelName),
                 Tolerance = organism.Tolerances.Single(t => t is TTolerance) as TTolerance
             };
 

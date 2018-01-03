@@ -22,6 +22,7 @@ namespace Ponics.Handlers
 
             return system.LevelReadings
                 .Where(l=>l.Type == query.Type)
+                .OrderBy(lr => lr.DateTime.ToDateTimeUtc())
                 .ToList();
         }
     }

@@ -80,7 +80,7 @@ namespace Ponics.Tests.Query.Level
                     Value = isSuitableCase
                 };
                 var result = Sut.Handle(query);
-                result.SutablalForOrganism.Should().BeTrue();
+                result.SuitableForOrganism.Should().BeTrue();
             }
         }
 
@@ -96,7 +96,7 @@ namespace Ponics.Tests.Query.Level
                 };
 
                 var result = Sut.Handle(query);
-                result.SutablalForOrganism.Should().BeFalse();
+                result.SuitableForOrganism.Should().BeFalse();
             }
         }
         

@@ -41,10 +41,7 @@ namespace Ponics.Api
             JsConfig<ZonedDateTime>.SerializeFn = 
                 datetime => ZonedDateTimePattern.CreateWithInvariantCulture("G", DateTimeZoneProviders.Tzdb).Format(datetime);
 
-            JsConfig<ZonedDateTime>.DeSerializeFn =
-                datetime => ZonedDateTimePattern.CreateWithInvariantCulture("G", DateTimeZoneProviders.Tzdb)
-                    .Parse(datetime)
-                    .Value;
+            JsConfig<ZonedDateTime>.DeSerializeFn = Value;
 
             var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);
@@ -55,5 +52,12 @@ namespace Ponics.Api
             var commandSserviceType = TypeFactory.GenerateCommandServices(Bootstrapper.GetCommandTypes(), typeof(CommandService));
             RegisterService(commandSserviceType);
         }
-     }
+
+        private static ZonedDateTime Value(string datetime)
+        {
+            return ZonedDateTimePattern.CreateWithInvariantCulture("G", DateTimeZoneProviders.Tzdb)
+                .Parse(datetime)
+                .Value;
+        }
+    }
 }
