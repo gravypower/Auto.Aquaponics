@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using NodaTime;
+using NodaTime.Text;
 using Ponics.Analysis.Levels;
 using Ponics.Aquaponics;
 using Ponics.Components;
@@ -61,14 +62,10 @@ namespace Ponics.HardCodedData.AquaponicSystems
                 SourceId = sumpTank.Id,
                 TargetId = fishTank.Id
             });
-
-            var now = SystemClock.Instance.GetCurrentInstant();
-            var tz = DateTimeZoneProviders.Tzdb.GetSystemDefault();
-            var zdt = now.InZone(tz);
-            system.LevelReadings.Add(new LevelReading
-            {
-                DateTime = zdt
-            });
+            
+            var zdt = ZonedDateTimePattern.CreateWithInvariantCulture("G", DateTimeZoneProviders.Tzdb)
+                .Parse("2017-01-06T18:47:34 Australia/Sydney (+11)")
+                .Value;
 
             system.LevelReadings = new List<LevelReading>
             {
