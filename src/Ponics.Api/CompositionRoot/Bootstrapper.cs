@@ -29,7 +29,7 @@ namespace Ponics.Api.CompositionRoot
             _container.Register(typeof(IQueryHandler<,>), ContractAssemblies);
             _container.Register(typeof(ICommandHandler<>), ContractAssemblies);
 
-            _container.RegisterCollection(typeof(AnalyseLevelsQueryHandler<,,>), ContractAssemblies);
+            _container.RegisterCollection(typeof(IAnalyseLevelsQueryHandler), ContractAssemblies);
 
             _container.Verify();
 

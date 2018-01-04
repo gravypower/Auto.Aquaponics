@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using NSubstitute;
 using NUnit.Framework;
+using Ponics.Analysis.Levels.Handlers;
 using Ponics.Analysis.PonicsSystemLevels;
 using Ponics.Aquaponics;
 using Ponics.HardCodedData.AquaponicSystems;
@@ -15,6 +16,7 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
         public AnalysePonicsSystemLevelsHandler Sut;
         private IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsHandler;
         private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
+        private List<IAnalyseLevelsQueryHandler> _analyseLevelsQueryHandlers;
 
 
         [SetUp]
@@ -22,8 +24,12 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
         {
             _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
             _getPonicSystemOrganismsHandler = Substitute.For<IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>>>();
+            _analyseLevelsQueryHandlers = new List<IAnalyseLevelsQueryHandler>();
 
-            Sut = new AnalysePonicsSystemLevelsHandler(_getPonicSystemOrganismsHandler, _getSystemDataQueryHandler);
+            Sut = new AnalysePonicsSystemLevelsHandler(
+                _getPonicSystemOrganismsHandler, 
+                _getSystemDataQueryHandler,
+                _analyseLevelsQueryHandlers);
         }
 
         [Test]

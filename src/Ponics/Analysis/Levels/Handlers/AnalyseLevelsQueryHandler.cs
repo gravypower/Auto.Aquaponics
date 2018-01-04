@@ -32,7 +32,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
         LevelAnalysis IAnalyseLevelsQueryHandler.Handle(AnalyseToleranceQuery query)
         {
-            return null; //Handle(query);
+            return Handle(query as TQuery);
         }
 
         public TResult Handle(TQuery query)
@@ -80,6 +80,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
     public interface IAnalyseLevelsQueryHandler
     {
+        string AnalyserFor { get; }
         LevelAnalysis Handle(AnalyseToleranceQuery query);
     }
 }

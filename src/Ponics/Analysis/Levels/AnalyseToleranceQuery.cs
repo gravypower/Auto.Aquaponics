@@ -11,7 +11,7 @@ namespace Ponics.Analysis.Levels
         
     }
 
-    public abstract class AnalyseToleranceQuery
+    public class AnalyseToleranceQuery
     {
         [ApiMember(Name = "OrganismId", Description = "The id of an organism",
             ParameterType = "path", DataType = "string", IsRequired = true)]
