@@ -5,21 +5,20 @@ using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
 using Ponics.Components;
-using Ponics.Handlers;
 using Ponics.HardCodedData.Organisms;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
-using Ponics.Organisms.Handlers;
-using Ponics.Queries;
+using Ponics.Strategies;
+using Ponics.Strategies.Handlers;
 
 namespace Ponics.Tests.Query.AquaponicSystems
 {
     [TestFixture]
-    public class GetSystemOrganismsTests
+    public class GetPonicSystemOrganismsHandlerTests
     {
         private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
-        public GetSystemOrganismsQueryHandler Sut;
+        public GetPonicSystemOrganismsHandler Sut;
         private AquaponicSystem _aquaponicSystem;
 
         [SetUp]
@@ -31,14 +30,14 @@ namespace Ponics.Tests.Query.AquaponicSystems
             _aquaponicSystem = new AquaponicSystem();
             _getSystemDataQueryHandler.Handle(Arg.Any<GetSystem>()).Returns(_aquaponicSystem);
 
-            Sut = new GetSystemOrganismsQueryHandler(_getSystemDataQueryHandler, _getAllOrganismsDataQueryHandler);
+            Sut = new GetPonicSystemOrganismsHandler(_getSystemDataQueryHandler, _getAllOrganismsDataQueryHandler);
         }
 
         [Test]
         public void CanGetSystem()
         {
             //Assign
-            var query = new GetSystemOrganisms
+            var query = new GetPonicSystemOrganisms
             {
                 SystemId = Guid.NewGuid()
             };
@@ -54,7 +53,7 @@ namespace Ponics.Tests.Query.AquaponicSystems
         public void CanGetOrganismsFromSystemWithOneComponent()
         {
             //Arrange
-            var query = new GetSystemOrganisms();
+            var query = new GetPonicSystemOrganisms();
 
             var component = new Component();
             var silverPerch = new SilverPerch();
@@ -76,7 +75,7 @@ namespace Ponics.Tests.Query.AquaponicSystems
         public void CanGetOrganismsFromSystemWithTwoComponent()
         {
             //Arrange
-            var query = new GetSystemOrganisms();
+            var query = new GetPonicSystemOrganisms();
 
             var component = new Component();
             var silverPerch = new SilverPerch();
@@ -107,7 +106,7 @@ namespace Ponics.Tests.Query.AquaponicSystems
         public void OrganismOnlyReturnedOnce()
         {
             //Arrange
-            var query = new GetSystemOrganisms();
+            var query = new GetPonicSystemOrganisms();
 
             var component = new Component();
             var silverPerch = new SilverPerch();
