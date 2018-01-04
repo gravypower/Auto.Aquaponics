@@ -13,7 +13,7 @@ namespace Ponics.Tests.Query.Level
 {
     public abstract class LevelAnalysisTests<TQueryHandler,TMagicStrings,TQuery,TResult, TTolerance>
         where TQuery : AnalyseToleranceQuery<TResult, TTolerance>, new()
-        where TResult : ToleranceAnalysis<TTolerance>, new() 
+        where TResult : LevelAnalysis<TTolerance>, new() 
         where TMagicStrings : class, ILevelsMagicStrings
         where TQueryHandler : AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance>
         where TTolerance : Tolerance

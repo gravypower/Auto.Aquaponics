@@ -48,7 +48,7 @@ namespace Ponics.Tests.Command.ComponentTests
 
             //Assert
             GetSystemDataCommandHandler.Received().Handle(Arg.Is<GetSystem>(
-                c => c.Id == systemId
+                c => c.SystemId == systemId
             ));
         }
 

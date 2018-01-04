@@ -26,7 +26,7 @@ namespace Ponics.Tests.Command.AquaponicsTests
             //Assign
             var command = new DeleteSystem
             {
-               Id = Guid.NewGuid()
+               SystemId = Guid.NewGuid()
             };
 
             //Act

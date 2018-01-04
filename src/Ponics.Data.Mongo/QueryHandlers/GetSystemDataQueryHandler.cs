@@ -11,7 +11,7 @@ namespace Ponics.Data.Mongo.QueryHandlers
 
         public override AquaponicSystem Handle(GetSystem query)
         {
-            var idFilter = Builders<AquaponicSystem>.Filter.Eq("_id", query.Id);
+            var idFilter = Builders<AquaponicSystem>.Filter.Eq("_id", query.SystemId);
             var typeFilter = Builders<AquaponicSystem>.Filter.Eq("_t", typeof(AquaponicSystem).Name);
             var aquaponicSystem = Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem));
             return aquaponicSystem

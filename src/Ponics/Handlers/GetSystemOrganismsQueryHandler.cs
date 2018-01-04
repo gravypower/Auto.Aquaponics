@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Ponics.Aquaponics;
 using Ponics.Kernel.Data;
+using Ponics.Organisms;
 using Ponics.Queries;
 
-namespace Ponics.Organisms.Handlers
+namespace Ponics.Handlers
 {
     public class GetSystemOrganismsQueryHandler : IQueryHandler<GetSystemOrganisms, List<Organism>>
     {
@@ -23,7 +23,7 @@ namespace Ponics.Organisms.Handlers
 
         public List<Organism> Handle(GetSystemOrganisms query)
         {
-            var system = _getSystemDataQueryHandler.Handle(new GetSystem {Id = query.Id});
+            var system = _getSystemDataQueryHandler.Handle(new GetSystem {SystemId = query.SystemId});
             var organisms = _getAllOrganismsDataQueryHandler.Handle(new GetOrganisms());
 
             var result = new List<Organism>();
@@ -35,7 +35,6 @@ namespace Ponics.Organisms.Handlers
 
                     var organism = organisms.SingleOrDefault(o => o.Id == organismId);
                     result.Add(organism);
-
                 }
             }
 

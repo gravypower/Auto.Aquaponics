@@ -7,7 +7,7 @@ namespace Ponics.Tests.Query.Level.Ammonia
             AnalyseAmmoniaQueryHandler,
             IAnalyseAmmoniaMagicStrings,
             AnalyseToleranceAmmonia,
-            AmmoniaToleranceAnalysis,
+            AmmoniaLevelAnalysis,
             AmmoniaTolerance
         >
     {

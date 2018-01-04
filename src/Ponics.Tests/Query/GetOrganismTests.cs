@@ -27,7 +27,7 @@ namespace Ponics.Tests.Query
         {
             //Assign
             var organism = new Organism{ Id = Guid.NewGuid() };
-            var query = new GetOrganism { Id = organism.Id };
+            var query = new GetOrganism { OrganismId = organism.Id };
 
             _getAllOrganismsDataQueryHandler.Handle(Arg.Any<GetOrganisms>()).Returns(
                 new List<Organism>

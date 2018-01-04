@@ -6,7 +6,7 @@ using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Ammonia
 {
-    public class AnalyseAmmoniaQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceAmmonia, AmmoniaToleranceAnalysis, AmmoniaTolerance>
+    public class AnalyseAmmoniaQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceAmmonia, AmmoniaLevelAnalysis, AmmoniaTolerance>
     {
         private readonly IAnalyseAmmoniaMagicStrings _magicStrings;
 
@@ -18,9 +18,9 @@ namespace Ponics.Analysis.Levels.Ammonia
             _magicStrings = magicStrings; 
         }
 
-        protected override AmmoniaToleranceAnalysis Analyse(AnalyseToleranceAmmonia query, AmmoniaToleranceAnalysis toleranceAnalysis, Organism organism)
+        protected override AmmoniaLevelAnalysis Analyse(AnalyseToleranceAmmonia query, AmmoniaLevelAnalysis levelAnalysis, Organism organism)
         {
-            return toleranceAnalysis;
+            return levelAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()

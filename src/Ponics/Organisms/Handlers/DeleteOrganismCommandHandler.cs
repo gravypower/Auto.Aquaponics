@@ -41,7 +41,7 @@ namespace Ponics.Organisms.Handlers
                 }
             }
 
-            if (organismsInUse.Contains(command.Id))
+            if (organismsInUse.Contains(command.OrganismId))
             {
                 throw new OrganismReferencedException();
             }

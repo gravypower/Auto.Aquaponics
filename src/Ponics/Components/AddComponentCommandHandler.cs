@@ -22,7 +22,7 @@ namespace Ponics.Components
         {
             var system = _getSystemDataCommandHandler.Handle( new GetSystem
             {
-                Id = command.SystemId
+                SystemId = command.SystemId
             });
 
             command.Component.Id = Guid.NewGuid();
@@ -32,7 +32,7 @@ namespace Ponics.Components
             _updateSystemDataCommandHandler.Handle(new UpdateSystem
             {
                 System = system,
-                Id = command.SystemId
+                SystemId = command.SystemId
             });
         }
     }

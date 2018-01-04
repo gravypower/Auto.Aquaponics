@@ -34,7 +34,7 @@ namespace Ponics.Tests.Query
             Sut.Handle(_getSystemLevels);
 
             //Assert
-            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetSystem>( q =>q.Id == _aquaponicSystem.Id ));
+            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetSystem>( q =>q.SystemId == _aquaponicSystem.Id ));
         }
 
         [Test]

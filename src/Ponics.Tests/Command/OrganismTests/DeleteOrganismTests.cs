@@ -48,7 +48,7 @@ namespace Ponics.Tests.Command.OrganismTests
                 Id = Guid.NewGuid()
             };
 
-            var command = new DeleteOrganism {Id = organism.Id};
+            var command = new DeleteOrganism {OrganismId = organism.Id};
 
             var system = new AquaponicSystem();
             var component = new Ponics.Components.Component();

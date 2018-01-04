@@ -6,12 +6,13 @@ using ServiceStack;
 namespace Ponics.Aquaponics
 {
     [Api("Get an Aquaponic Systems by Id")]
-    [Route("/aquaponic/systems/{id}", "GET")]
+    [Route("/systems/aquaponic/{SystemId}", "GET")]
+    [Tag("aquaponic")]
     public class GetSystem : Query<AquaponicSystem>, IDataQuery<AquaponicSystem>
     {
-        [ApiMember(Name = "Id", Description = "The Id of a system",
+        [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]
-        [ApiAllowableValues("Id", typeof(Guid))]
-        public Guid Id { get; set; }
+        [ApiAllowableValues("SystemId", typeof(Guid))]
+        public Guid SystemId { get; set; }
     }
 }

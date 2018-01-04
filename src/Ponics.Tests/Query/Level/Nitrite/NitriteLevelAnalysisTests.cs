@@ -7,7 +7,7 @@ namespace Ponics.Tests.Query.Level.Nitrite
             AnalyseNitriteQueryHandler,
             IAnalyseNitriteMagicStrings,
             AnalyseToleranceNitrite,
-            NitriteToleranceAnalysis,
+            NitriteLevelAnalysis,
             NitriteTolerance
         >
     {

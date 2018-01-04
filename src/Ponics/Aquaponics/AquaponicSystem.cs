@@ -11,15 +11,12 @@ namespace Ponics.Aquaponics
         public bool Closed { get; set; }
 
         [ApiMember(ExcludeInSchema = true)]
-        public List<Component> Components { get; set; }
-
-        [ApiMember(ExcludeInSchema = true)]
         public List<ComponentConnection> ComponentConnections { get; set; }
 
         public AquaponicSystem()
         {
             Closed = true;
-            Components = new List<Component>();
+            
             ComponentConnections = new List<ComponentConnection>();
         }
     }

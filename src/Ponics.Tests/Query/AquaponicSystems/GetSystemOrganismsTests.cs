@@ -5,10 +5,12 @@ using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
 using Ponics.Components;
+using Ponics.Handlers;
 using Ponics.HardCodedData.Organisms;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
 using Ponics.Organisms.Handlers;
+using Ponics.Queries;
 
 namespace Ponics.Tests.Query.AquaponicSystems
 {
@@ -38,14 +40,14 @@ namespace Ponics.Tests.Query.AquaponicSystems
             //Assign
             var query = new GetSystemOrganisms
             {
-                Id = Guid.NewGuid()
+                SystemId = Guid.NewGuid()
             };
 
             //Act
             Sut.Handle(query);
 
             //Assert
-            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetSystem>(q => q.Id == query.Id));
+            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetSystem>(q => q.SystemId == query.SystemId));
         }
 
         [Test]

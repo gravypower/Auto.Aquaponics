@@ -21,7 +21,7 @@ namespace Ponics.Components
         {
             var system = _getSystemDataCommandHandler.Handle(new GetSystem
             {
-                Id = command.SystemId
+                SystemId = command.SystemId
             });
 
             system.ComponentConnections.Add(command.ComponentConnection);

@@ -6,12 +6,13 @@ using ServiceStack;
 namespace Ponics.Aquaponics
 {
     [Api("Add an Aquaponic System")]
-    [Route("/aquaponic/systems/{id}", "DELETE")]
+    [Route("/systems/aquaponic/{SystemId}", "DELETE")]
+    [Tag("aquaponic")]
     public class DeleteSystem : Command, IDataCommand
     {
-        [ApiMember(Name = "Id", Description = "The Id of an aquaponic system",
+        [ApiMember(Name = "SystemId", Description = "The Id of an aquaponic system",
             ParameterType = "path", DataType = "string", IsRequired = true)]
-        [ApiAllowableValues("Id", typeof(Guid))]
-        public Guid Id { get; set; }
+        [ApiAllowableValues("SystemId", typeof(Guid))]
+        public Guid SystemId { get; set; }
     }
 }

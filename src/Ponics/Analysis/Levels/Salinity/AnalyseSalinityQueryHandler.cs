@@ -6,7 +6,7 @@ using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Salinity
 {
-    public class AnalyseSalinityQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceSalinity, SalinityToleranceAnalysis, SalinityTolerance>
+    public class AnalyseSalinityQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceSalinity, SalinityLevelAnalysis, SalinityTolerance>
     {
         private readonly IAnalyseSalinityMagicStrings _magicStrings;
 
@@ -18,9 +18,9 @@ namespace Ponics.Analysis.Levels.Salinity
             _magicStrings = magicStrings;
         }
 
-        protected override SalinityToleranceAnalysis Analyse(AnalyseToleranceSalinity query, SalinityToleranceAnalysis toleranceAnalysis, Organism organism)
+        protected override SalinityLevelAnalysis Analyse(AnalyseToleranceSalinity query, SalinityLevelAnalysis levelAnalysis, Organism organism)
         {
-            return toleranceAnalysis;
+            return levelAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()

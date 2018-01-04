@@ -12,7 +12,7 @@ namespace Ponics.Data.Mongo.CommandHandlers
         public override void Handle(UpdateOrganism command)
         { 
             var organisms = Database.GetCollection<Organism>(nameof(Organism));
-            organisms.ReplaceOne(doc => doc.Id == command.Id, command.Organism);
+            organisms.ReplaceOne(doc => doc.Id == command.OrganismId, command.Organism);
         }
     }
 }

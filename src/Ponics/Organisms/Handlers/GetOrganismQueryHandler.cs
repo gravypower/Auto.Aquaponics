@@ -17,7 +17,7 @@ namespace Ponics.Organisms.Handlers
         public Organism Handle(GetOrganism query)
         {
             return _getAllOrganismsDataQueryHandler.Handle(new GetOrganisms())
-                .Single(o => o.Id == query.Id);
+                .Single(o => o.Id == query.OrganismId);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Ponics.Analysis.Levels.Handlers
 {
     public abstract class AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance> : IQueryHandler<TQuery, TResult>
         where TQuery: AnalyseToleranceQuery<TResult, TTolerance>
-        where TResult:ToleranceAnalysis<TTolerance>, new()
+        where TResult:LevelAnalysis<TTolerance>, new()
         where TTolerance : Tolerance
     {
         protected readonly ILevelsMagicStrings MagicStrings;

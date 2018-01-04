@@ -13,7 +13,7 @@ namespace Ponics.Tests.Query.Level.pH
             AnalysePhQueryHandler,
             IAnalysePhMagicStrings,
             AnalyseTolerancePh,
-            PhToleranceAnalysis,
+            PhLevelAnalysis,
             PhTolerance
         >
     {

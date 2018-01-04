@@ -6,7 +6,7 @@ using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Ph
 {
-    public class AnalysePhQueryHandler: AnalyseLevelsQueryHandler<AnalyseTolerancePh, PhToleranceAnalysis, PhTolerance>
+    public class AnalysePhQueryHandler: AnalyseLevelsQueryHandler<AnalyseTolerancePh, PhLevelAnalysis, PhTolerance>
     {
         private readonly IAnalysePhMagicStrings _magicStrings;
 
@@ -18,13 +18,13 @@ namespace Ponics.Analysis.Levels.Ph
             _magicStrings = magicStrings;
         }
 
-        protected override PhToleranceAnalysis Analyse(AnalyseTolerancePh query, PhToleranceAnalysis toleranceAnalysis, Organism organism)
+        protected override PhLevelAnalysis Analyse(AnalyseTolerancePh query, PhLevelAnalysis levelAnalysis, Organism organism)
         {
             GuardPhValue(query);
-            toleranceAnalysis.HydrogenIonConcentration = HydrogenIonConcentration(query);
-            toleranceAnalysis.HydroxideIonsConcentration = HydroxideIonsConcentration(query);
+            levelAnalysis.HydrogenIonConcentration = HydrogenIonConcentration(query);
+            levelAnalysis.HydroxideIonsConcentration = HydroxideIonsConcentration(query);
 
-            return toleranceAnalysis;
+            return levelAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()

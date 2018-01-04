@@ -7,7 +7,7 @@ namespace Ponics.Tests.Query.Level.Salinity
             AnalyseSalinityQueryHandler,
             IAnalyseSalinityMagicStrings,
             AnalyseToleranceSalinity,
-            SalinityToleranceAnalysis,
+            SalinityLevelAnalysis,
             SalinityTolerance
         >
     {

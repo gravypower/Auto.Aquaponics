@@ -37,7 +37,7 @@ namespace Ponics.Analysis.Levels.Handlers
 
             UpdateOrganismDataCommandHandler.Handle(new UpdateOrganism
             {
-                Id = organism.Id,
+                OrganismId = organism.Id,
                 Organism = organism
             });
         }

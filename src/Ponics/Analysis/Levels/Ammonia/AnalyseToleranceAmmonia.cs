@@ -4,7 +4,8 @@ namespace Ponics.Analysis.Levels.Ammonia
 {
     [Api("Returns Analysis of Ammonia levels for an Organism")]
     [Route("/organisms/{OrganismId}/Tolerances/Ammonia/{Value}", "GET")]
-    public class AnalyseToleranceAmmonia : AnalyseToleranceQuery<AmmoniaToleranceAnalysis, AmmoniaTolerance>
+    [Tag("analysis")]
+    public class AnalyseToleranceAmmonia : AnalyseToleranceQuery<AmmoniaLevelAnalysis, AmmoniaTolerance>
     {
     }
 }

@@ -6,7 +6,7 @@ using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Nitrate
 {
-    public class AnalyseNitrateQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceNitrate, NitrateToleranceAnalysis, NitrateTolerance>
+    public class AnalyseNitrateQueryHandler: AnalyseLevelsQueryHandler<AnalyseToleranceNitrate, NitrateLevelAnalysis, NitrateTolerance>
     {
         private readonly IAnalyseNitrateMagicStrings _magicStrings;
 
@@ -18,9 +18,9 @@ namespace Ponics.Analysis.Levels.Nitrate
             _magicStrings = magicStrings;
         }
 
-        protected override NitrateToleranceAnalysis Analyse(AnalyseToleranceNitrate query, NitrateToleranceAnalysis toleranceAnalysis, Organism organism)
+        protected override NitrateLevelAnalysis Analyse(AnalyseToleranceNitrate query, NitrateLevelAnalysis levelAnalysis, Organism organism)
         {
-            return toleranceAnalysis;
+            return levelAnalysis;
         }
 
         protected override void OrganismToleranceNotDefined()

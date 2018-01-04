@@ -18,7 +18,7 @@ namespace Ponics.Handlers
 
         public List<LevelReading> Handle(GetSystemLevels query)
         {
-            var system = _getSystemDataQueryHandler.Handle(new GetSystem{Id = query.SystemId});
+            var system = _getSystemDataQueryHandler.Handle(new GetSystem{SystemId = query.SystemId});
 
             return system.LevelReadings
                 .Where(l=>l.Type == query.Type)

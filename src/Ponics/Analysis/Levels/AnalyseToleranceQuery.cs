@@ -5,7 +5,7 @@ using Ponics.Queries;
 namespace Ponics.Analysis.Levels
 {
     public abstract class AnalyseToleranceQuery<TLevelAnalysis, TTolerance> : Query<TLevelAnalysis>
-        where TLevelAnalysis : ToleranceAnalysis<TTolerance> 
+        where TLevelAnalysis : LevelAnalysis<TTolerance> 
         where TTolerance : Tolerance
     {
         [ApiMember(Name = "OrganismId", Description = "The id of an organism",

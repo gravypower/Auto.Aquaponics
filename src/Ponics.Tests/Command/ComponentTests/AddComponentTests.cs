@@ -38,7 +38,7 @@ namespace Ponics.Tests.Command.ComponentTests
 
             UpdateSystemDataCommandHandler.Received().Handle(
                 Arg.Is<UpdateSystem>(
-                    c => c.Id == command.SystemId));
+                    c => c.SystemId == command.SystemId));
         }
 
         [Test]
@@ -72,7 +72,7 @@ namespace Ponics.Tests.Command.ComponentTests
 
             //Assert
             GetSystemDataCommandHandler.Received().Handle(Arg.Is<GetSystem>(
-                c => c.Id == systemId
+                c => c.SystemId == systemId
             ));
         }
 

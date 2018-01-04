@@ -8,7 +8,7 @@ namespace Ponics.Tests.Query.Level.Iron
     AnalyseIronQueryHandler,
     IAnalyseIronMagicStrings,
     AnalyseToleranceIron,
-    IronToleranceAnalysis,
+    IronLevelAnalysis,
     IronTolerance
     >
     {
