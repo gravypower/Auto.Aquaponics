@@ -1,5 +1,6 @@
 ﻿using ServiceStack;
 using System;
+using Ponics.Kernel.Queries;
 using Ponics.Queries;
 
 namespace Ponics.Analysis.Levels

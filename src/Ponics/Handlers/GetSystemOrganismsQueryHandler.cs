@@ -2,6 +2,7 @@
 using System.Linq;
 using Ponics.Aquaponics;
 using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Queries;
 

@@ -1,4 +1,5 @@
-﻿using Ponics.Queries;
+﻿using Ponics.Kernel.Queries;
+using Ponics.Queries;
 
 namespace Ponics.Analysis.PonicsSystemLevels
 {
@@ -13,6 +14,8 @@ namespace Ponics.Analysis.PonicsSystemLevels
         {
             var result = new PonicsSystemLevelsAnalysis();
            
+
+
 
             return result;
         }

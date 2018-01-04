@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Ponics.Kernel.Queries;
 using Ponics.Queries;
 using ServiceStack;
 

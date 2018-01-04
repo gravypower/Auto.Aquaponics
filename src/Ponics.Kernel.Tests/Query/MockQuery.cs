@@ -1,4 +1,5 @@
-﻿using Ponics.Queries;
+﻿using Ponics.Kernel.Queries;
+using Ponics.Queries;
 
 namespace Ponics.Kernel.Tests.Query
 {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ponics.Commands;
+using Ponics.Kernel.Commands;
 using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot.ToleranceCommands

@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Ponics.Queries
+namespace Ponics.Kernel.Queries
 {
     public interface IQuery<TResult> : IReturn<TResult>
     {

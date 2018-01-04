@@ -1,5 +1,6 @@
 ﻿using System;
 using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 using Ponics.Queries;
 using ServiceStack;
 

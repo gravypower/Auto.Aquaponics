@@ -1,6 +1,6 @@
 ﻿using ServiceStack;
 
-namespace Ponics.Commands
+namespace Ponics.Kernel.Commands
 {
     public abstract class Command : IReturnVoid
     {

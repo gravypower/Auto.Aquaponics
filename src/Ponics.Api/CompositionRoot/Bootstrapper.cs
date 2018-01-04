@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using Ponics.Commands;
-using Ponics.Queries;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot
@@ -12,7 +12,7 @@ namespace Ponics.Api.CompositionRoot
     public static class Bootstrapper
     {
         private static Container _container;
-        private static readonly Assembly[] ContractAssemblies = {typeof(Query<>).Assembly};
+        private static readonly Assembly[] ContractAssemblies = {typeof(PonicsContract).Assembly};
         private static readonly Assembly[] BootstrapAssemblies = { typeof(IBootstrap).Assembly };
 
         public static Container Bootstrap()

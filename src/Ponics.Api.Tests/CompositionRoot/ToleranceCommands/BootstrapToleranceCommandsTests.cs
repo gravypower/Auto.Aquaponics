@@ -11,6 +11,7 @@ using Ponics.Analysis.Levels.Ph.Commands;
 using Ponics.Analysis.Levels.Salinity.Commands;
 using Ponics.Api.CompositionRoot.ToleranceCommands;
 using Ponics.Commands;
+using Ponics.Kernel.Commands;
 using SimpleInjector;
 
 namespace Ponics.Api.Tests.CompositionRoot.ToleranceCommands

@@ -1,4 +1,4 @@
-﻿namespace Ponics.Commands
+﻿namespace Ponics.Kernel.Commands
 {
     public interface ICommandHandler<in TCommand> where TCommand:Command
     {
