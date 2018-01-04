@@ -16,8 +16,8 @@ namespace Ponics.Tests.Command.ToleranceTests
         where TToleranceCommand : ToleranceCommand<TTolerance>
         where TTolerance : Analysis.Levels.Tolerance
     {
-        protected IDataQueryHandler<GetOrganisms, List<Organisms.Organism>> GetAllOrganismsDataQueryHandler;
-        protected Organisms.Organism Organism;
+        protected IDataQueryHandler<GetOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
+        protected Organism Organism;
         protected MockTolerance MockTolerance;
         protected IDataCommandHandler<UpdateOrganism> UpdateOrganismDataCommandHandler;
         protected ToleranceMagicStrings ToleranceMagicStrings;

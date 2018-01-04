@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Ponics.Analysis.Levels.Handlers;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using SimpleInjector;
@@ -27,6 +28,8 @@ namespace Ponics.Api.CompositionRoot
 
             _container.Register(typeof(IQueryHandler<,>), ContractAssemblies);
             _container.Register(typeof(ICommandHandler<>), ContractAssemblies);
+
+            _container.RegisterCollection(typeof(AnalyseLevelsQueryHandler<,,>), ContractAssemblies);
 
             _container.Verify();
 

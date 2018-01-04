@@ -1,6 +1,5 @@
 ﻿using System;
 using Ponics.Kernel.Queries;
-using Ponics.Queries;
 using ServiceStack;
 
 namespace Ponics.Analysis.PonicsSystemLevels
@@ -9,7 +8,7 @@ namespace Ponics.Analysis.PonicsSystemLevels
     [Api("Runs analysis on a system using the latest level readings")]
     [Route("/systems/{SystemId}/analysis", "GET")]
     [Tag("analysis")]
-    public class AnalysePonicsSystemLevels : Query<PonicsSystemLevelsAnalysis>
+    public class AnalysePonicsSystemLevels : IQuery<PonicsSystemLevelsAnalysis>
     {
         [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

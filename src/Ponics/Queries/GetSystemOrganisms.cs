@@ -8,7 +8,7 @@ namespace Ponics.Queries
 {
     [Api("Get all Organisms in an Aquaponic System")]
     [Route("/systems/{SystemId}/organisms", "GET")]
-    public class GetSystemOrganisms : Query<List<Organism>>
+    public class GetSystemOrganisms : IQuery<List<Organism>>
     {
         [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

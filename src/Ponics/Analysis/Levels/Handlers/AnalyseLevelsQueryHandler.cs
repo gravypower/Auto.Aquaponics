@@ -4,22 +4,23 @@ using System.Linq;
 using Ponics.Analysis.Levels.MagicStrings;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
-using Ponics.Queries;
 
 namespace Ponics.Analysis.Levels.Handlers
 {
-    public abstract class AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance> : IQueryHandler<TQuery, TResult>
-        where TQuery: AnalyseToleranceQuery<TResult, TTolerance>
-        where TResult:LevelAnalysis<TTolerance>, new()
+    public abstract class AnalyseLevelsQueryHandler<TQuery, TResult, TTolerance> : IAnalyseLevelsQueryHandler, IQueryHandler<TQuery, TResult>
+        where TQuery : AnalyseToleranceQuery<TResult, TTolerance>
+        where TResult : LevelAnalysis<TTolerance>, new()
         where TTolerance : Tolerance
     {
+        public string AnalyserFor => typeof(TTolerance).Name;
+
         protected readonly ILevelsMagicStrings MagicStrings;
         private readonly IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         protected AnalyseLevelsQueryHandler(
             ILevelsMagicStrings magicStrings,
             IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
-            )
+        )
         {
             MagicStrings = magicStrings;
             _getAllOrganismsDataQueryHandler = getAllOrganismsDataQueryHandler;
@@ -27,6 +28,12 @@ namespace Ponics.Analysis.Levels.Handlers
 
         protected abstract TResult Analyse(TQuery query, TResult analysis, Organism organism);
         protected abstract void OrganismToleranceNotDefined();
+
+
+        LevelAnalysis IAnalyseLevelsQueryHandler.Handle(AnalyseToleranceQuery query)
+        {
+            return null; //Handle(query);
+        }
 
         public TResult Handle(TQuery query)
         {
@@ -69,5 +76,10 @@ namespace Ponics.Analysis.Levels.Handlers
             var tolerance = organism.Tolerances.Single(t => t is TTolerance);
             return tolerance.DesiredLower <= value && tolerance.DesiredUpper >= value;
         }
+    }
+
+    public interface IAnalyseLevelsQueryHandler
+    {
+        LevelAnalysis Handle(AnalyseToleranceQuery query);
     }
 }

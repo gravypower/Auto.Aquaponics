@@ -8,7 +8,7 @@ namespace Ponics.Queries
 {
     [Api("Gets level readings for system")]
     [Route("/systems/{SystemId}/reading/{Type}", "GET")]
-    public class GetSystemLevels : Query<List<LevelReading>>
+    public class GetSystemLevels : IQuery<List<LevelReading>>
     {
         [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

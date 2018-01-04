@@ -7,7 +7,7 @@ namespace Ponics.Organisms
 {
     [Api("Get an organism by Id")]
     [Route("/organisms/{OrganismId}", "GET")]
-    public class GetOrganism :Query<Organism>, IDataQuery<Organism>
+    public class GetOrganism : IQuery<Organism>, IDataQuery<Organism>
     {
         [ApiMember(Name = "OrganismId", Description = "The Id of an Organism",
             ParameterType = "path", DataType = "string", IsRequired = true)]

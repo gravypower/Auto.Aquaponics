@@ -1,11 +1,10 @@
 ﻿using Ponics.Kernel.Queries;
-using Ponics.Queries;
 
 namespace Ponics.Kernel.Tests.Query
 {
     public class MockQueryResult
     {
-        public Query<object> Query { get; set; }
+        public IQuery<object> Query { get; set; }
 
     }
 }
