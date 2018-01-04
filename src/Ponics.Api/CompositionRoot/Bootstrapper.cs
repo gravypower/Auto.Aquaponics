@@ -25,8 +25,8 @@ namespace Ponics.Api.CompositionRoot
                 bootstrap.Bootstrap(_container);
             }
 
-            _container.Register(typeof(IQueryHandler<,>), new[] {typeof(IQueryHandler<,>).Assembly});
-            _container.Register(typeof(ICommandHandler<>), new[] { typeof(ICommandHandler<>).Assembly });
+            _container.Register(typeof(IQueryHandler<,>), ContractAssemblies);
+            _container.Register(typeof(ICommandHandler<>), ContractAssemblies);
 
             _container.Verify();
 

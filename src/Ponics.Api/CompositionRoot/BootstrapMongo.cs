@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
-using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using Ponics.Analysis.Levels;
-using Ponics.Data.Mongo.CommandHandlers;
-using Ponics.Data.Mongo.QueryHandlers;
+using Ponics.Data.Mongo;
 using Ponics.Data.Mongo.Serializers;
 using Ponics.Kernel.Data;
 using Ponics.Organisms;
@@ -17,6 +16,7 @@ namespace Ponics.Api.CompositionRoot
 {
     public class BootstrapMongo:IBootstrap
     {
+        private static readonly Assembly[] ContractAssemblies = { typeof(MongoContract).Assembly };
         public void Bootstrap(Container container)
         {
             var mongodbUri = Environment.GetEnvironmentVariable("MONGODB_URI");
@@ -51,8 +51,8 @@ namespace Ponics.Api.CompositionRoot
                 BsonClassMap.RegisterClassMap(bsonClassMap);
             }
 
-            container.Register(typeof(IDataQueryHandler<,>), new[] { typeof(GetAllOrganismsDataQueryHandler).Assembly });
-            container.Register(typeof(IDataCommandHandler<>), new[] { typeof(AddOrganismDataCommandHandler).Assembly });
+            container.Register(typeof(IDataQueryHandler<,>), ContractAssemblies);
+            container.Register(typeof(IDataCommandHandler<>), ContractAssemblies);
         }
 
         public static IEnumerable<Type> GetToleranceTypes() =>
