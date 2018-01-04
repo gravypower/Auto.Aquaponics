@@ -1,4 +1,4 @@
-﻿namespace Ponics.Kernel.Data
+﻿namespace Ponics.Kernel.Commands
 {
     public interface IDataCommandHandler<in TCommand> where TCommand:IDataCommand
     {

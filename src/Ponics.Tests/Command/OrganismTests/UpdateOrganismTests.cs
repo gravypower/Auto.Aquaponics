@@ -1,6 +1,6 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
 using Ponics.Organisms;
 using Ponics.Organisms.Handlers;
 

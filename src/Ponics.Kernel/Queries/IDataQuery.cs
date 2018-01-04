@@ -1,4 +1,4 @@
-﻿namespace Ponics.Kernel.Data
+﻿namespace Ponics.Kernel.Queries
 {
     public interface IDataQuery<TResult>
     {

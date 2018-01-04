@@ -1,7 +1,7 @@
 ﻿using Ponics.Aquaponics;
 using Ponics.Commands;
 using Ponics.Kernel.Commands;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 
 namespace Ponics.Components
 {

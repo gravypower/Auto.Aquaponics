@@ -5,7 +5,8 @@ using NUnit.Framework;
 using Ponics.Data.Decorator;
 using Ponics.Data.Seed;
 using Ponics.HardCodedData.Organisms;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 
 namespace Ponics.Data.Tests.Decorator

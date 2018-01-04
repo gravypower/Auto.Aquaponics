@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Ponics.Data.Seed;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 
 namespace Ponics.Data.Decorator

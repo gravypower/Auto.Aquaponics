@@ -3,7 +3,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
 using Ponics.Aquaponics.Handlers;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 
 namespace Ponics.Tests.Query.AquaponicSystems
 {

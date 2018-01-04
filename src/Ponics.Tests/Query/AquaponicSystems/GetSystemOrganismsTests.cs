@@ -7,7 +7,7 @@ using Ponics.Aquaponics;
 using Ponics.Components;
 using Ponics.Handlers;
 using Ponics.HardCodedData.Organisms;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Organisms.Handlers;
 using Ponics.Queries;

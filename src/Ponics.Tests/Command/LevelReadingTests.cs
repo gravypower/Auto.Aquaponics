@@ -6,7 +6,7 @@ using NUnit.Framework;
 using Ponics.Analysis.Levels;
 using Ponics.Commands;
 using Ponics.Handlers;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
 
 namespace Ponics.Tests.Command
 {

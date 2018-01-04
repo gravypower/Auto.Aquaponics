@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Ponics.Analysis.Levels.MagicStrings;
-using Ponics.Kernel.Data;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Queries;

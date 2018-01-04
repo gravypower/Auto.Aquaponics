@@ -2,7 +2,8 @@
 using System.Linq;
 using Ponics.Aquaponics;
 using Ponics.Data.Seed;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 
 namespace Ponics.Data.Decorator
 {

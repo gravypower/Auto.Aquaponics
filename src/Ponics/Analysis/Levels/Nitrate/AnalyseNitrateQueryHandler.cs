@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ponics.Analysis.Levels.Handlers;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Nitrate

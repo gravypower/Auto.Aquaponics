@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Ponics.Analysis.Levels.Commands;
 using Ponics.Analysis.Levels.MagicStrings;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 
 namespace Ponics.Analysis.Levels.Handlers

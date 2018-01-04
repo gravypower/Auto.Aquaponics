@@ -4,7 +4,7 @@ using NUnit.Framework;
 using Ponics.Aquaponics;
 using Ponics.Handlers;
 using Ponics.HardCodedData.AquaponicSystems;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 using Ponics.Queries;
 
 namespace Ponics.Tests.Query

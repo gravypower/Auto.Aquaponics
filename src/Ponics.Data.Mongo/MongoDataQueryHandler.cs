@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 
 namespace Ponics.Data.Mongo
 {

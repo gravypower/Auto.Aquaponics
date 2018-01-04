@@ -2,7 +2,7 @@
 using Ponics.Aquaponics;
 using Ponics.Data.Decorator;
 using Ponics.Data.Seed;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using SimpleInjector;
 

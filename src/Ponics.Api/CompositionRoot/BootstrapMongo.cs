@@ -8,7 +8,8 @@ using MongoDB.Driver;
 using Ponics.Analysis.Levels;
 using Ponics.Data.Mongo;
 using Ponics.Data.Mongo.Serializers;
-using Ponics.Kernel.Data;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using SimpleInjector;
 

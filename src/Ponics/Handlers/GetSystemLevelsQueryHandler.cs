@@ -2,7 +2,6 @@
 using System.Linq;
 using Ponics.Analysis.Levels;
 using Ponics.Aquaponics;
-using Ponics.Kernel.Data;
 using Ponics.Kernel.Queries;
 using Ponics.Queries;
 
