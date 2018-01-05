@@ -5,6 +5,5 @@
         Error,
         Warning,
         Info
-
     }
 }

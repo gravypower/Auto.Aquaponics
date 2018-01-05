@@ -6,6 +6,7 @@ using System.Reflection;
 using Ponics.Analysis;
 using Ponics.Analysis.Levels.Handlers;
 using Ponics.Kernel.Commands;
+using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
 using SimpleInjector;
 
@@ -36,7 +37,12 @@ namespace Ponics.Api.CompositionRoot
 
             _container.Register(typeof(ICommandHandler<>), ContractAssemblies);
 
+
             _container.RegisterCollection(typeof(IAnalyseLevelsQueryHandler), ContractAssemblies);
+
+
+            _container.Register(typeof(Pipeline<,,>), ContractAssemblies);
+            _container.RegisterCollection(typeof(Node<,>), ContractAssemblies);
 
             _container.Verify();
 

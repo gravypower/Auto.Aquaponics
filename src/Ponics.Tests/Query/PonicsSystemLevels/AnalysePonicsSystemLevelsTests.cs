@@ -29,7 +29,8 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
             Sut = new AnalysePonicsSystemHandler(
                 _getPonicSystemOrganismsHandler, 
                 _getSystemDataQueryHandler,
-                _analyseLevelsQueryHandlers);
+                _analyseLevelsQueryHandlers,
+                null);
         }
 
         [Test]

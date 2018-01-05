@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using Ponics.Kernel.Queries;
 using ServiceStack;
 
@@ -9,7 +8,7 @@ namespace Ponics.Analysis.PonicsSystem
     [Api("Runs analysis on a system using the latest level readings")]
     [Route("/systems/{SystemId}/analysis", "GET")]
     [Tag("analysis")]
-    public class AnalysePonicsSystem : IQuery<List<PonicsSystemAnalysis>>
+    public class AnalysePonicsSystem : IQuery<PonicsSystemAnalysis>
     {
         [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

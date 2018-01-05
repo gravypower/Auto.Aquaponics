@@ -3,33 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using Ponics.Analysis.Levels;
 using Ponics.Analysis.Levels.Handlers;
+using Ponics.Analysis.PonicsSystem.Pipelines;
+using Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels;
 using Ponics.Aquaponics;
+using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Strategies;
 
 namespace Ponics.Analysis.PonicsSystem
 {
-    public class AnalysePonicsSystemHandler : IQueryHandler<AnalysePonicsSystem, List<PonicsSystemAnalysis>>
+    public class AnalysePonicsSystemHandler : IQueryHandler<AnalysePonicsSystem, PonicsSystemAnalysis>
     {
         private readonly IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsHandler;
         private readonly IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private readonly IEnumerable<IAnalyseLevelsQueryHandler> _analyseLevelsQueryHandlers;
+        private readonly Pipeline<Node<PonicsSystemAnalysis, AnalyseLevelsPipelineContext>, PonicsSystemAnalysis, AnalyseLevelsPipelineContext> _analyseLevelsPipeline;
 
         public AnalysePonicsSystemHandler(
             IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> getPonicSystemOrganismsHandler,
             IDataQueryHandler<GetSystem, AquaponicSystem> getSystemDataQueryHandler,
-            IEnumerable<IAnalyseLevelsQueryHandler> analyseLevelsQueryHandlers
+            IEnumerable<IAnalyseLevelsQueryHandler> analyseLevelsQueryHandlers,
+            Pipeline<Node<PonicsSystemAnalysis, AnalyseLevelsPipelineContext>, PonicsSystemAnalysis, AnalyseLevelsPipelineContext> analyseLevelsPipeline
             )
         {
             _getPonicSystemOrganismsHandler = getPonicSystemOrganismsHandler;
             _getSystemDataQueryHandler = getSystemDataQueryHandler;
             _analyseLevelsQueryHandlers = analyseLevelsQueryHandlers;
+            _analyseLevelsPipeline = analyseLevelsPipeline;
         }
 
-        public List<PonicsSystemAnalysis> Handle(AnalysePonicsSystem query)
+        public PonicsSystemAnalysis Handle(AnalysePonicsSystem query)
         {
-            var result = new List<PonicsSystemAnalysis>();
+            var result = new PonicsSystemAnalysis();
 
             var system = _getSystemDataQueryHandler.Handle(new GetSystem
             {
@@ -65,45 +71,21 @@ namespace Ponics.Analysis.PonicsSystem
                     }
                     catch (Exception e)
                     {
-                        result.Add(new PonicsSystemAnalysis
+                        result.Add(new PonicsSystemAnalysisItem
                         {
                             PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
                             Category = nameof(Organism),
-                            Identifier = organism.Id.ToString(),
+                            Identifier = organism.Id,
                             Message = e.Message
                         });
-                    }
 
-                    if (analyse == null)
-                    {
                         continue;
                     }
-
-                    if (!analyse.IdealForOrganism && analyse.SuitableForOrganism)
-                    {
-                        result.Add(new PonicsSystemAnalysis
-                        {
-                            PonicsSystemAnalysisType = PonicsSystemAnalysisType.Warning,
-                            Category = nameof(Organism),
-                            Identifier = organism.Id.ToString(),
-                            Message = $"A {levelReading.Type} level of {levelReading.Value} is not ideal for {organism.Name}",
-                        });
-                    }
-
-                    if (!analyse.SuitableForOrganism)
-                    {
-                        result.Add(new PonicsSystemAnalysis
-                        {
-                            PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
-                            Category = nameof(Organism),
-                            Identifier = organism.Id.ToString(),
-                            Message = $"A {levelReading.Type} level of {levelReading.Value} is not Suitable for {organism.Name}",
-                        });
-                    }
+                    _analyseLevelsPipeline.Context = new AnalyseLevelsPipelineContext(analyse, levelReading, organism);
+                    _analyseLevelsPipeline.Execute(result);
                 }
                 
             }
-            
 
             return result;
         }
