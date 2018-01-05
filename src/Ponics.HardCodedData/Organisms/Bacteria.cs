@@ -1,8 +1,5 @@
-﻿using Ponics.Analysis.Levels.Ammonia;
-using Ponics.Analysis.Levels.Nitrate;
-using Ponics.Analysis.Levels.Nitrite;
-using Ponics.Analysis.Levels.Salinity;
-using Ponics.Organisms;
+﻿using Ponics.Organisms;
+using Ponics.Organisms.Tolerances;
 
 namespace Ponics.HardCodedData.Organisms
 {

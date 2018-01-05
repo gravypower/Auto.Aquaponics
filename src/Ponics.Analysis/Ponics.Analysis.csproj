@@ -4,4 +4,13 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ServiceStack.Interfaces" Version="5.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
+    <ProjectReference Include="..\Ponics\Ponics.csproj" />
+  </ItemGroup>
+
 </Project>

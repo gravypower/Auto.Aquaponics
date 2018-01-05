@@ -11,6 +11,7 @@ using Ponics.Data.Mongo.Serializers;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
+using Ponics.Organisms.Tolerances;
 using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot

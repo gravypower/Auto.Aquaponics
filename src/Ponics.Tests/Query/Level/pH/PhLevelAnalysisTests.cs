@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Ponics.Analysis.Levels;
 using Ponics.Analysis.Levels.Ph;
 using Ponics.Organisms;
+using Ponics.Organisms.Tolerances;
 
 namespace Ponics.Tests.Query.Level.pH
 {

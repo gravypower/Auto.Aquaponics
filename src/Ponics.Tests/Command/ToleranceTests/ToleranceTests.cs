@@ -8,13 +8,14 @@ using Ponics.Analysis.Levels.MagicStrings;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
+using Ponics.Organisms.Tolerances;
 
 namespace Ponics.Tests.Command.ToleranceTests
 {
     public abstract class ToleranceTests<TTolerance, TToleranceCommand, TToleranceCommandHandler>
         where TToleranceCommandHandler: ToleranceCommandHandler<TTolerance, TToleranceCommand>
         where TToleranceCommand : ToleranceCommand<TTolerance>
-        where TTolerance : Analysis.Levels.Tolerance
+        where TTolerance : Tolerance
     {
         protected IDataQueryHandler<GetOrganisms, List<Organism>> GetAllOrganismsDataQueryHandler;
         protected Organism Organism;

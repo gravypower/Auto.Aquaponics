@@ -17,6 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ponics.Analysis\Ponics.Analysis.csproj" />
     <ProjectReference Include="..\Ponics.HardCodedData\Ponics.HardCodedData.csproj" />
     <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
     <ProjectReference Include="..\Ponics\Ponics.csproj" />

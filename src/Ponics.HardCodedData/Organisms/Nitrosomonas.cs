@@ -1,5 +1,5 @@
 ﻿using System;
-using Ponics.Analysis.Levels.Ph;
+using Ponics.Organisms.Tolerances;
 
 namespace Ponics.HardCodedData.Organisms
 {

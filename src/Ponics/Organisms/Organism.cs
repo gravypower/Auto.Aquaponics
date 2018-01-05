@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Ponics.Analysis.Levels;
+using Ponics.Organisms.Tolerances;
 using ServiceStack;
 
 namespace Ponics.Organisms

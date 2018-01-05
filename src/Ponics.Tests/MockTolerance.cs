@@ -1,4 +1,5 @@
 ﻿using Ponics.Analysis.Levels;
+using Ponics.Organisms.Tolerances;
 
 namespace Ponics.Tests
 {
