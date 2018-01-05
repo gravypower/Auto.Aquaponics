@@ -8,18 +8,18 @@ namespace Ponics.Handlers
 {
     public class GetSystemOrganismsQueryHandler : IQueryHandler<GetSystemOrganisms, List<Organism>>
     {
-        private readonly IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsHandler;
+        private readonly IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsStrategyHandler;
 
         public GetSystemOrganismsQueryHandler(
-            IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> getPonicSystemOrganismsHandler
+            IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> getPonicSystemOrganismsStrategyHandler
             )
         {
-            _getPonicSystemOrganismsHandler = getPonicSystemOrganismsHandler;
+            _getPonicSystemOrganismsStrategyHandler = getPonicSystemOrganismsStrategyHandler;
         }
 
         public List<Organism> Handle(GetSystemOrganisms query)
         {
-            return _getPonicSystemOrganismsHandler.Handle(new GetPonicSystemOrganisms {SystemId = query.SystemId});
+            return _getPonicSystemOrganismsStrategyHandler.Handle(new GetPonicSystemOrganisms {SystemId = query.SystemId});
         }
     }
 }

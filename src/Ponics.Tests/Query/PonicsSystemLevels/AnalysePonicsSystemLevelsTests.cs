@@ -2,7 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using Ponics.Analysis.Levels.Handlers;
-using Ponics.Analysis.PonicsSystemLevels;
+using Ponics.Analysis.PonicsSystem;
 using Ponics.Aquaponics;
 using Ponics.HardCodedData.AquaponicSystems;
 using Ponics.Kernel.Queries;
@@ -13,7 +13,7 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
 {
     public class AnalysePonicsSystemLevelsTests
     {
-        public AnalysePonicsSystemLevelsHandler Sut;
+        public AnalysePonicsSystemHandler Sut;
         private IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsHandler;
         private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private List<IAnalyseLevelsQueryHandler> _analyseLevelsQueryHandlers;
@@ -26,7 +26,7 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
             _getPonicSystemOrganismsHandler = Substitute.For<IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>>>();
             _analyseLevelsQueryHandlers = new List<IAnalyseLevelsQueryHandler>();
 
-            Sut = new AnalysePonicsSystemLevelsHandler(
+            Sut = new AnalysePonicsSystemHandler(
                 _getPonicSystemOrganismsHandler, 
                 _getSystemDataQueryHandler,
                 _analyseLevelsQueryHandlers);
@@ -36,7 +36,7 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
         public void Play()
         {
             _getSystemDataQueryHandler.Handle(Arg.Any<GetSystem>()).Returns(AaronsAquaponicSystem.SeedSystem());
-            Sut.Handle(new AnalysePonicsSystemLevels());
+            Sut.Handle(new AnalysePonicsSystem());
         }
     }
 }

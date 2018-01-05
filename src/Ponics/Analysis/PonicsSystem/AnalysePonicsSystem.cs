@@ -1,18 +1,19 @@
 ﻿using System;
+using System.Collections.Generic;
 using Ponics.Kernel.Queries;
 using ServiceStack;
 
-namespace Ponics.Analysis.PonicsSystemLevels
+namespace Ponics.Analysis.PonicsSystem
 {
 
     [Api("Runs analysis on a system using the latest level readings")]
     [Route("/systems/{SystemId}/analysis", "GET")]
     [Tag("analysis")]
-    public class AnalysePonicsSystemLevels : IQuery<PonicsSystemLevelsAnalysis>
+    public class AnalysePonicsSystem : IQuery<List<PonicsSystemAnalysis>>
     {
         [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]
         [ApiAllowableValues("SystemId", typeof(Guid))]
-        public Guid SystemId { get; }
+        public Guid SystemId { get; set; }
     }
 }

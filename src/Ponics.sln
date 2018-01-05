@@ -32,6 +32,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Data.Mongo", "Ponics
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Api.Tests", "Ponics.Api.Tests\Ponics.Api.Tests.csproj", "{0F711DD3-08EF-454F-B62F-37846C9A3E6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ponics.Analysis", "Ponics.Analysis\Ponics.Analysis.csproj", "{622D5A6E-0059-4D06-A590-A209F9DC68CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{0F711DD3-08EF-454F-B62F-37846C9A3E6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0F711DD3-08EF-454F-B62F-37846C9A3E6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0F711DD3-08EF-454F-B62F-37846C9A3E6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

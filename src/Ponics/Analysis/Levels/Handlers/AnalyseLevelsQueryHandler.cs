@@ -12,7 +12,8 @@ namespace Ponics.Analysis.Levels.Handlers
         where TResult : LevelAnalysis<TTolerance>, new()
         where TTolerance : Tolerance
     {
-        public string AnalyserFor => typeof(TTolerance).Name;
+        public string AnalyserFor => MagicStrings.LevelName;
+        public Type QueryType => typeof(TQuery);
 
         protected readonly ILevelsMagicStrings MagicStrings;
         private readonly IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
@@ -28,7 +29,6 @@ namespace Ponics.Analysis.Levels.Handlers
 
         protected abstract TResult Analyse(TQuery query, TResult analysis, Organism organism);
         protected abstract void OrganismToleranceNotDefined();
-
 
         LevelAnalysis IAnalyseLevelsQueryHandler.Handle(AnalyseToleranceQuery query)
         {
@@ -81,6 +81,7 @@ namespace Ponics.Analysis.Levels.Handlers
     public interface IAnalyseLevelsQueryHandler
     {
         string AnalyserFor { get; }
+        Type QueryType { get; }
         LevelAnalysis Handle(AnalyseToleranceQuery query);
     }
 }
