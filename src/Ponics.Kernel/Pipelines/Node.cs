@@ -3,18 +3,17 @@
     public abstract class Node<TInput, TContext>
     {
         private Node<TInput, TContext> _nextNode;
-        public TContext Context { get; set; }
-
-        public abstract bool ExecuteCondition();
+        protected TContext Context { get; set; }
         public abstract TInput DoExecute(TInput input);
 
-        public TInput Execute(TInput input)
+        public TInput Execute(TInput input, TContext context)
         {
+            Context = context;
             var value = DoExecute(input);
 
             if (_nextNode != null)
             {
-                value = _nextNode.Execute(value);
+                value = _nextNode.Execute(value, context);
             }
 
             return value;

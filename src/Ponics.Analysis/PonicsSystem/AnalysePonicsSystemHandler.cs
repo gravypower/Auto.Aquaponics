@@ -52,13 +52,19 @@ namespace Ponics.Analysis.PonicsSystem
                 .GroupBy(t => t.Type)
                 .Select(g => g.First());
 
-
+            var context = new AnalyseLevelsPipelineContext();
             foreach (var levelReading in levelReadings)
             {
                 var handler = _analyseLevelsQueryHandlers.SingleOrDefault(h => h.AnalyserFor == levelReading.Type);
 
                 if (handler == null)
                 {
+                    result.Add(new PonicsSystemAnalysisItem
+                    {
+                        PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
+                        Title = $"Could not handel {levelReading.Type}",
+                        Message = "Please contact support"
+                    });
                     continue;
                 }
 
@@ -77,17 +83,18 @@ namespace Ponics.Analysis.PonicsSystem
                     {
                         result.Add(new PonicsSystemAnalysisItem
                         {
+                            Title = $"Exception handling analysis for {organism.Name}",
                             PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
                             Message = e.Message
                         });
 
                         continue;
                     }
-                    _analyseLevelsPipeline.Context = new AnalyseLevelsPipelineContext(analyse, levelReading, organism);
-                    _analyseLevelsPipeline.Execute(result);
+                    context.Add(new AnalyseLevelsPipelineContextItem(analyse, levelReading, organism));
                 }
                 
             }
+            _analyseLevelsPipeline.Execute(result, context);
 
             return result;
         }

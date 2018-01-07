@@ -5,7 +5,7 @@ namespace Ponics.Kernel.Pipelines
     public abstract class Pipeline<TNode, TInput, TContext>
         where  TNode : Node<TInput, TContext>
     {
-        public TContext Context { get; set; }
+        protected TContext Context { get; set; }
 
         private readonly IEnumerable<TNode> _nodes;
 
@@ -14,13 +14,13 @@ namespace Ponics.Kernel.Pipelines
             _nodes = nodes;
         }
 
-
-        public TInput Execute(TInput input)
+        public TInput Execute(TInput input, TContext context)
         {
             var root = default(TNode);
             var previous = default(TNode);
+            Context = context;
 
-            foreach (var node in GetNodes())
+            foreach (var node in _nodes)
             {
                 if (root == null)
                 {
@@ -33,19 +33,7 @@ namespace Ponics.Kernel.Pipelines
                 previous = node;
             }
 
-            return root == null ? input : root.Execute(input);
-        }
-
-        private IEnumerable<TNode> GetNodes()
-        {
-            foreach (var node in _nodes)
-            {
-                node.Context = Context;
-
-                if (node.ExecuteCondition())
-                    yield return node;
-            }
-        }
+            return root == null ? input : root.Execute(input, context);
+        }        
     }
-
 }

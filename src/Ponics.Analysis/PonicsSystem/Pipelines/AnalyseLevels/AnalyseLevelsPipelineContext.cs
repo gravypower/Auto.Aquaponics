@@ -1,22 +1,9 @@
-﻿using Ponics.Analysis.Levels;
-using Ponics.Organisms;
+﻿using System.Collections.Generic;
 
 namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels
 {
-    public class AnalyseLevelsPipelineContext
+    public class AnalyseLevelsPipelineContext:List<AnalyseLevelsPipelineContextItem>
     {
-        public readonly LevelAnalysis LevelAnalysis;
-        public readonly LevelReading LevelReading;
-        public readonly Organism Organism;
-
-        public AnalyseLevelsPipelineContext(
-            LevelAnalysis levelAnalysis, 
-            LevelReading levelReading,
-            Organism organism)
-        {
-            LevelAnalysis = levelAnalysis;
-            LevelReading = levelReading;
-            Organism = organism;
-        }
+        public Ponics.PonicsSystem System { get; set; }
     }
 }
