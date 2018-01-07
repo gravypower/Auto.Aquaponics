@@ -11,7 +11,6 @@ namespace Ponics.Analysis.PonicsSystem
     {
         public PonicsSystemAnalysisType PonicsSystemAnalysisType { get; set; }
         public string Message { get; set; }
-        public string Category { get; set; }
-        public Guid Identifier { get; set; }
+        public string Title { get; set; }
     }
 }

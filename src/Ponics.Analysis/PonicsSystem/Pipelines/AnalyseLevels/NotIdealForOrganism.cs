@@ -10,8 +10,7 @@ namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels
             input.Add(new PonicsSystemAnalysisItem
             {
                 PonicsSystemAnalysisType = PonicsSystemAnalysisType.Warning,
-                Category = nameof(Organism),
-                Identifier = Context.Organism.Id,
+                Title = $"{Context.LevelReading.Type} level not ideal",
                 Message = $"A {Context.LevelReading.Type} level of {Context.LevelReading.Value} is not ideal for {Context.Organism.Name}",
             });
 

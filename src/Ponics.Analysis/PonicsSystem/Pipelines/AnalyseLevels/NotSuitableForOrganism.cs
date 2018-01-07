@@ -11,8 +11,7 @@ namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels
             input.Add(new PonicsSystemAnalysisItem
             {
                 PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
-                Category = nameof(Organism),
-                Identifier = Context.Organism.Id,
+                Title = $"{Context.LevelReading.Type} level not suitable!",
                 Message = $"A {Context.LevelReading.Type} level of {Context.LevelReading.Value} is not Suitable for {Context.Organism.Name}",
             });
 

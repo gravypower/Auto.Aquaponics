@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using Ponics.Analysis.Levels;
 using Ponics.Analysis.Levels.Handlers;
-using Ponics.Analysis.PonicsSystem.Pipelines;
 using Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels;
 using Ponics.Aquaponics;
 using Ponics.Kernel.Pipelines;
@@ -58,13 +57,18 @@ namespace Ponics.Analysis.PonicsSystem
             {
                 var handler = _analyseLevelsQueryHandlers.SingleOrDefault(h => h.AnalyserFor == levelReading.Type);
 
+                if (handler == null)
+                {
+                    continue;
+                }
+
                 foreach (var organism in systemOrganisms)
                 {
                     var analyseToleranceQuery = Activator.CreateInstance(handler.QueryType) as AnalyseToleranceQuery;
                     analyseToleranceQuery.Value =  levelReading.Value;
                     analyseToleranceQuery.OrganismId = organism.Id;
 
-                    LevelAnalysis analyse = null;
+                    LevelAnalysis analyse;
                     try
                     {
                         analyse = handler.Handle(analyseToleranceQuery);
@@ -74,8 +78,6 @@ namespace Ponics.Analysis.PonicsSystem
                         result.Add(new PonicsSystemAnalysisItem
                         {
                             PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
-                            Category = nameof(Organism),
-                            Identifier = organism.Id,
                             Message = e.Message
                         });
 
