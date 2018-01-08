@@ -5,6 +5,7 @@ using NUnit.Framework;
 using Ponics.Analysis.Levels.Commands;
 using Ponics.Analysis.Levels.Handlers;
 using Ponics.Organisms;
+using Ponics.Organisms.Commands;
 
 namespace Ponics.Tests.Command.ToleranceTests
 {

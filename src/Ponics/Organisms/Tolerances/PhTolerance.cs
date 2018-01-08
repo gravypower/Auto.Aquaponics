@@ -1,5 +1,4 @@
-﻿using Ponics.Analysis.Levels;
-using ServiceStack;
+﻿using ServiceStack;
 
 namespace Ponics.Organisms.Tolerances
 {

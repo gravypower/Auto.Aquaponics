@@ -5,6 +5,7 @@ using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Strategies;
+using Ponics.Strategies.Queries;
 
 namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels.Nodes
 {
@@ -28,7 +29,6 @@ namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels.Nodes
 
         public override PonicsSystemAnalysis DoExecute(PonicsSystemAnalysis input)
         {
-
             return input;
 
             var organisms = _getPonicSystemOrganismsStrategyHandler.Handle(new GetPonicSystemOrganisms

@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using Ponics.Kernel.Commands;
 using Ponics.Organisms;
-using Ponics.Organisms.Handlers;
+using Ponics.Organisms.Commands;
 
 namespace Ponics.Tests.Command.OrganismTests
 {

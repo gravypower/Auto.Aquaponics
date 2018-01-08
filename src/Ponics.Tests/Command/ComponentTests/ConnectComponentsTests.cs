@@ -3,7 +3,11 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Commands;
+using Ponics.Aquaponics.Queries;
 using Ponics.Components;
+using Ponics.Components.Commands;
+using Ponics.Components.Queries;
 using Ponics.Tests.Command.AquaponicsTests;
 
 namespace Ponics.Tests.Command.ComponentTests

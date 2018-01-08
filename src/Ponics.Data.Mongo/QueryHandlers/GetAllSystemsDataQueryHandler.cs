@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using MongoDB.Driver;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Queries;
 
 namespace Ponics.Data.Mongo.QueryHandlers
 {

@@ -5,10 +5,12 @@ using Ponics.Analysis.Levels;
 using Ponics.Analysis.Levels.Handlers;
 using Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Queries;
 using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Strategies;
+using Ponics.Strategies.Queries;
 
 namespace Ponics.Analysis.PonicsSystem
 {

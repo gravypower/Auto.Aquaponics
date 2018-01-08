@@ -1,6 +1,8 @@
 ﻿using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Commands;
+using Ponics.Aquaponics.Queries;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 

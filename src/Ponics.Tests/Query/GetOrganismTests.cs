@@ -5,7 +5,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
-using Ponics.Organisms.Handlers;
+using Ponics.Organisms.Queries;
 
 namespace Ponics.Tests.Query
 {

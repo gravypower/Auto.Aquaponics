@@ -2,7 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
-using Ponics.Handlers;
+using Ponics.Aquaponics.Queries;
 using Ponics.HardCodedData.AquaponicSystems;
 using Ponics.Kernel.Queries;
 using Ponics.Queries;

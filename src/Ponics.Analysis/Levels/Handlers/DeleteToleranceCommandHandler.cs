@@ -5,6 +5,8 @@ using Ponics.Analysis.Levels.MagicStrings;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
+using Ponics.Organisms.Commands;
+using Ponics.Organisms.Queries;
 using Ponics.Organisms.Tolerances;
 
 namespace Ponics.Analysis.Levels.Handlers

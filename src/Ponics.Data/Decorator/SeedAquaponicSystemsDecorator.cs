@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Commands;
+using Ponics.Aquaponics.Queries;
 using Ponics.Data.Seed;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;

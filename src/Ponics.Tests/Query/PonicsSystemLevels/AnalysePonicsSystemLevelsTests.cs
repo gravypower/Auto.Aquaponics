@@ -4,10 +4,12 @@ using NUnit.Framework;
 using Ponics.Analysis.Levels.Handlers;
 using Ponics.Analysis.PonicsSystem;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Queries;
 using Ponics.HardCodedData.AquaponicSystems;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
 using Ponics.Strategies;
+using Ponics.Strategies.Queries;
 
 namespace Ponics.Tests.Query.PonicsSystemLevels
 {

@@ -4,6 +4,8 @@ using Ponics.Data.Seed;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
+using Ponics.Organisms.Commands;
+using Ponics.Organisms.Queries;
 
 namespace Ponics.Data.Decorator
 {

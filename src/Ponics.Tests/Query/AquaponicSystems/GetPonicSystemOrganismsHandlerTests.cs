@@ -4,12 +4,14 @@ using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
+using Ponics.Aquaponics.Queries;
 using Ponics.Components;
 using Ponics.HardCodedData.Organisms;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
+using Ponics.Organisms.Queries;
 using Ponics.Strategies;
-using Ponics.Strategies.Handlers;
+using Ponics.Strategies.Queries;
 
 namespace Ponics.Tests.Query.AquaponicSystems
 {
