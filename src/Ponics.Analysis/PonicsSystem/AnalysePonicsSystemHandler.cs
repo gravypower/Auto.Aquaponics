@@ -59,7 +59,7 @@ namespace Ponics.Analysis.PonicsSystem
 
                 if (handler == null)
                 {
-                    result.Add(new PonicsSystemAnalysisItem
+                    result.Items.Add(new PonicsSystemAnalysisItem
                     {
                         PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
                         Title = $"Could not handel {levelReading.Type}",
@@ -81,7 +81,7 @@ namespace Ponics.Analysis.PonicsSystem
                     }
                     catch (Exception e)
                     {
-                        result.Add(new PonicsSystemAnalysisItem
+                        result.Items.Add(new PonicsSystemAnalysisItem
                         {
                             Title = $"Exception handling analysis for {organism.Name}",
                             PonicsSystemAnalysisType = PonicsSystemAnalysisType.Error,
@@ -95,6 +95,10 @@ namespace Ponics.Analysis.PonicsSystem
                 
             }
             _analyseLevelsPipeline.Execute(result, context);
+
+            result.Items = result.Items
+                .OrderBy(i => i.PonicsSystemAnalysisType)
+                .ToList();
 
             return result;
         }

@@ -2,8 +2,14 @@
 
 namespace Ponics.Analysis.PonicsSystem
 {
-    public class PonicsSystemAnalysis : List<PonicsSystemAnalysisItem>
+    public class PonicsSystemAnalysis
     {
+        public List<PonicsSystemAnalysisItem> Items { get; set; }
+
+        public PonicsSystemAnalysis()
+        {
+            Items = new List<PonicsSystemAnalysisItem>();
+        }
     }
 
     public class PonicsSystemAnalysisItem

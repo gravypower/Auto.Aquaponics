@@ -7,7 +7,7 @@ namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels.Nodes
     {
         public override PonicsSystemAnalysis DoExecute(PonicsSystemAnalysis input)
         {
-            input.AddRange(
+            input.Items.AddRange(
                 from item in Context
                 where item.LevelAnalysis.IdealForOrganism && item.LevelAnalysis.SuitableForOrganism
                 select new PonicsSystemAnalysisItem
