@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
-using Ponics.Strategies;
 using Ponics.Strategies.Queries;
 
 namespace Ponics.Queries

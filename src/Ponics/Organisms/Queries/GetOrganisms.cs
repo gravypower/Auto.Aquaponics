@@ -9,6 +9,6 @@ namespace Ponics.Organisms.Queries
     [Route("/organisms", "GET")]
     public class GetOrganisms : IQuery<List<Organism>>, IDataQuery<List<Organism>>
     {
-        public Guid[] OrganismsIds { get; set; }
+        public List<Guid> OrganismsIds { get; set; }
     }
 }
