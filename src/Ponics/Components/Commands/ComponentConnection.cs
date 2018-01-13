@@ -1,7 +1,7 @@
 using System;
 using ServiceStack;
 
-namespace Ponics.Components
+namespace Ponics.Components.Commands
 {
     public class ComponentConnection
     {
