@@ -7,12 +7,12 @@ using Ponics.Kernel.Queries;
 
 namespace Ponics.Components.Commands
 {
-    public class UpdateComponentCommandHandler:ICommandHandler<UpdateComponent>
+    public class DeleteComponentCommandHandler:ICommandHandler<DeleteComponent>
     {
         private readonly IDataCommandHandler<UpdateSystem> _updateSystemDataCommandHandler;
         private readonly IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataCommandHandler;
 
-        public UpdateComponentCommandHandler(
+        public DeleteComponentCommandHandler(
             IDataCommandHandler<UpdateSystem> updateSystemDataCommandHandler,
             IDataQueryHandler<GetSystem, AquaponicSystem> getSystemDataCommandHandler)
         {
@@ -20,17 +20,15 @@ namespace Ponics.Components.Commands
             _getSystemDataCommandHandler = getSystemDataCommandHandler;
         }
 
-
-        public void Handle(UpdateComponent command)
+        public void Handle(DeleteComponent command)
         {
             var system = _getSystemDataCommandHandler.Handle(new GetSystem
             {
                 SystemId = command.SystemId
             });
 
-            var oldComponentIndex = system.Components.FindIndex(c => c.Id == command.ComponentId);
-
-            system.Components[oldComponentIndex] = command.Component;
+            var component = system.Components.First(c => c.Id == command.ComponentId);
+            system.Components.Remove(component);
 
             _updateSystemDataCommandHandler.Handle(new UpdateSystem
             {
