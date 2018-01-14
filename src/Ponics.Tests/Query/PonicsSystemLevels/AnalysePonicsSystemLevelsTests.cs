@@ -34,12 +34,5 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
                 _analyseLevelsQueryHandlers,
                 null);
         }
-
-        [Test]
-        public void Play()
-        {
-            _getSystemDataQueryHandler.Handle(Arg.Any<GetSystem>()).Returns(AaronsAquaponicSystem.SeedSystem());
-            Sut.Handle(new AnalysePonicsSystem());
-        }
     }
 }
