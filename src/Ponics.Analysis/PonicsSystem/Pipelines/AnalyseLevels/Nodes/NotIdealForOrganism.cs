@@ -9,7 +9,7 @@ namespace Ponics.Analysis.PonicsSystem.Pipelines.AnalyseLevels.Nodes
         {
             input.Items.AddRange(
                 from item in Context
-                where item.LevelAnalysis.IdealForOrganism && item.LevelAnalysis.SuitableForOrganism
+                where !item.LevelAnalysis.IdealForOrganism && item.LevelAnalysis.SuitableForOrganism
                 select new PonicsSystemAnalysisItem
                 {
                     PonicsSystemAnalysisType = PonicsSystemAnalysisType.Warning,
