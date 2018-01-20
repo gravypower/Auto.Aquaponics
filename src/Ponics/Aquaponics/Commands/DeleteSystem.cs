@@ -7,7 +7,7 @@ namespace Ponics.Aquaponics.Commands
     [Api("Add an Aquaponic System")]
     [Route("/systems/aquaponic/{SystemId}", "DELETE")]
     [Tag("aquaponic")]
-    public class DeleteSystem : Command, IDataCommand
+    public class DeleteSystem : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The Id of an aquaponic system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

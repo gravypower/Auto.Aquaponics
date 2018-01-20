@@ -6,7 +6,7 @@ namespace Ponics.Components.Commands
 {
     [Api("Adds a component to a system")]
     [Route("/systems/{SystemId}/components", "POST")]
-    public class AddComponent : Command, IDataCommand
+    public class AddComponent : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The of a System",
             ParameterType = "path", DataType = "string", IsRequired = true)]

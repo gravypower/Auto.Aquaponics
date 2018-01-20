@@ -2,7 +2,7 @@
 
 namespace Ponics.Kernel.Commands
 {
-    public abstract class Command : IReturnVoid
+    public interface ICommand : IReturnVoid
     {
     }
 }

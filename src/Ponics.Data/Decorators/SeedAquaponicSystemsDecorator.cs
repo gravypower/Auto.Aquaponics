@@ -7,7 +7,7 @@ using Ponics.Data.Seed;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 
-namespace Ponics.Data.Decorator
+namespace Ponics.Data.Decorators
 {
     public class SeedAquaponicSystemsDecorator : IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>
     {

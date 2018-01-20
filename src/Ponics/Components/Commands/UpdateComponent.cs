@@ -6,7 +6,7 @@ namespace Ponics.Components.Commands
 {
     [Api("Updates a component in a system")]
     [Route("/systems/{SystemId}/components/{ComponentId}", "PUT")]
-    public class UpdateComponent : Command, IDataCommand
+    public class UpdateComponent : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The id of a System",
             ParameterType = "path", DataType = "string", IsRequired = true)]

@@ -6,7 +6,7 @@ namespace Ponics.Organisms.Commands
 {
     [Api("Updates an Organism")]
     [Route("/organisms/{OrganismId}", "PUT")]
-    public class UpdateOrganism : Command, IDataCommand
+    public class UpdateOrganism : ICommand, IDataCommand
     {
         [ApiMember(Name = "OrganismId", Description = "The Id of an organism",
             ParameterType = "path", DataType = "string", IsRequired = true)]

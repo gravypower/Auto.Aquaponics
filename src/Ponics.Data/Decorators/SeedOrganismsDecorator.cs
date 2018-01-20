@@ -7,7 +7,7 @@ using Ponics.Organisms;
 using Ponics.Organisms.Commands;
 using Ponics.Organisms.Queries;
 
-namespace Ponics.Data.Decorator
+namespace Ponics.Data.Decorators
 {
     public class SeedOrganismsDecorator: IDataQueryHandler<GetOrganisms, List<Organism>>
     {

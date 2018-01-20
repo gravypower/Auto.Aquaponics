@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Ponics.Aquaponics;
 using Ponics.Aquaponics.Queries;
-using Ponics.Data.Decorator;
+using Ponics.Data.Decorators;
 using Ponics.Data.Seed;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;

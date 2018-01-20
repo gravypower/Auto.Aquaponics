@@ -14,8 +14,8 @@ namespace Ponics.Data.Mongo.QueryHandlers
         {
             var idFilter = Builders<AquaponicSystem>.Filter.Eq("_id", query.SystemId);
             var typeFilter = Builders<AquaponicSystem>.Filter.Eq("_t", typeof(AquaponicSystem).Name);
-            var aquaponicSystem = Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem));
-            return aquaponicSystem
+            var aquaponicSystems = Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem));
+            return aquaponicSystems
                 .Find(idFilter & typeFilter)
                 .SingleOrDefault();
         }

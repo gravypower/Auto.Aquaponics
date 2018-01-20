@@ -8,7 +8,7 @@ namespace Ponics.Commands
 {
     [Api("Adds a level readings for system")]
     [Route("/systems/{SystemId}/reading", "POST")]
-    public class AddLevelReading : Command, IDataCommand
+    public class AddLevelReading : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The id of a System",
             ParameterType = "path", DataType = "string", IsRequired = true)]

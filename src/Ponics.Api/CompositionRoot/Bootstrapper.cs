@@ -5,6 +5,7 @@ using System.Linq;
 using System.Reflection;
 using Ponics.Analysis;
 using Ponics.Analysis.Levels.Handlers;
+using Ponics.Authentication;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
@@ -18,7 +19,8 @@ namespace Ponics.Api.CompositionRoot
         private static readonly Assembly[] ContractAssemblies =
         {
             typeof(PonicsContract).Assembly,
-            typeof(PonicsAnalysisContract).Assembly
+            typeof(PonicsAnalysisContract).Assembly,
+            typeof(PonicsAuthenticationContract).Assembly
         };
         private static readonly Assembly[] BootstrapAssemblies = { typeof(IBootstrap).Assembly };
 
@@ -63,7 +65,7 @@ namespace Ponics.Api.CompositionRoot
         public static IEnumerable<Type> GetCommandTypes() =>
             from assembly in ContractAssemblies
             from type in assembly.GetExportedTypes()
-            where typeof(Command).IsAssignableFrom(type) && !type.IsAbstract
+            where typeof(ICommand).IsAssignableFrom(type) && !type.IsAbstract
             select type;
 
         public static IEnumerable<QueryInfo> GetQueryTypes() =>

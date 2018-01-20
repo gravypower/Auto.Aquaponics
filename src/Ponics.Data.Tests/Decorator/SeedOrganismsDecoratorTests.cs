@@ -2,7 +2,7 @@
 using FluentAssertions;
 using NSubstitute;
 using NUnit.Framework;
-using Ponics.Data.Decorator;
+using Ponics.Data.Decorators;
 using Ponics.Data.Seed;
 using Ponics.HardCodedData.Organisms;
 using Ponics.Kernel.Commands;

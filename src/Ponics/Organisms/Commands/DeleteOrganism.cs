@@ -6,7 +6,7 @@ namespace Ponics.Organisms.Commands
 {
     [Api("Deletes an Organism")]
     [Route("/organisms/{OrganismId}", "DELETE")]
-    public class DeleteOrganism : Command, IDataCommand
+    public class DeleteOrganism : ICommand, IDataCommand
     {
         [ApiMember(Name = "OrganismId", Description = "The Id of an organism",
             ParameterType = "path", DataType = "string", IsRequired = true)]

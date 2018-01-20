@@ -7,7 +7,7 @@ namespace Ponics.Components.Queries
 {
     [Api("Connects two a components")]
     [Route("/systems/{SystemId}/components/connections", "POST")]
-    public class ConnectComponents : Command, IDataCommand
+    public class ConnectComponents : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

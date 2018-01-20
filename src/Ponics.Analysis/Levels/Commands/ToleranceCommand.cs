@@ -6,7 +6,7 @@ using ServiceStack;
 
 namespace Ponics.Analysis.Levels.Commands
 {
-    public abstract class ToleranceCommand<TTolerance> : Command
+    public abstract class ToleranceCommand<TTolerance> : ICommand
         where TTolerance : Tolerance
     {
         [ApiMember(Name = "OrganismId", Description = "The id of an organism",

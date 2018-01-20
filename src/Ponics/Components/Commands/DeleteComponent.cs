@@ -6,7 +6,7 @@ namespace Ponics.Components.Commands
 {
     [Api("Updates a component in a system")]
     [Route("/systems/{SystemId}/components/{ComponentId}", "DELETE")]
-    public class DeleteComponent : Command, IDataCommand
+    public class DeleteComponent : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The id of a System",
             ParameterType = "path", DataType = "string", IsRequired = true)]
