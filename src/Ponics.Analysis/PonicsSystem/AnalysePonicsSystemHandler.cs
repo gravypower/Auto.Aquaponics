@@ -17,13 +17,13 @@ namespace Ponics.Analysis.PonicsSystem
     public class AnalysePonicsSystemHandler : IQueryHandler<AnalysePonicsSystem, PonicsSystemAnalysis>
     {
         private readonly IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsHandler;
-        private readonly IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
+        private readonly IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private readonly IEnumerable<IAnalyseLevelsQueryHandler> _analyseLevelsQueryHandlers;
         private readonly Pipeline<Node<PonicsSystemAnalysis, AnalyseLevelsPipelineContext>, PonicsSystemAnalysis, AnalyseLevelsPipelineContext> _analyseLevelsPipeline;
 
         public AnalysePonicsSystemHandler(
             IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> getPonicSystemOrganismsHandler,
-            IDataQueryHandler<GetSystem, AquaponicSystem> getSystemDataQueryHandler,
+            IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> getSystemDataQueryHandler,
             IEnumerable<IAnalyseLevelsQueryHandler> analyseLevelsQueryHandlers,
             Pipeline<Node<PonicsSystemAnalysis, AnalyseLevelsPipelineContext>, PonicsSystemAnalysis, AnalyseLevelsPipelineContext> analyseLevelsPipeline
             )
@@ -38,7 +38,7 @@ namespace Ponics.Analysis.PonicsSystem
         {
             var result = new PonicsSystemAnalysis();
 
-            var system = _getSystemDataQueryHandler.Handle(new GetSystem
+            var system = _getSystemDataQueryHandler.Handle(new GetAquaponicSystem
             {
                 SystemId = query.SystemId
 

@@ -10,7 +10,7 @@ using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot
 {
-    public class BootstrapSeedData:IBootstrap
+    public class BootstrapSeedData : IBootstrap
     {
         public void Bootstrap(Container container)
         {
@@ -21,7 +21,7 @@ namespace Ponics.Api.CompositionRoot
                 typeof(SeedOrganismsDecorator));
 
             container.RegisterDecorator(
-                typeof(IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>),
+                typeof(IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>),
                 typeof(SeedAquaponicSystemsDecorator));
         }
     }

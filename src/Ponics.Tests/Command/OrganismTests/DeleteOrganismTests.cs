@@ -17,13 +17,13 @@ namespace Ponics.Tests.Command.OrganismTests
     {
         public DeleteOrganismCommandHandler Sut;
         private IDataCommandHandler<DeleteOrganism> _deleteOrganismDataCommandHandler;
-        private IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+        private IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
 
 
         [SetUp]
         public void SetUp()
         {
-            _getAllSystemsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>>();
+            _getAllSystemsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>>();
             _deleteOrganismDataCommandHandler = Substitute.For<IDataCommandHandler<DeleteOrganism>>();
             Sut = new DeleteOrganismCommandHandler(_deleteOrganismDataCommandHandler, _getAllSystemsDataQueryHandler);
         }
@@ -56,7 +56,7 @@ namespace Ponics.Tests.Command.OrganismTests
             var component = new Ponics.Components.Component();
             component.AddOrganisms(organism.Id);
             system.Components.Add(component);
-            _getAllSystemsDataQueryHandler.Handle(Arg.Any<GetAllSystems>()).Returns(
+            _getAllSystemsDataQueryHandler.Handle(Arg.Any<GetAllAquaponicSystems>()).Returns(
                 new List<AquaponicSystem>
                 {
                     system

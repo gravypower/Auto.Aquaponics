@@ -2,10 +2,12 @@ using System;
 using Funq;
 using NodaTime;
 using NodaTime.Text;
+using Ponics.Api.Auth;
 using Ponics.Api.CompositionRoot;
 using Ponics.Api.Services;
 using ServiceStack;
 using ServiceStack.Api.OpenApi;
+using ServiceStack.Auth;
 using ServiceStack.Text;
 
 namespace Ponics.Api
@@ -26,12 +28,21 @@ namespace Ponics.Api
         /// </summary>
         public override void Configure(Container container)
         {
+
+            Plugins.Add(new AuthFeature(() => new AuthUserSession(),
+                new IAuthProvider[] {
+                    
+                }));
+
             Plugins.Add(new OpenApiFeature());
+
+            
+
 
             var allowOriginWhitelist = Environment.GetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST");
             Plugins.Add(
                 new CorsFeature(
-                    allowedHeaders: "Content-Type",
+                    allowedHeaders: "Content-Type, Authorization",
                     allowCredentials: true,
                     allowOriginWhitelist: allowOriginWhitelist.Split(',')
                 )

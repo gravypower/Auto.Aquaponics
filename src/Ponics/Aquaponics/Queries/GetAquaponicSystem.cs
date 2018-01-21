@@ -7,7 +7,7 @@ namespace Ponics.Aquaponics.Queries
     [Api("Get an Aquaponic Systems by Id")]
     [Route("/systems/aquaponic/{SystemId}", "GET")]
     [Tag("aquaponic")]
-    public class GetSystem : IQuery<AquaponicSystem>, IDataQuery<AquaponicSystem>
+    public class GetAquaponicSystem : IQuery<AquaponicSystem>, IDataQuery<AquaponicSystem>
     {
         [ApiMember(Name = "SystemId", Description = "The Id of a system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

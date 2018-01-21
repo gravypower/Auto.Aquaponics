@@ -11,24 +11,24 @@ namespace Ponics.Tests.Query.AquaponicSystems
     [TestFixture]
     public class GetAllSystemsTests
     {
-        public GetAllSystemsQueryHandler Sut;
-        private IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+        public GetAllAquaponicSystemsQueryHandler Sut;
+        private IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _getAllSystemsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>>();
-            Sut = new GetAllSystemsQueryHandler(_getAllSystemsDataQueryHandler);
+            _getAllSystemsDataQueryHandler = Substitute.For<IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>>();
+            Sut = new GetAllAquaponicSystemsQueryHandler(_getAllSystemsDataQueryHandler);
         }
 
         [Test]
         public void CanGetAllSystems()
         {
             //Assign
-            var query = new GetAllSystems();
+            var query = new GetAllAquaponicSystems();
             var systemOne = new AquaponicSystem();
             var systemTwo = new AquaponicSystem();
-            _getAllSystemsDataQueryHandler.Handle(Arg.Any<GetAllSystems>()).Returns(
+            _getAllSystemsDataQueryHandler.Handle(Arg.Any<GetAllAquaponicSystems>()).Returns(
                 new List<AquaponicSystem>
                 {
                     systemOne,

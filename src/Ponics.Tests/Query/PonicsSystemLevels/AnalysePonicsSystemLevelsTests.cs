@@ -17,14 +17,14 @@ namespace Ponics.Tests.Query.PonicsSystemLevels
     {
         public AnalysePonicsSystemHandler Sut;
         private IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>> _getPonicSystemOrganismsHandler;
-        private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
+        private IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private List<IAnalyseLevelsQueryHandler> _analyseLevelsQueryHandlers;
 
 
         [SetUp]
         public void SetUp()
         {
-            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
+            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetAquaponicSystem, AquaponicSystem>>();
             _getPonicSystemOrganismsHandler = Substitute.For<IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>>>();
             _analyseLevelsQueryHandlers = new List<IAnalyseLevelsQueryHandler>();
 

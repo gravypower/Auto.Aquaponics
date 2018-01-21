@@ -11,7 +11,7 @@ namespace Ponics.Tests.Command.AquaponicsTests
     public abstract class MutateSystemTests<TSut>
     {
         protected IDataCommandHandler<UpdateSystem> UpdateSystemDataCommandHandler;
-        protected IDataQueryHandler<GetSystem, AquaponicSystem> GetSystemDataCommandHandler;
+        protected IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> GetSystemDataCommandHandler;
         protected AquaponicSystem AquaponicSystem;
         protected TSut Sut;
 
@@ -19,9 +19,9 @@ namespace Ponics.Tests.Command.AquaponicsTests
         public void SetUp()
         {
             UpdateSystemDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateSystem>>();
-            GetSystemDataCommandHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
+            GetSystemDataCommandHandler = Substitute.For<IDataQueryHandler<GetAquaponicSystem, AquaponicSystem>>();
             AquaponicSystem = new AquaponicSystem();
-            GetSystemDataCommandHandler.Handle(Arg.Any<GetSystem>()).Returns(AquaponicSystem);
+            GetSystemDataCommandHandler.Handle(Arg.Any<GetAquaponicSystem>()).Returns(AquaponicSystem);
         }
     }
 }

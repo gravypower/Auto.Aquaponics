@@ -74,7 +74,7 @@ namespace Ponics.Tests.Command.ComponentTests
             Sut.Handle(command);
 
             //Assert
-            GetSystemDataCommandHandler.Received().Handle(Arg.Is<GetSystem>(
+            GetSystemDataCommandHandler.Received().Handle(Arg.Is<GetAquaponicSystem>(
                 c => c.SystemId == systemId
             ));
         }

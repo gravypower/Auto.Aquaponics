@@ -10,11 +10,11 @@ namespace Ponics.Strategies.Queries
 {
     public class GetPonicSystemOrganismsHandler: IQueryStrategyHandler<GetPonicSystemOrganisms, List<Organism>>
     {
-        private readonly IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
+        private readonly IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private readonly IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
 
         public GetPonicSystemOrganismsHandler(
-            IDataQueryHandler<GetSystem, AquaponicSystem> getSystemDataQueryHandler,
+            IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> getSystemDataQueryHandler,
             IDataQueryHandler<GetOrganisms, List<Organism>> getAllOrganismsDataQueryHandler
         )
         {
@@ -24,7 +24,7 @@ namespace Ponics.Strategies.Queries
 
         public List<Organism> Handle(GetPonicSystemOrganisms query)
         {
-            var system = _getSystemDataQueryHandler.Handle(new GetSystem { SystemId = query.SystemId });
+            var system = _getSystemDataQueryHandler.Handle(new GetAquaponicSystem { SystemId = query.SystemId });
             var organisms = _getAllOrganismsDataQueryHandler.Handle(new GetOrganisms());
 
             var result = new List<Organism>();

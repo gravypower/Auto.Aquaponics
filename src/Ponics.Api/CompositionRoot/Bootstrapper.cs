@@ -42,11 +42,15 @@ namespace Ponics.Api.CompositionRoot
 
             _container.RegisterCollection(typeof(IAnalyseLevelsQueryHandler), ContractAssemblies);
 
-
             _container.Register(typeof(Pipeline<,,>), ContractAssemblies);
             _container.RegisterCollection(typeof(Node<,>), ContractAssemblies);
 
+            
+#if DEBUG
+            _container.Verify(VerificationOption.VerifyAndDiagnose);
+#else
             _container.Verify();
+#endif
 
             return _container;
         }

@@ -10,11 +10,11 @@ namespace Ponics.Organisms.Commands
     public class DeleteOrganismCommandHandler : ICommandHandler<DeleteOrganism>
     {
         private readonly IDataCommandHandler<DeleteOrganism> _deleteOrganismDataCommandHandler;
-        private readonly IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
+        private readonly IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>> _getAllSystemsDataQueryHandler;
 
         public DeleteOrganismCommandHandler(
             IDataCommandHandler<DeleteOrganism> deleteOrganismDataCommandHandler,
-            IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> getAllSystemsDataQueryHandler
+            IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>> getAllSystemsDataQueryHandler
             )
         {
             _deleteOrganismDataCommandHandler = deleteOrganismDataCommandHandler;
@@ -29,7 +29,7 @@ namespace Ponics.Organisms.Commands
 
         private void GuardOrganismInUse(DeleteOrganism command)
         {
-            var systems = _getAllSystemsDataQueryHandler.Handle(new GetAllSystems());
+            var systems = _getAllSystemsDataQueryHandler.Handle(new GetAllAquaponicSystems());
             var organismsInUse = new List<Guid>();
 
             if (systems == null) return;

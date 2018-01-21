@@ -10,11 +10,11 @@ namespace Ponics.Components.Commands
     public class DeleteComponentCommandHandler:ICommandHandler<DeleteComponent>
     {
         private readonly IDataCommandHandler<UpdateSystem> _updateSystemDataCommandHandler;
-        private readonly IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataCommandHandler;
+        private readonly IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataCommandHandler;
 
         public DeleteComponentCommandHandler(
             IDataCommandHandler<UpdateSystem> updateSystemDataCommandHandler,
-            IDataQueryHandler<GetSystem, AquaponicSystem> getSystemDataCommandHandler)
+            IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> getSystemDataCommandHandler)
         {
             _updateSystemDataCommandHandler = updateSystemDataCommandHandler;
             _getSystemDataCommandHandler = getSystemDataCommandHandler;
@@ -22,7 +22,7 @@ namespace Ponics.Components.Commands
 
         public void Handle(DeleteComponent command)
         {
-            var system = _getSystemDataCommandHandler.Handle(new GetSystem
+            var system = _getSystemDataCommandHandler.Handle(new GetAquaponicSystem
             {
                 SystemId = command.SystemId
             });

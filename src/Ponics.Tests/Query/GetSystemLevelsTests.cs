@@ -12,7 +12,7 @@ namespace Ponics.Tests.Query
     [TestFixture]
     public class GetSystemLevelsTests
     {
-        private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
+        private IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataQueryHandler;
         public GetSystemLevelsQueryHandler Sut;
         private AquaponicSystem _aquaponicSystem;
         private GetSystemLevels _getSystemLevels;
@@ -20,11 +20,11 @@ namespace Ponics.Tests.Query
         [SetUp]
         public void SetUp()
         {
-            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
+            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetAquaponicSystem, AquaponicSystem>>();
             Sut = new GetSystemLevelsQueryHandler(_getSystemDataQueryHandler);
             _aquaponicSystem = AaronsAquaponicSystem.SeedSystem();
             _getSystemLevels = new GetSystemLevels { SystemId = _aquaponicSystem.Id };
-            _getSystemDataQueryHandler.Handle(Arg.Any<GetSystem>()).Returns(_aquaponicSystem);
+            _getSystemDataQueryHandler.Handle(Arg.Any<GetAquaponicSystem>()).Returns(_aquaponicSystem);
         }
 
         [Test]
@@ -34,7 +34,7 @@ namespace Ponics.Tests.Query
             Sut.Handle(_getSystemLevels);
 
             //Assert
-            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetSystem>( q =>q.SystemId == _aquaponicSystem.Id ));
+            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetAquaponicSystem>( q =>q.SystemId == _aquaponicSystem.Id ));
         }
 
         [Test]

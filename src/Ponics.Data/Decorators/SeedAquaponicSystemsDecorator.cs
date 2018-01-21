@@ -9,14 +9,14 @@ using Ponics.Kernel.Queries;
 
 namespace Ponics.Data.Decorators
 {
-    public class SeedAquaponicSystemsDecorator : IDataQueryHandler<GetAllSystems, List<AquaponicSystem>>
+    public class SeedAquaponicSystemsDecorator : IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>
     {
-        private readonly IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> _decorated;
+        private readonly IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>> _decorated;
         private readonly IDataCommandHandler<AddSystem> _addSystem;
         private readonly SeedData<AquaponicSystem> _aquaponicSystems;
 
         public SeedAquaponicSystemsDecorator(
-            IDataQueryHandler<GetAllSystems, List<AquaponicSystem>> decorated,
+            IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>> decorated,
             IDataCommandHandler<AddSystem> addSystem,
             SeedData<AquaponicSystem> aquaponicSystems
             )
@@ -26,7 +26,7 @@ namespace Ponics.Data.Decorators
             _aquaponicSystems = aquaponicSystems;
         }
 
-        public List<AquaponicSystem> Handle(GetAllSystems query)
+        public List<AquaponicSystem> Handle(GetAllAquaponicSystems query)
         {
             var result = _decorated.Handle(query);
 

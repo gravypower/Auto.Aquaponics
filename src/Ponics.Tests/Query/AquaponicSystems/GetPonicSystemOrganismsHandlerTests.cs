@@ -18,7 +18,7 @@ namespace Ponics.Tests.Query.AquaponicSystems
     [TestFixture]
     public class GetPonicSystemOrganismsHandlerTests
     {
-        private IDataQueryHandler<GetSystem, AquaponicSystem> _getSystemDataQueryHandler;
+        private IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataQueryHandler;
         private IDataQueryHandler<GetOrganisms, List<Organism>> _getAllOrganismsDataQueryHandler;
         public GetPonicSystemOrganismsHandler Sut;
         private AquaponicSystem _aquaponicSystem;
@@ -26,11 +26,11 @@ namespace Ponics.Tests.Query.AquaponicSystems
         [SetUp]
         public void SetUp()
         {
-            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetSystem, AquaponicSystem>>();
+            _getSystemDataQueryHandler = Substitute.For<IDataQueryHandler<GetAquaponicSystem, AquaponicSystem>>();
             _getAllOrganismsDataQueryHandler = Substitute.For<IDataQueryHandler<GetOrganisms, List<Organism>>>();
 
             _aquaponicSystem = new AquaponicSystem();
-            _getSystemDataQueryHandler.Handle(Arg.Any<GetSystem>()).Returns(_aquaponicSystem);
+            _getSystemDataQueryHandler.Handle(Arg.Any<GetAquaponicSystem>()).Returns(_aquaponicSystem);
 
             Sut = new GetPonicSystemOrganismsHandler(_getSystemDataQueryHandler, _getAllOrganismsDataQueryHandler);
         }
@@ -48,7 +48,7 @@ namespace Ponics.Tests.Query.AquaponicSystems
             Sut.Handle(query);
 
             //Assert
-            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetSystem>(q => q.SystemId == query.SystemId));
+            _getSystemDataQueryHandler.Received().Handle(Arg.Is<GetAquaponicSystem>(q => q.SystemId == query.SystemId));
         }
 
         [Test]

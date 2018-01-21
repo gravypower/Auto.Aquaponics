@@ -6,6 +6,7 @@ using ServiceStack;
 
 namespace Ponics.Api.Services
 {
+    [Authenticate]
     public abstract class CommandService : Service
     {
         public virtual void Exec<TCommand>(TCommand command) where TCommand : ICommand
