@@ -13,7 +13,6 @@ namespace Ponics.Api
             Environment.SetEnvironmentVariable("MONGODB_URI", mongodbUri);
             Environment.SetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST", "http://localhost:4200,http://localhost:51272,http://192.168.1.128:51272,http://118.209.12.116:51272");
 #endif
-
             var host = new WebHostBuilder()
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())

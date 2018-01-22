@@ -29,15 +29,14 @@ namespace Ponics.Api
         public override void Configure(Container container)
         {
 
+            var auth0Domain = Environment.GetEnvironmentVariable("auth0_domain");
+
             Plugins.Add(new AuthFeature(() => new AuthUserSession(),
                 new IAuthProvider[] {
-                    
+                    new JsonWebTokenAuthProvider(auth0Domain)
                 }));
 
             Plugins.Add(new OpenApiFeature());
-
-            
-
 
             var allowOriginWhitelist = Environment.GetEnvironmentVariable("ALLOW_ORIGIN_WHITELIST");
             Plugins.Add(
