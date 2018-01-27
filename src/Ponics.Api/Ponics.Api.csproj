@@ -14,10 +14,12 @@
   <ItemGroup>
     <PackageReference Include="JWT" Version="4.0.0-beta3" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.1" />
+    <PackageReference Include="Microsoft.IdentityModel.Protocols.OpenIdConnect" Version="5.2.0-preview2-41113220915" />
     <PackageReference Include="MongoDB.Driver" Version="2.5.0" />
     <PackageReference Include="ServiceStack.Api.OpenApi" Version="5.0.2" />
     <PackageReference Include="ServiceStack.Server" Version="5.0.2" />
     <PackageReference Include="SimpleInjector" Version="4.0.12" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.2.0-preview2-41113220915" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ponics.Analysis\Ponics.Analysis.csproj" />

@@ -1,13 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Net;
-using System.Security.Cryptography.X509Certificates;
-using JWT;
-using JWT.Algorithms;
-using JWT.Builder;
+using System.Threading;
+using System.Threading.Tasks;
+using Microsoft.IdentityModel.Protocols;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
+using Microsoft.IdentityModel.Tokens;
 using ServiceStack;
 using ServiceStack.Auth;
+using ServiceStack.Host;
 using ServiceStack.Text;
 using ServiceStack.Web;
 
@@ -15,36 +16,81 @@ namespace Ponics.Api.Auth
 {
     public class JsonWebTokenAuthProvider : AuthProvider, IAuthWithRequest
     {
-        private readonly X509Certificate2 _publicKey;
-        private const string UnableToParsejwks = "Can Not parse JSON Web Key Set";
+        public const string Name = AuthenticateService.JwtProvider;
+        public const string Realm = "/auth/" + AuthenticateService.JwtProvider;
 
-        public JsonWebTokenAuthProvider(string authorityDomain)
+
+        private readonly TokenValidationParameters _tokenValidationParameters;
+
+        public JsonWebTokenAuthProvider(string authorityDomain, string audience):base(null, Realm, Name)
         {
-            var json = $"https://{authorityDomain}/.well-known/jwks.json"
-                .GetJsonFromUrl();
+            var configurationManager = 
+                new ConfigurationManager<OpenIdConnectConfiguration>($"{authorityDomain}.well-known/openid-configuration",new OpenIdConnectConfigurationRetriever());
+            
+            OpenIdConnectConfiguration openIdConfig = null;
+            Task.Run(async () =>
+                openIdConfig = await configurationManager.GetConfigurationAsync(CancellationToken.None)).Wait();
 
-            var jwks = JsonSerializer.DeserializeFromString<Jwks>(json);
-            var jwk = jwks.keys.FirstOrDefault();
-            if (jwk == null)
+            _tokenValidationParameters = new TokenValidationParameters
             {
-                throw HttpError.Unauthorized(UnableToParsejwks); 
-            }
-            _publicKey = new X509Certificate2(Convert.FromBase64String(jwk.x5c.FirstOrDefault()));
+                ValidIssuer = authorityDomain,
+                ValidAudiences = new[] {audience},
+                IssuerSigningKeys = openIdConfig.SigningKeys
+            };
+
         }
 
         public override bool IsAuthorized(IAuthSession session, IAuthTokens tokens, Authenticate request = null)
         {
-            throw new NotImplementedException();
+            return session.FromToken && session.IsAuthenticated;
         }
 
         public override object Authenticate(IServiceBase authService, IAuthSession session, Authenticate request)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("JWT Authenticate() should not be called directly");
         }
 
         public void PreAuthenticate(IRequest req, IResponse res)
         {
-            throw new NotImplementedException();
+#if !DEBUG
+            if (!req.IsSecureConnection)
+            {
+                throw HttpError.Forbidden(ErrorMessages.JwtRequiresSecureConnection);
+            }
+#endif
+            SecurityToken validatedToken;
+            var handler = new JwtSecurityTokenHandler();
+            try
+            {
+                var user = handler.ValidateToken(req.GetBearerToken(), _tokenValidationParameters, out validatedToken);
+                var userId = user.Claims.FirstOrDefault(c => c.Type == "https://simpleponics.io/app_meta_data")?.Value;
+
+                var session = CreateSessionFromJwtSecurityToken(req, validatedToken as JwtSecurityToken);
+                req.Items[Keywords.Session] = session;
+
+                var appMetaData = user.Claims.FirstOrDefault(c => c.Type == "https://simpleponics.io/app_meta_data");
+                if (appMetaData != null)
+                {
+                    req.Items["appMetaData"] = JsonObject.Parse(appMetaData.Value);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw HttpError.Forbidden(ErrorMessages.TokenInvalid);
+            }
+        }
+
+        public IAuthSession CreateSessionFromJwtSecurityToken(IRequest req, JwtSecurityToken jwtSecurityToken)
+        {
+            var sessionId = jwtSecurityToken.Header["kid"].ToString();
+            var session = SessionFeature.CreateNewSession(req, sessionId);
+
+            session.AuthProvider = Name;
+            session.FromToken = true;
+            session.IsAuthenticated = true;
+
+            HostContext.AppHost.OnSessionFilter(session, sessionId);
+            return session;
         }
     }
 }

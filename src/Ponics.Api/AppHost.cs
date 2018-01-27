@@ -30,10 +30,11 @@ namespace Ponics.Api
         {
 
             var auth0Domain = Environment.GetEnvironmentVariable("auth0_domain");
+            var auth0ClientId = Environment.GetEnvironmentVariable("auth0_client_id");
 
             Plugins.Add(new AuthFeature(() => new AuthUserSession(),
                 new IAuthProvider[] {
-                    new JsonWebTokenAuthProvider(auth0Domain)
+                    new JsonWebTokenAuthProvider(auth0Domain, auth0ClientId)
                 }));
 
             Plugins.Add(new OpenApiFeature());
