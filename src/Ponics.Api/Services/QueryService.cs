@@ -5,7 +5,7 @@ using ServiceStack;
 
 namespace Ponics.Api.Services
 {
-    [Authenticate]
+    //[Authenticate]
     public abstract class QueryService : Service
     {
         public virtual TResult Exec<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>
