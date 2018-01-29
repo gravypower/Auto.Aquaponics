@@ -17,7 +17,7 @@ namespace Ponics.Api
         /// <summary>
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
-        public AppHost() : base("Ponics.Api", typeof(QueryService).Assembly, typeof(CommandService).Assembly)
+        public AppHost() : base("Ponics.Api", typeof(AppHost).Assembly)
         {
             Licensing.RegisterLicense(Environment.GetEnvironmentVariable("SERVICESTACK_LICENSE"));
         }

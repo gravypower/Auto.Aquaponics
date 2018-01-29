@@ -1,6 +1,5 @@
 ﻿using System.Threading;
 using Ponics.Api.CompositionRoot;
-using Ponics.Commands;
 using Ponics.Kernel.Commands;
 using ServiceStack;
 
