@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2020
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics", "Ponics\Ponics.csproj", "{AFC92DDD-6DF3-44CE-A2A4-8000A1B68B16}"
 EndProject
@@ -33,8 +33,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Api.Tests", "Ponics.Api.Tests\Ponics.Api.Tests.csproj", "{0F711DD3-08EF-454F-B62F-37846C9A3E6D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ponics.Analysis", "Ponics.Analysis\Ponics.Analysis.csproj", "{622D5A6E-0059-4D06-A590-A209F9DC68CC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ponics.Authentication", "Ponics.Authentication\Ponics.Authentication.csproj", "{CD78EB9A-2F54-4A2D-9DC1-15DDBD8E60A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -86,10 +84,6 @@ Global
 		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{622D5A6E-0059-4D06-A590-A209F9DC68CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CD78EB9A-2F54-4A2D-9DC1-15DDBD8E60A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD78EB9A-2F54-4A2D-9DC1-15DDBD8E60A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD78EB9A-2F54-4A2D-9DC1-15DDBD8E60A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD78EB9A-2F54-4A2D-9DC1-15DDBD8E60A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

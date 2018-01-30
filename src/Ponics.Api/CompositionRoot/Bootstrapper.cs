@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Ponics.Analysis;
 using Ponics.Analysis.Levels.Handlers;
-using Ponics.Authentication;
+using Ponics.Api.Auth;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
@@ -19,12 +22,11 @@ namespace Ponics.Api.CompositionRoot
         private static readonly Assembly[] ContractAssemblies =
         {
             typeof(PonicsContract).Assembly,
-            typeof(PonicsAnalysisContract).Assembly,
-            typeof(PonicsAuthenticationContract).Assembly
+            typeof(PonicsAnalysisContract).Assembly
         };
         private static readonly Assembly[] BootstrapAssemblies = { typeof(IBootstrap).Assembly };
 
-        public static Container Bootstrap()
+        public static Container Bootstrap(IApplicationBuilder app)
         {
             _container = new Container();
 
@@ -51,6 +53,9 @@ namespace Ponics.Api.CompositionRoot
 #else
             _container.Verify();
 #endif
+
+            _container.Register<IHttpContextAccessor>(() => app.ApplicationServices.GetService<IHttpContextAccessor>());
+            _container.Register<Context>();
 
             return _container;
         }

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
+using Ponics.Api.Auth;
 using Ponics.Aquaponics;
 using Ponics.Aquaponics.Queries;
-using Ponics.Authentication.Decorators;
 using Ponics.Kernel.Queries;
 using SimpleInjector;
 

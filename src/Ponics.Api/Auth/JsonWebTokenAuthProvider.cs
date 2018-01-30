@@ -63,7 +63,6 @@ namespace Ponics.Api.Auth
             try
             {
                 var user = handler.ValidateToken(req.GetBearerToken(), _tokenValidationParameters, out validatedToken);
-                var userId = user.Claims.FirstOrDefault(c => c.Type == "https://simpleponics.io/app_meta_data")?.Value;
 
                 var session = CreateSessionFromJwtSecurityToken(req, validatedToken as JwtSecurityToken);
                 req.Items[Keywords.Session] = session;

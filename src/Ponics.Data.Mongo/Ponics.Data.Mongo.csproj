@@ -15,7 +15,6 @@
     <PackageReference Include="System.Runtime.InteropServices.RuntimeInformation" Version="4.3.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Ponics.Authentication\Ponics.Authentication.csproj" />
     <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
     <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>

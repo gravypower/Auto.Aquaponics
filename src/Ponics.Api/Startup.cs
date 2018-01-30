@@ -27,7 +27,7 @@ namespace Ponics.Api
             }
 
 
-            app.UseServiceStack(new AppHost());
+            app.UseServiceStack(new AppHost(app));
 
             app.UseForwardedHeaders(new ForwardedHeadersOptions
             {

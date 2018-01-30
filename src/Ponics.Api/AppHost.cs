@@ -1,5 +1,6 @@
 using System;
 using Funq;
+using Microsoft.AspNetCore.Builder;
 using NodaTime;
 using NodaTime.Text;
 using Ponics.Api.Auth;
@@ -14,11 +15,14 @@ namespace Ponics.Api
 {
     public class AppHost : AppHostBase
     {
+        private readonly IApplicationBuilder _app;
+
         /// <summary>
         /// Base constructor requires a Name and Assembly where web service implementation is located
         /// </summary>
-        public AppHost() : base("Ponics.Api", typeof(AppHost).Assembly)
+        public AppHost(IApplicationBuilder app) : base("Ponics.Api", typeof(AppHost).Assembly)
         {
+            _app = app;
             Licensing.RegisterLicense(Environment.GetEnvironmentVariable("SERVICESTACK_LICENSE"));
         }
 
@@ -28,7 +32,6 @@ namespace Ponics.Api
         /// </summary>
         public override void Configure(Container container)
         {
-
             var auth0Domain = Environment.GetEnvironmentVariable("auth0_domain");
             var auth0ClientId = Environment.GetEnvironmentVariable("auth0_client_id");
 
@@ -52,7 +55,7 @@ namespace Ponics.Api
             JsConfig<ZonedDateTime>.SerializeFn = SerializeZoneDateTime;
             JsConfig<ZonedDateTime>.DeSerializeFn = ParseZoneDateTime;
 
-            var sic = Bootstrapper.Bootstrap();
+            var sic = Bootstrapper.Bootstrap(_app);
             container.Adapter = new SimpleInjectorIocAdapter(sic);
    
             var queryServiceType = TypeFactory.GenerateQueryServices(Bootstrapper.GetQueryTypes(), typeof(QueryService));
@@ -60,6 +63,8 @@ namespace Ponics.Api
             
             var commandSserviceType = TypeFactory.GenerateCommandServices(Bootstrapper.GetCommandTypes(), typeof(CommandService));
             RegisterService(commandSserviceType);
+
+            
         }
 
         private static string SerializeZoneDateTime(ZonedDateTime datetime)
