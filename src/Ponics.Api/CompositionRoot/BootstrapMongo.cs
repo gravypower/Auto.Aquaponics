@@ -8,6 +8,7 @@ using MongoDB.Driver;
 using Ponics.Analysis.Levels;
 using Ponics.Data.Mongo;
 using Ponics.Data.Mongo.Serializers;
+using Ponics.Data.Users;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
@@ -29,6 +30,12 @@ namespace Ponics.Api.CompositionRoot
             container.Register(() => db, Lifestyle.Singleton);
 
             BsonClassMap.RegisterClassMap<PonicsSystem>(cm =>
+            {
+                cm.AutoMap();
+                cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);
+            });
+
+            BsonClassMap.RegisterClassMap<User>(cm =>
             {
                 cm.AutoMap();
                 cm.MapIdMember(c => c.Id).SetIdGenerator(CombGuidGenerator.Instance);

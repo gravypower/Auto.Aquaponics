@@ -4,9 +4,9 @@ using Ponics.Aquaponics.Queries;
 
 namespace Ponics.Data.Mongo.QueryHandlers
 {
-    public class GetSystemDataQueryHandler : MongoDataQueryHandler<GetAquaponicSystem, AquaponicSystem>
+    public class GetAquaponicSystemDataQueryHandler : MongoDataQueryHandler<GetAquaponicSystem, AquaponicSystem>
     {
-        public GetSystemDataQueryHandler(IMongoDatabase database) : base(database)
+        public GetAquaponicSystemDataQueryHandler(IMongoDatabase database) : base(database)
         {
         }
 

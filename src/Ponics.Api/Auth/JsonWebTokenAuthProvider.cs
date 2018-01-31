@@ -37,7 +37,6 @@ namespace Ponics.Api.Auth
                 ValidAudiences = new[] {audience},
                 IssuerSigningKeys = openIdConfig.SigningKeys
             };
-
         }
 
         public override bool IsAuthorized(IAuthSession session, IAuthTokens tokens, Authenticate request = null)
@@ -65,13 +64,15 @@ namespace Ponics.Api.Auth
                 var user = handler.ValidateToken(req.GetBearerToken(), _tokenValidationParameters, out validatedToken);
 
                 var session = CreateSessionFromJwtSecurityToken(req, validatedToken as JwtSecurityToken);
-                req.Items[Keywords.Session] = session;
+                
 
                 var appMetaData = user.Claims.FirstOrDefault(c => c.Type == "https://simpleponics.io/app_meta_data");
                 if (appMetaData != null)
                 {
-                    req.Items["appMetaData"] = JsonObject.Parse(appMetaData.Value);
+                    session.UserAuthId = JsonObject.Parse(appMetaData.Value)["simpleponics_id"];
                 }
+
+                req.Items[Keywords.Session] = session;
             }
             catch (Exception ex)
             {

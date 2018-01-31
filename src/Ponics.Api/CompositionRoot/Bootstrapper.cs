@@ -47,15 +47,12 @@ namespace Ponics.Api.CompositionRoot
             _container.Register(typeof(Pipeline<,,>), ContractAssemblies);
             _container.RegisterCollection(typeof(Node<,>), ContractAssemblies);
 
-            
 #if DEBUG
             _container.Verify(VerificationOption.VerifyAndDiagnose);
 #else
             _container.Verify();
 #endif
 
-            _container.Register<IHttpContextAccessor>(() => app.ApplicationServices.GetService<IHttpContextAccessor>());
-            _container.Register<Context>();
 
             return _container;
         }

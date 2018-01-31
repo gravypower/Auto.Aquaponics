@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Ponics.Data.Users;
 using Ponics.Kernel.Queries;
 using Ponics.Queries;
 
@@ -9,18 +10,19 @@ namespace Ponics.Api.Auth
         where TGetAllPonicsSystem : GetAllPonicsSystems<TPonicsSystem>
     {
         private readonly IQueryHandler<TGetAllPonicsSystem, List<TPonicsSystem>> _decorated;
-        private readonly Context _context;
+        private readonly IDataQueryHandler<GetUser, User> _getUserDataQueryHandler;
 
         public AuthoriseUserAccessToPonicsSystems(
-            IQueryHandler<TGetAllPonicsSystem, List<TPonicsSystem>> decorated, Context context)
+            IQueryHandler<TGetAllPonicsSystem, List<TPonicsSystem>> decorated,
+            IDataQueryHandler<GetUser, User> getUserDataQueryHandler)
         {
             _decorated = decorated;
-            _context = context;
+            _getUserDataQueryHandler = getUserDataQueryHandler;
         }
 
         public List<TPonicsSystem> Handle(TGetAllPonicsSystem query)
         {
-            var t = _context.UserId;
+            var user = _getUserDataQueryHandler.Handle(new GetUser {UserId = Context.UserId}); 
             return _decorated.Handle(query);
         }
     }
