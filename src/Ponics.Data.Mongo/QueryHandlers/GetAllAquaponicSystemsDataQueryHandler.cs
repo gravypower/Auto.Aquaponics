@@ -5,18 +5,21 @@ using Ponics.Aquaponics.Queries;
 
 namespace Ponics.Data.Mongo.QueryHandlers
 {
-    public class GetAllAquaponicSystemsDataQueryHandler : MongoDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>
+    public class GetAllAquaponicSystemsDataQueryHandler : MongoDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>, AquaponicSystem>
     {
         public GetAllAquaponicSystemsDataQueryHandler(IMongoDatabase database) : base(database)
         {
         }
 
-        public override List<AquaponicSystem> Handle(GetAllAquaponicSystems query)
+        public override FilterDefinition<AquaponicSystem> BuildFilterDefinition(GetAllAquaponicSystems query)
         {
-            var typeFilter = Builders<AquaponicSystem>.Filter.Eq("_t", typeof(AquaponicSystem).Name);
-            var dasta = Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem))
-                .Find(typeFilter);
-            return dasta.ToList();
+            return Builders<AquaponicSystem>.Filter.Eq("_t", typeof(AquaponicSystem).Name);
+        }
+
+        public override List<AquaponicSystem> DoHandle(GetAllAquaponicSystems query, IMongoCollection<AquaponicSystem> collection, FilterDefinition<AquaponicSystem> filterDefinition)
+        {
+            return Database.GetCollection<AquaponicSystem>(nameof(PonicsSystem))
+                .Find(filterDefinition).ToList();
         }
     }
 }

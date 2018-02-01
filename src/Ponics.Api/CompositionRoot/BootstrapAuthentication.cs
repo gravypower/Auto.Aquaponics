@@ -12,7 +12,7 @@ namespace Ponics.Api.CompositionRoot
         public void Bootstrap(Container container)
         {
             container.RegisterDecorator(
-                typeof(IQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>),
+                typeof(IDataQueryHandler<GetAllAquaponicSystems, List<AquaponicSystem>>),
                 typeof(AuthoriseUserAccessToPonicsSystems<GetAllAquaponicSystems, AquaponicSystem>));
         }
     }

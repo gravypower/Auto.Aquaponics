@@ -5,7 +5,7 @@ using Ponics.Queries;
 
 namespace Ponics.Api.Auth
 {
-    public class AuthoriseUserAccessToPonicsSystems<TGetAllPonicsSystem, TPonicsSystem> : IQueryHandler<TGetAllPonicsSystem, List<TPonicsSystem>>
+    public class AuthoriseUserAccessToPonicsSystems<TGetAllPonicsSystem, TPonicsSystem> : IDataQueryHandler<TGetAllPonicsSystem, List<TPonicsSystem>>
         where TPonicsSystem : PonicsSystem
         where TGetAllPonicsSystem : GetAllPonicsSystems<TPonicsSystem>
     {
@@ -23,6 +23,8 @@ namespace Ponics.Api.Auth
         public List<TPonicsSystem> Handle(TGetAllPonicsSystem query)
         {
             var user = _getUserDataQueryHandler.Handle(new GetUser {UserId = Context.UserId}); 
+
+
             return _decorated.Handle(query);
         }
     }

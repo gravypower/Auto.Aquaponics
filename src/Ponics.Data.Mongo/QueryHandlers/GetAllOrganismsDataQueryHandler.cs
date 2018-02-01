@@ -6,18 +6,20 @@ using Ponics.Organisms.Queries;
 namespace Ponics.Data.Mongo.QueryHandlers
 {
     public class GetAllOrganismsDataQueryHandler:
-        MongoDataQueryHandler<GetOrganisms, List<Organism>>
+        MongoDataQueryHandler<GetOrganisms, List<Organism>, Organism>
     {
         public GetAllOrganismsDataQueryHandler(IMongoDatabase database) : base(database)
         {
         }
 
-        public override List<Organism> Handle(GetOrganisms query)
+        public override FilterDefinition<Organism> BuildFilterDefinition(GetOrganisms query)
         {
-            return 
-                Database.GetCollection<Organism>(nameof(Organism))
-                .AsQueryable()
-                .ToList();
+            return null;
+        }
+
+        public override List<Organism> DoHandle(GetOrganisms query, IMongoCollection<Organism> collection, FilterDefinition<Organism> filterDefinition)
+        {
+            return collection.AsQueryable().ToList();
         }
     }
 }
