@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Funq;
 using Microsoft.AspNetCore.Builder;
 using NodaTime;
@@ -6,6 +7,10 @@ using NodaTime.Text;
 using Ponics.Api.Auth;
 using Ponics.Api.CompositionRoot;
 using Ponics.Api.Services;
+using Ponics.Authentication.Users;
+using Ponics.Data.Mongo.QueryHandlers;
+using Ponics.Kernel.Commands;
+using Ponics.Kernel.Queries;
 using ServiceStack;
 using ServiceStack.Api.OpenApi;
 using ServiceStack.Auth;
@@ -65,6 +70,13 @@ namespace Ponics.Api
             RegisterService(commandSserviceType);
 
             
+            var allUsers = sic.GetInstance<IDataQueryHandler<AllGetUsers, List<User>>>();
+
+            if (allUsers.Handle(new AllGetUsers()).Count == 0)
+            {
+                sic.GetInstance<IDataCommandHandler<AddUser>>().Handle(new AddUser());
+            }
+
         }
 
         private static string SerializeZoneDateTime(ZonedDateTime datetime)

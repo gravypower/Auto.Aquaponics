@@ -18,7 +18,6 @@ namespace Ponics.Data.Mongo
 
         public TDataResponce Handle(TDataQuery query)
         {
-            var t = typeof(TDocumentCollection).Name;
             var collection = Database.GetCollection<TDocumentCollection>(typeof(TDocumentCollection).Name);
             return DoHandle(query, collection, BuildFilterDefinition(query));
         }
