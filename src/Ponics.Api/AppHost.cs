@@ -55,7 +55,7 @@ namespace Ponics.Api
             JsConfig<ZonedDateTime>.SerializeFn = SerializeZoneDateTime;
             JsConfig<ZonedDateTime>.DeSerializeFn = ParseZoneDateTime;
 
-            var sic = Bootstrapper.Bootstrap(_app);
+            var sic = Bootstrapper.Bootstrap();
             container.Adapter = new SimpleInjectorIocAdapter(sic);
    
             var queryServiceType = TypeFactory.GenerateQueryServices(Bootstrapper.GetQueryTypes(), typeof(QueryService));

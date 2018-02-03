@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using Ponics.Data.Users;
+using Ponics.Authentication.Users;
 
 namespace Ponics.Data.Mongo.QueryHandlers
 {
@@ -11,10 +11,7 @@ namespace Ponics.Data.Mongo.QueryHandlers
 
         public override FilterDefinition<User> BuildFilterDefinition(GetUser query)
         {
-            var idFilter = Builders<User>.Filter.Eq("_id", query.UserId);
-            var typeFilter = Builders<User>.Filter.Eq("_t", typeof(User).Name);
-
-            return idFilter & typeFilter;
+            return Builders<User>.Filter.Eq("_id", query.UserId);
         }
 
         public override User DoHandle(GetUser query, IMongoCollection<User> collection, FilterDefinition<User> filterDefinition)

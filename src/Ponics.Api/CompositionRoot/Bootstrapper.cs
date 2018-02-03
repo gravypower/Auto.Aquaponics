@@ -6,9 +6,15 @@ using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Ponics.Analysis;
 using Ponics.Analysis.Levels.Handlers;
+using Ponics.Aquaponics;
+using Ponics.Aquaponics.Queries;
+using Ponics.Data.Decorators;
+using Ponics.Data.Seed;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
+using Ponics.Organisms;
+using Ponics.Organisms.Queries;
 using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot
@@ -23,7 +29,7 @@ namespace Ponics.Api.CompositionRoot
         };
         private static readonly Assembly[] BootstrapAssemblies = { typeof(IBootstrap).Assembly };
 
-        public static Container Bootstrap(IApplicationBuilder app)
+        public static Container Bootstrap()
         {
             _container = new Container();
 

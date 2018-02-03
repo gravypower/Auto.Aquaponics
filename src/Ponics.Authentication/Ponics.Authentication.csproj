@@ -5,13 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Ponics.HardCodedData.v3.ncrunchproject" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\Ponics.Authentication\Ponics.Authentication.csproj" />
     <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />
-    <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>
 
 </Project>

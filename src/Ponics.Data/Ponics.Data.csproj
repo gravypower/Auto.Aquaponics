@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Ponics.Authentication\Ponics.Authentication.csproj" />
     <ProjectReference Include="..\Ponics.HardCodedData\Ponics.HardCodedData.csproj" />
     <ProjectReference Include="..\Ponics\Ponics.csproj" />
   </ItemGroup>

@@ -1,5 +1,5 @@
 ﻿using MongoDB.Driver;
-using Ponics.Data.Users;
+using Ponics.Authentication.Users;
 
 namespace Ponics.Data.Mongo.CommandHandlers
 {

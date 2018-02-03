@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ponics.Analysis\Ponics.Analysis.csproj" />
+    <ProjectReference Include="..\Ponics.Authentication\Ponics.Authentication.csproj" />
     <ProjectReference Include="..\Ponics.Data.Mongo\Ponics.Data.Mongo.csproj" />
     <ProjectReference Include="..\Ponics.Data\Ponics.Data.csproj" />
     <ProjectReference Include="..\Ponics.Kernel\Ponics.Kernel.csproj" />

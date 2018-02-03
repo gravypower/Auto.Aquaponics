@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Ponics.Data.Users;
+using Ponics.Authentication.Users;
 using Ponics.Kernel.Queries;
 using Ponics.Queries;
 

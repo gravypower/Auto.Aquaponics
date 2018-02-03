@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.IdGenerators;
 using MongoDB.Driver;
 using Ponics.Analysis.Levels;
+using Ponics.Authentication.Users;
 using Ponics.Data.Mongo;
 using Ponics.Data.Mongo.Serializers;
-using Ponics.Data.Users;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Queries;
 using Ponics.Organisms;
@@ -27,8 +28,17 @@ namespace Ponics.Api.CompositionRoot
             var mongoUrl = new MongoUrl(mongodbUri);
             var dbname = mongoUrl.DatabaseName;
             var db = new MongoClient(mongoUrl).GetDatabase(dbname);
-            container.Register(() => db, Lifestyle.Singleton);
 
+            container.Register(() => db, Lifestyle.Singleton);
+            container.Register(typeof(IDataQueryHandler<,>), ContractAssemblies);
+            container.Register(typeof(IDataCommandHandler<>), ContractAssemblies);
+
+            ConfigureBsonClassMap();
+            BsonDefaults.GuidRepresentation = GuidRepresentation.Standard;
+        }
+
+        private static void ConfigureBsonClassMap()
+        {
             BsonClassMap.RegisterClassMap<PonicsSystem>(cm =>
             {
                 cm.AutoMap();
@@ -59,9 +69,6 @@ namespace Ponics.Api.CompositionRoot
                 var bsonClassMap = new BsonClassMap(toleranceType);
                 BsonClassMap.RegisterClassMap(bsonClassMap);
             }
-
-            container.Register(typeof(IDataQueryHandler<,>), ContractAssemblies);
-            container.Register(typeof(IDataCommandHandler<>), ContractAssemblies);
         }
 
         public static IEnumerable<Type> GetToleranceTypes() =>

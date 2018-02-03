@@ -1,7 +1,7 @@
 ﻿using System;
 using Ponics.Kernel.Commands;
 
-namespace Ponics.Data.Users
+namespace Ponics.Authentication.Users
 {
     public class AddUser : IDataCommand
     {
