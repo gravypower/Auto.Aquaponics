@@ -6,7 +6,7 @@ namespace Ponics.Api.CompositionRoot.ToleranceCommands
 {
     public class BootstrapUpdateTolerance: BootstrapToleranceCommands
     {
-        public override Type TCommand => typeof(UpdateTolerance<>);
-        public override Type TToleranceCommandHandler => typeof(UpdateToleranceCommandHandler<>);
+        public override Type CommandType => typeof(UpdateTolerance<>);
+        public override Type ToleranceCommandHandlerType => typeof(UpdateToleranceCommandHandler<>);
     }
 }

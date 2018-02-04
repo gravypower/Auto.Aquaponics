@@ -25,8 +25,8 @@ namespace Ponics.Api.Tests.CompositionRoot.ToleranceCommands
         public void SetUp()
         {
             Sut = Substitute.For<BootstrapToleranceCommands>();
-            Sut.TCommand.Returns(typeof(ToleranceCommand<>));
-            Sut.TToleranceCommandHandler.Returns(typeof(ToleranceCommandHandler<>));
+            Sut.CommandType.Returns(typeof(ToleranceCommand<>));
+            Sut.ToleranceCommandHandlerType.Returns(typeof(ToleranceCommandHandler<>));
         }
 
         [Test]

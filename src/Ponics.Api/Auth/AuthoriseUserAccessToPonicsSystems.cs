@@ -33,6 +33,7 @@ namespace Ponics.Api.Auth
             {
                 throw HttpError.NotFound($"No {typeof(TPonicsSystem).Name} found for user");
             }
+
             var filterDefinition = _decorated.BuildFilterDefinition(query);
 
             foreach (var userPonicsSystemId in user.PonicsSystemIds)
