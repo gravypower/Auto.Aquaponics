@@ -5,8 +5,7 @@ using ServiceStack;
 namespace Ponics.Aquaponics.Commands
 {
     [Api("Add an Aquaponic System")]
-    [Route("/systems/aquaponic/{SystemId}", "DELETE")]
-    [Tag("aquaponic")]
+    [Route("/systems/{SystemId}", "DELETE")]
     public class DeleteSystem : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The Id of an aquaponic system",

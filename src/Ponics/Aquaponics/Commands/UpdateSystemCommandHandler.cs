@@ -2,16 +2,16 @@
 
 namespace Ponics.Aquaponics.Commands
 {
-    public class UpdateSystemCommandHandler : ICommandHandler<UpdateSystem>
+    public class UpdateSystemCommandHandler : ICommandHandler<UpdateAquaponicSystem>
     {
-        private readonly IDataCommandHandler<UpdateSystem> _updateDataCommandHandler;
+        private readonly IDataCommandHandler<UpdateAquaponicSystem> _updateDataCommandHandler;
 
-        public UpdateSystemCommandHandler(IDataCommandHandler<UpdateSystem> updateDataCommandHandler)
+        public UpdateSystemCommandHandler(IDataCommandHandler<UpdateAquaponicSystem> updateDataCommandHandler)
         {
             _updateDataCommandHandler = updateDataCommandHandler;
         }
 
-        public void Handle(UpdateSystem command)
+        public void Handle(UpdateAquaponicSystem command)
         {
             _updateDataCommandHandler.Handle(command);
         }

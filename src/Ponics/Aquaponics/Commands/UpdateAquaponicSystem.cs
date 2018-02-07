@@ -7,7 +7,7 @@ namespace Ponics.Aquaponics.Commands
     [Api("Update an Aquaponic Systems")]
     [Route("/systems/aquaponic/{SystemId}", "PUT")]
     [Tag("aquaponic")]
-    public class UpdateSystem : ICommand, IDataCommand
+    public class UpdateAquaponicSystem : ICommand, IDataCommand
     {
         [ApiMember(Name = "SystemId", Description = "The Id of an aquaponic system",
             ParameterType = "path", DataType = "string", IsRequired = true)]

@@ -33,7 +33,7 @@ namespace Ponics.Tests.Command.ComponentTests
 
             //Assert
             UpdateSystemDataCommandHandler.Received().Handle(
-                Arg.Is<UpdateSystem>(
+                Arg.Is<UpdateAquaponicSystem>(
                     c => c.System.ComponentConnections.Contains(componentConnection)));
         }
 

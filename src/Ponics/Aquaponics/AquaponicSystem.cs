@@ -16,7 +16,6 @@ namespace Ponics.Aquaponics
         public AquaponicSystem()
         {
             Closed = true;
-            
             ComponentConnections = new List<ComponentConnection>();
         }
     }

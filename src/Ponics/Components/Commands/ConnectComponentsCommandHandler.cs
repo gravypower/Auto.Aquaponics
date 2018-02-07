@@ -9,11 +9,11 @@ namespace Ponics.Components.Commands
 {
     public class ConnectComponentsCommandHandler : ICommandHandler<ConnectComponents>
     {
-        private readonly IDataCommandHandler<UpdateSystem> _updateSystemDataCommandHandler;
+        private readonly IDataCommandHandler<UpdateAquaponicSystem> _updateSystemDataCommandHandler;
         private readonly IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataCommandHandler;
 
         public ConnectComponentsCommandHandler(
-            IDataCommandHandler<UpdateSystem> updateSystemDataCommandHandler,
+            IDataCommandHandler<UpdateAquaponicSystem> updateSystemDataCommandHandler,
             IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> getSystemDataCommandHandler)
         {
             _updateSystemDataCommandHandler = updateSystemDataCommandHandler;
@@ -29,7 +29,7 @@ namespace Ponics.Components.Commands
 
             system.ComponentConnections.Add(command.ComponentConnection);
 
-            _updateSystemDataCommandHandler.Handle(new UpdateSystem
+            _updateSystemDataCommandHandler.Handle(new UpdateAquaponicSystem
             {
                 System = system
             });

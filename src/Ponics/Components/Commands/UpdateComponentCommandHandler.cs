@@ -9,11 +9,11 @@ namespace Ponics.Components.Commands
 {
     public class UpdateComponentCommandHandler:ICommandHandler<UpdateComponent>
     {
-        private readonly IDataCommandHandler<UpdateSystem> _updateSystemDataCommandHandler;
+        private readonly IDataCommandHandler<UpdateAquaponicSystem> _updateSystemDataCommandHandler;
         private readonly IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> _getSystemDataCommandHandler;
 
         public UpdateComponentCommandHandler(
-            IDataCommandHandler<UpdateSystem> updateSystemDataCommandHandler,
+            IDataCommandHandler<UpdateAquaponicSystem> updateSystemDataCommandHandler,
             IDataQueryHandler<GetAquaponicSystem, AquaponicSystem> getSystemDataCommandHandler)
         {
             _updateSystemDataCommandHandler = updateSystemDataCommandHandler;
@@ -32,7 +32,7 @@ namespace Ponics.Components.Commands
 
             system.Components[oldComponentIndex] = command.Component;
 
-            _updateSystemDataCommandHandler.Handle(new UpdateSystem
+            _updateSystemDataCommandHandler.Handle(new UpdateAquaponicSystem
             {
                 System = system,
                 SystemId = command.SystemId

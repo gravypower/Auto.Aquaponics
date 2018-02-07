@@ -3,6 +3,7 @@ using NSubstitute;
 using NUnit.Framework;
 using Ponics.Aquaponics;
 using Ponics.Aquaponics.Commands;
+using Ponics.Commands;
 using Ponics.Kernel.Commands;
 
 namespace Ponics.Tests.Command.AquaponicsTests

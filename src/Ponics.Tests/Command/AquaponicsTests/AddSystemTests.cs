@@ -9,21 +9,21 @@ namespace Ponics.Tests.Command.AquaponicsTests
     [TestFixture]
     public class AddSystemTests
     {
-        public AddSystemCommandHandler Sut;
-        private IDataCommandHandler<AddSystem> _addSystemDataCommandHandler;
+        public AddAquaponicSystemCommandHandler Sut;
+        private IDataCommandHandler<AddAquaponicSystem> _addSystemDataCommandHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _addSystemDataCommandHandler = Substitute.For<IDataCommandHandler<AddSystem>>();
-            Sut = new AddSystemCommandHandler(_addSystemDataCommandHandler);
+            _addSystemDataCommandHandler = Substitute.For<IDataCommandHandler<AddAquaponicSystem>>();
+            Sut = new AddAquaponicSystemCommandHandler(_addSystemDataCommandHandler);
         }
 
         [Test]
         public void SystemAdded()
         {
             //Assign
-            var command = new AddSystem
+            var command = new AddAquaponicSystem
             {
                 System =  new AquaponicSystem()
             };
@@ -32,7 +32,7 @@ namespace Ponics.Tests.Command.AquaponicsTests
             Sut.Handle(command);
 
             //Assert
-            _addSystemDataCommandHandler.Received().Handle(Arg.Any<AddSystem>());
+            _addSystemDataCommandHandler.Received().Handle(Arg.Any<AddAquaponicSystem>());
         }
     }
 }

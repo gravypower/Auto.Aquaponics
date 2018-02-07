@@ -1,6 +1,7 @@
-﻿using Ponics.Kernel.Commands;
+﻿using Ponics.Aquaponics.Commands;
+using Ponics.Kernel.Commands;
 
-namespace Ponics.Aquaponics.Commands
+namespace Ponics.Commands
 {
     public class DeleteSystemCommandHandler : ICommandHandler<DeleteSystem>
     {

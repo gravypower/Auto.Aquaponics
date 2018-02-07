@@ -10,12 +10,12 @@ namespace Ponics.Tests.Command.AquaponicsTests
     public class UpdateSystemTests
     {
         public UpdateSystemCommandHandler Sut;
-        private IDataCommandHandler<UpdateSystem> _updateDataCommandHandler;
+        private IDataCommandHandler<UpdateAquaponicSystem> _updateDataCommandHandler;
 
         [SetUp]
         public void SetUp()
         {
-            _updateDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateSystem>>();
+            _updateDataCommandHandler = Substitute.For<IDataCommandHandler<UpdateAquaponicSystem>>();
             Sut = new UpdateSystemCommandHandler(_updateDataCommandHandler);
         }
 
@@ -23,7 +23,7 @@ namespace Ponics.Tests.Command.AquaponicsTests
         public void CanUpdateSystem()
         {
             //Assign
-            var command = new UpdateSystem();
+            var command = new UpdateAquaponicSystem();
 
             //Act
             Sut.Handle(command);

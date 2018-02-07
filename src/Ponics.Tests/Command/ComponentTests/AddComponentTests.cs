@@ -36,11 +36,11 @@ namespace Ponics.Tests.Command.ComponentTests
 
             //Assert
             UpdateSystemDataCommandHandler.Received().Handle(
-                Arg.Is<UpdateSystem>(
+                Arg.Is<UpdateAquaponicSystem>(
                     c => c.System.Components.Contains(component)));
 
             UpdateSystemDataCommandHandler.Received().Handle(
-                Arg.Is<UpdateSystem>(
+                Arg.Is<UpdateAquaponicSystem>(
                     c => c.SystemId == command.SystemId));
         }
 
