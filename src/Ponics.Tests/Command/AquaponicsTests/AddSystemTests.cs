@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Ponics.Aquaponics;
 using Ponics.Aquaponics.Commands;
+using Ponics.Aquaponics.Configuration;
 using Ponics.Kernel.Commands;
 
 namespace Ponics.Tests.Command.AquaponicsTests
@@ -16,7 +17,8 @@ namespace Ponics.Tests.Command.AquaponicsTests
         public void SetUp()
         {
             _addSystemDataCommandHandler = Substitute.For<IDataCommandHandler<AddAquaponicSystem>>();
-            Sut = new AddAquaponicSystemCommandHandler(_addSystemDataCommandHandler);
+            var addAquaponicsSystemConfiguration = Substitute.For<IAddAquaponicsSystemConfiguration>();
+            Sut = new AddAquaponicSystemCommandHandler(_addSystemDataCommandHandler, addAquaponicsSystemConfiguration);
         }
 
         [Test]

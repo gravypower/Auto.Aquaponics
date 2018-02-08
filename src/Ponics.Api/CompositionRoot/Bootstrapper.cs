@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
-using Microsoft.AspNetCore.Builder;
 using Ponics.Analysis;
 using Ponics.Analysis.Levels.Handlers;
-using Ponics.Aquaponics;
-using Ponics.Aquaponics.Queries;
-using Ponics.Data.Decorators;
-using Ponics.Data.Seed;
+using Ponics.Aquaponics.Configuration;
+using Ponics.HardCodedData.AquaponicSystems;
 using Ponics.Kernel.Commands;
 using Ponics.Kernel.Pipelines;
 using Ponics.Kernel.Queries;
-using Ponics.Organisms;
-using Ponics.Organisms.Queries;
 using SimpleInjector;
 
 namespace Ponics.Api.CompositionRoot
@@ -39,11 +34,12 @@ namespace Ponics.Api.CompositionRoot
                 bootstrap.Bootstrap(_container);
             }
 
+            _container.Register<IAddAquaponicsSystemConfiguration, AddAquaponicsSystemConfiguration>();
+
             _container.Register(typeof(IQueryHandler<,>), ContractAssemblies);
             _container.Register(typeof(IQueryStrategyHandler<,>), ContractAssemblies);
 
             _container.Register(typeof(ICommandHandler<>), ContractAssemblies);
-
 
             _container.RegisterCollection(typeof(IAnalyseLevelsQueryHandler), ContractAssemblies);
 
@@ -55,7 +51,6 @@ namespace Ponics.Api.CompositionRoot
 #else
             _container.Verify();
 #endif
-
 
             return _container;
         }

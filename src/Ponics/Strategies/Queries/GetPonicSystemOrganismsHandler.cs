@@ -39,6 +39,14 @@ namespace Ponics.Strategies.Queries
                 }
             }
 
+            foreach (var systemSystemWideOrganism in system.SystemWideOrganisms)
+            {
+                if (result.Any(o => o.Id == systemSystemWideOrganism)) continue;
+
+                var organism = organisms.SingleOrDefault(o => o.Id == systemSystemWideOrganism);
+                result.Add(organism);
+            }
+
             return result;
         }
     }

@@ -21,13 +21,17 @@ namespace Ponics.HardCodedData.AquaponicSystems
             var nitrosomonas = new Nitrosomonas();
             var nitrospira = new Nitrospira();
 
+            system.SystemWideOrganisms = new List<Guid>();
+            system.SystemWideOrganisms.Add(nitrosomonas.Id);
+            system.SystemWideOrganisms.Add(nitrospira.Id);
+
             var fishTank = new Component
             {
                 Id = Guid.Parse("77eb39a3-00fe-4cf7-b422-37c1408bfbd6"),
                 Name = "fishTank"
             };
 
-            fishTank.AddOrganisms(new SilverPerch().Id, nitrosomonas.Id, nitrospira.Id);
+            fishTank.AddOrganisms(new SilverPerch().Id);
             system.Components.Add(fishTank);
 
             var growBed = new Component
@@ -35,7 +39,7 @@ namespace Ponics.HardCodedData.AquaponicSystems
                 Id = Guid.Parse("02067a53-cdad-4ccb-9f04-3cab69b10008"),
                 Name = "growBed"
             };
-            growBed.AddOrganisms(new Worm().Id, nitrosomonas.Id, nitrospira.Id);
+            growBed.AddOrganisms(new Worm().Id);
             system.Components.Add(growBed);
 
             var sumpTank = new Component
@@ -43,7 +47,7 @@ namespace Ponics.HardCodedData.AquaponicSystems
                 Id = Guid.Parse("a0e67c51-fc19-4ffc-a39e-167e3711f68b"),
                 Name = "sumpTank"
             };
-            sumpTank.AddOrganisms(new GoldFish().Id, nitrosomonas.Id, nitrospira.Id);
+            sumpTank.AddOrganisms(new GoldFish().Id);
             system.Components.Add(sumpTank);
 
             system.ComponentConnections.Add( new ComponentConnection
