@@ -43,6 +43,7 @@ namespace Ponics.Tests.Query.AquaponicSystems
             {
                 SystemId = Guid.NewGuid()
             };
+            _getAllOrganismsDataQueryHandler.Handle(Arg.Any<GetOrganisms>()).Returns(new List<Organism>());
 
             //Act
             Sut.Handle(query);
